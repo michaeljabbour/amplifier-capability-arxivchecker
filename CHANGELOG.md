@@ -1,5 +1,12 @@
 # Changelog
 
+## Local revision — 2026-11-03 (corrected launch film v3)
+
+- Integrated the exact supplied 73.14-second v3 MP4 as the main reel, with a derived WebM, new poster and updated speech captions/descriptive transcript.
+- Verified the corrected house-style narration and visible footer number; the narration allows venue exceptions. This remains MJ’s style, not an arXiv page-number requirement.
+- Preserved all v1/v2 assets and production records. Removed landing-page links stay removed; native captions and the player fallback transcript remain.
+- Recorded media hashes, scoped content/privacy review and local validation in [the v3 review](docs/VIDEO-V3.md). No separate website was deployed.
+
 ## Local revision — 2026-11-03 (visible page numbers)
 
 - Made visible first and subsequent page numbers MJ's house default throughout the portable skill, writing/policy guidance, examples and neutral LaTeX starter. Explicit author/venue exceptions remain allowed; page numbering is not presented as an arXiv mandate.

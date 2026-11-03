@@ -1,0 +1,44 @@
+ArxivChecker: Trace. Rebuild. Review.
+
+73-second narrated launch film (v3). The exact owner-supplied finished MP4 is retained; the new production takes and source project were not supplied with this attachment.
+Every file, number and chart is fictional or an illustration, not a study result. ArxivChecker prepares a paper for human review; it does not submit it or promise acceptance.
+
+00:00.000  One result becomes a sentence
+On screen: Your study is done. / The system saved half the cost. (a gold thread hangs loose from the full stop) / Half of what? (in silence) / Fictional example
+Narration: Your study is done. One result becomes a sentence.
+
+00:08.340  The turn
+On screen: The thread pulls taut; the camera follows it down into a file card labelled results.json. Wordmark: ArxivChecker
+Narration: ArxivChecker, a skill for your AI assistant, starts with the evidence, not the old draft’s numbers.
+
+00:12.940  The sentence gains its limits
+On screen: A fictional results.json with task_set "held-out", compare "baseline", cost_scope "priced model calls" and excluded ["setup", "unpriced calls", "human review"]. Each line lights as its phrase arrives: On this held-out task set, priced model calls cost half as much as the baseline. Setup, unpriced calls and human review are excluded.
+Narration: It traces the claim to its source, and adds the comparison and what’s left out.
+
+00:22.640  Draw it from the data
+On screen: Rows A, B, C and D stream into bars. Row D is renamed D2 in the file ("Renamed in the file"), so its bar never arrives: "D is missing. Build stopped." D is restored, then: Then look at it. A magnifier passes over the labels. Illustration, not study data.
+Narration: Figures come straight from the data. If a result goes missing, the build stops.
+
+00:31.690  The story in order
+On screen: Problem · What we built · How we tested it · What happened · Limits, each landing in a page.
+Narration: The paper tells the story in order, from the problem to its limits.
+
+00:35.840  Set it, and sort the rules
+On screen: LaTeX source types and compiles into a page. ARXIV POLICY: Margins of at least 1 inch (the thread measures 1 in). ARXIV RECOMMENDS: Describe each figure (the page figure is marked ALT). HOUSE STYLE: Visible page numbers. Unless a venue says otherwise. Footer number 1 appears and remains until the scene fades out.
+Narration: It sets the paper in LaTeX, and sorts the rules. arXiv asks for margins of at least an inch. arXiv advises a description for every figure. And your house style keeps page numbers, unless a venue says otherwise.
+
+00:50.840  Rebuild from what you’ll send
+On screen: main.tex, figures/ and references.bib are checked; drafts/ and private-data/ are struck out. An empty folder opens, the three files go in, and the paper rebuilds. LOCAL CHECK: A local check, not arXiv’s decision.
+Narration: Then it rebuilds the paper in an empty folder, from only the files you’ll send.
+
+00:56.740  Hand-over
+On screen: A cover sheet slides across the desk: BEFORE YOU SUBMIT. You decide. Authors and affiliations · How you disclose AI use (ARXIV POLICY) · License · Final claims, each with an empty box. A blank signature line. No promise of acceptance.
+Narration: You decide the names, how AI was used, the license and the final claims.
+
+01:05.040  The takeaway
+On screen: A stronger claim has clearer limits. (type only)
+
+01:07.540  End card
+On screen: ArxivChecker · Trace. Rebuild. Review. · › Use ArxivChecker on this study folder. (typed; no voice)
+
+The narrator says ArxivChecker as “Archive Checker” and arXiv as “archive”.

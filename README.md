@@ -33,7 +33,7 @@ For Amplifier, add the local behavior to your existing host as described in [INS
 | [Amplifier bundle](bundle.md) | Skill discovery, mode and a staged recipe with review checkpoints |
 | [Website](site/README.md) | Guide, fictional claim demonstration, self-review checklist, downloads and narrated films with captions and transcripts |
 
-The current main reel is the [v2 MP4](https://github.com/michaeljabbour/amplifier-capability-arxivchecker/blob/main/site/assets/arxivchecker-film-v2.mp4), with a matching WebM, captions and short cut. See [video verification and limits](docs/VIDEO-UPDATE.md).
+The current main reel is the [v3 MP4](https://github.com/michaeljabbour/amplifier-capability-arxivchecker/blob/main/site/assets/arxivchecker-film-v3.mp4), with a matching WebM, updated captions and descriptive transcript. Earlier full films and short cuts are preserved. See [video verification and limits](docs/VIDEO-V3.md).
 
 The core helper's interfaces are deliberately small:
 

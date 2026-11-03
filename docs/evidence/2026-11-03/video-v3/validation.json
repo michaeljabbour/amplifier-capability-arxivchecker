@@ -1,0 +1,38 @@
+{
+  "date": "2026-11-03",
+  "python_environment": "Existing Python 3.14 with optional plotting/image dependencies",
+  "regressions": {
+    "command": "python3.14 -m unittest discover -s tests -v",
+    "passed": 50,
+    "skipped": 0,
+    "log": "tests-python314.txt"
+  },
+  "browser_interaction": "Not performed at owner request; no playback clicks or browser changes",
+  "github_pages": "Workflow unchanged and not dispatched; separate site deployment not performed",
+  "scope": "Local checks; remote publication and CI are verified after the commit is pushed.",
+  "site_build": {
+    "status": "passed",
+    "command": "python3.14 scripts/build.py"
+  },
+  "site_integrity": {
+    "status": "passed",
+    "command": "python3.14 scripts/check.py",
+    "output": [
+      "PASS: 2 HTML pages; 67 local links/assets/fragments; 108 Markdown destinations",
+      "PASS: 19 portable files, exact guide source/downloads/ZIP and SHA-256",
+      "PASS: ten canonical workflow stages, offline runtime assets, accessible controls and explicit claim limits",
+      "PASS: canonical requirement/submission maps rendered in browser, primary citations linked and local-profile scope explicit",
+      "PASS: canonical publishing-style guide, three distinct publishing layers and shared family tokens/masthead",
+      "Voiceover audio-stream checks: 8 films inspected",
+      "ZIP SHA-256: f8bdb522f345246b53260c53e3a1f44593d19c6d9268575888e7070ab5be533e"
+    ]
+  },
+  "javascript_syntax": {
+    "status": "passed",
+    "command": "node --check site/site.js"
+  },
+  "diff_whitespace": {
+    "status": "passed",
+    "command": "git -c core.fsmonitor=false diff --check"
+  }
+}

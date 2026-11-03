@@ -1,0 +1,111 @@
+{
+  "date": "2026-11-03",
+  "main_reel": "site/assets/arxivchecker-film-v3.mp4",
+  "source": "Owner-supplied corrected finished MP4; original Library metadata retained privately.",
+  "files": [
+    {
+      "path": "site/assets/arxivchecker-film-v3-poster.jpg",
+      "bytes": 241552,
+      "sha256": "2afe180dfdaf19a9c17bbd952d7af16c2dac90c118cf96ef98e80a2bde59a3ae"
+    },
+    {
+      "path": "site/assets/arxivchecker-film-v3-transcript.txt",
+      "bytes": 3610,
+      "sha256": "31eef969a136ab7879c15c3f570785c8e9e3586513fb946c0e5d816ad604ff5f"
+    },
+    {
+      "path": "site/assets/arxivchecker-film-v3.mp4",
+      "bytes": 14727378,
+      "sha256": "11a775d3eecb0c5b6f71ba16b84ca196547c20819f6ef639938934e482a59fb4"
+    },
+    {
+      "path": "site/assets/arxivchecker-film-v3.vtt",
+      "bytes": 1283,
+      "sha256": "ee4c99014ecb099ae3aeb4457ae95306705a0ce5cc96c538900d424f9a4a6cae"
+    },
+    {
+      "path": "site/assets/arxivchecker-film-v3.webm",
+      "bytes": 6656339,
+      "sha256": "21259837f9b389d921329df0698772d7244996546da8c0b77a3004e9ee670f00"
+    }
+  ],
+  "preserved_earlier_assets": [
+    {
+      "path": "site/assets/arxivchecker-film-15s-transcript.txt",
+      "sha256": "0b2f053bbef1932c5cb2cd287296cc64aea38a4eb8477cd4c7bec979bbc5ce98"
+    },
+    {
+      "path": "site/assets/arxivchecker-film-15s.mp4",
+      "sha256": "6040eaeb268679f443ade9c47c4859b23a6e350c720006a5432711c58ff693c8"
+    },
+    {
+      "path": "site/assets/arxivchecker-film-15s.vtt",
+      "sha256": "e4abc022cd9bf314a46dec7a07f1d6b569aeda95e21dbf35b8d1337aed23c36e"
+    },
+    {
+      "path": "site/assets/arxivchecker-film-poster.jpg",
+      "sha256": "f33c7f5df688744204d29f91dcd85af3a80d9a42aa59e1660c7700ac26988f04"
+    },
+    {
+      "path": "site/assets/arxivchecker-film-transcript.txt",
+      "sha256": "9082bf1ef1a1541527458d8605d758f372a84deedaa98d9d41b95aace9c9b866"
+    },
+    {
+      "path": "site/assets/arxivchecker-film-v2-15s-transcript.txt",
+      "sha256": "a5808c3382d1f8367a4db406dbbef419ad8a5561c3ddfc8e7d7736909f96fbb4"
+    },
+    {
+      "path": "site/assets/arxivchecker-film-v2-15s.mp4",
+      "sha256": "c0c8831bd72d8688d595ed9671c6dcd128278c8d4b39fa4394879270cc0c8dd9"
+    },
+    {
+      "path": "site/assets/arxivchecker-film-v2-15s.vtt",
+      "sha256": "a0735f00db8c8dec07c743b0a63d69e23420ef82825a1eb43cac2422ddda6dfa"
+    },
+    {
+      "path": "site/assets/arxivchecker-film-v2-poster.jpg",
+      "sha256": "ef22c42fb1877354b80cff5136c6d5ff1929f2f863c33437a02cb8928df2b804"
+    },
+    {
+      "path": "site/assets/arxivchecker-film-v2-transcript.txt",
+      "sha256": "d0283e9a2176f21b9504e15d20665e07880ce95742bb813efe849f24dd16f9d7"
+    },
+    {
+      "path": "site/assets/arxivchecker-film-v2.mp4",
+      "sha256": "b449db7981ec99e201cd951823f11dcf15105b1a51aa9d8c0c71442e53af22c7"
+    },
+    {
+      "path": "site/assets/arxivchecker-film-v2.vtt",
+      "sha256": "f7c945114a7b56ab5e27b24decf6272ed094a4bf61b6652accdf410d30c2f7e8"
+    },
+    {
+      "path": "site/assets/arxivchecker-film-v2.webm",
+      "sha256": "155129e0fd29ad56ab15351ea123ce3b7f011a37bcc51ee8e418e38472e7a4f8"
+    },
+    {
+      "path": "site/assets/arxivchecker-film.mp4",
+      "sha256": "9e156fad92afeaf1aab2a3b7c64370f342e891279cbe8b5452654d069b5bd5ff"
+    },
+    {
+      "path": "site/assets/arxivchecker-film.vtt",
+      "sha256": "ce9a9a7e9cd9ff265ead20c95d2db487767ccd7cdb79517498617fe58c4b5844"
+    },
+    {
+      "path": "site/assets/arxivchecker-film.webm",
+      "sha256": "268109885f5e54dfa82c241a78e6c5ed294291e6faba23f2496e8be952a8dd4d"
+    },
+    {
+      "path": "site/assets/favicon.svg",
+      "sha256": "1e300f732d11d6b173f53c92feec775938ada9df16cf5ad24d4e7436b9a7bd8b"
+    },
+    {
+      "path": "site/assets/social-card.png",
+      "sha256": "a362b1d1f2f2755f5e36798bd9065dba6ea1052c9eba5762bee361aeedfe4737"
+    },
+    {
+      "path": "site/assets/social-card.svg",
+      "sha256": "f5256ba6cca9e0f96b16dfbb60b192c1339627d05255d7a2a54a7ed13b920292"
+    }
+  ],
+  "earlier_assets_byte_identical": true
+}

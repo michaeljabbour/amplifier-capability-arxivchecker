@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "checked_date": "2026-11-03",
+  "status": "independent-local-media-and-caption-checks-completed",
+  "scope": "Correct ArxivChecker v3 replacement and derived full WebM.",
+  "mp4": {
+    "path": "site/assets/arxivchecker-film-v3.mp4",
+    "sha256": "11a775d3eecb0c5b6f71ba16b84ca196547c20819f6ef639938934e482a59fb4",
+    "bytes": 14727378,
+    "format_duration_seconds": 73.14,
+    "decode_status": "no-errors-observed",
+    "measured_integrated_lufs": -16.06,
+    "measured_true_peak_dbtp": -3.62,
+    "measured_loudness_range_lu": 7.4,
+    "streams": [
+      {
+        "codec_name": "h264",
+        "codec_type": "video",
+        "width": 1920,
+        "height": 1080,
+        "r_frame_rate": "30/1",
+        "nb_read_frames": "2194",
+        "color_space": "bt709",
+        "color_range": "tv",
+        "color_transfer": "bt709",
+        "color_primaries": "bt709"
+      },
+      {
+        "codec_name": "aac",
+        "codec_type": "audio",
+        "r_frame_rate": "0/0",
+        "nb_read_frames": "3429",
+        "sample_rate": "48000",
+        "channels": 2
+      }
+    ]
+  },
+  "webm": {
+    "path": "site/assets/arxivchecker-film-v3.webm",
+    "sha256": "21259837f9b389d921329df0698772d7244996546da8c0b77a3004e9ee670f00",
+    "bytes": 6656339,
+    "format_duration_seconds": 73.148,
+    "decode_status": "no-errors-observed",
+    "measured_integrated_lufs": -16.06,
+    "measured_true_peak_dbtp": -3.59,
+    "measured_loudness_range_lu": 7.3,
+    "streams": [
+      {
+        "codec_name": "vp9",
+        "codec_type": "video",
+        "width": 1920,
+        "height": 1080,
+        "r_frame_rate": "30/1",
+        "nb_read_frames": "2194",
+        "color_space": "bt709",
+        "color_range": "tv",
+        "color_transfer": "bt709",
+        "color_primaries": "bt709"
+      },
+      {
+        "codec_name": "opus",
+        "codec_type": "audio",
+        "r_frame_rate": "0/0",
+        "nb_read_frames": "3658",
+        "sample_rate": "48000",
+        "channels": 2
+      }
+    ]
+  },
+  "caption_check": {
+    "path": "site/assets/arxivchecker-film-v3.vtt",
+    "sha256": "ee4c99014ecb099ae3aeb4457ae95306705a0ce5cc96c538900d424f9a4a6cae",
+    "byte_identical_to_independently_proposed_vtt": true,
+    "cue_count": 17,
+    "overlapping_cue_count": 0,
+    "invalid_duration_cue_count": 0,
+    "first_cue_start_seconds": 0.27,
+    "last_cue_end_seconds": 62.35,
+    "all_cues_within_mp4_duration": true,
+    "all_cues_within_webm_duration": true,
+    "maximum_lines_per_cue": 2,
+    "maximum_characters_per_line": 42,
+    "revised_page_number_narration": "And your house style keeps page numbers, unless a venue says otherwise."
+  },
+  "offline_speech_recognition": {
+    "engine": "whisper.cpp",
+    "model": "base",
+    "model_sha256": "60ed5bc3dd14eea856493d334349b405782ddcaf0028d4b5df4088345fba2efe",
+    "execution": "Existing cached local CPU recognizer; no prompt,network,download,installation or provider call.",
+    "expected_normalized_word_count": 135,
+    "recognized_normalized_word_count": 135,
+    "exact_normalized_word_sequence_match": true,
+    "normalization": "Ignore case and punctuation; use documented pronunciations ArxivChecker\u2192Archive Checker and arXiv\u2192archive.",
+    "human_listening_performed": false,
+    "transcripts_or_asr_logs_included": false
+  },
+  "webm_audio_correspondence": {
+    "reference_path": "site/assets/arxivchecker-film-v3.mp4",
+    "comparison_path": "site/assets/arxivchecker-film-v3.webm",
+    "method": "Cross-correlation of decoded mono16kHz PCM; coarse search\u00b150ms,refined to one sample.",
+    "reference_decoded_audio_duration_seconds": 73.14,
+    "comparison_decoded_audio_duration_seconds": 73.14,
+    "best_lag_samples_at_16khz": 0,
+    "best_lag_ms": 0.0,
+    "normalized_correlation": 0.9988173842430115
+  },
+  "v2_to_v3_timeline_summary": {
+    "before_page_number_replacement_shift_seconds": 0.0,
+    "after_page_number_replacement_shift_seconds": 2.0,
+    "supporting_window_count": 17,
+    "method": "Decoded audio waveform comparison of1s windows; independent of ASR token times."
+  },
+  "limits": [
+    "Automated decode,word sequence,caption structure,loudness and waveform correspondence checks only.",
+    "ASR timestamps are approximate and are not an exact perceptual word-alignment certificate.",
+    "No human listening or full visual review was performed by this independent check.",
+    "Lossy MP4/WebM audio can differ even when aligned; waveform correlation does not certify subjective audio quality.",
+    "This media review does not assess arXiv acceptance,science,rights or consent."
+  ],
+  "tool_version": "ffmpeg version 9.0.2 Copyright (c) 2000-2026 the FFmpeg developers"
+}

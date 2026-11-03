@@ -1,6 +1,6 @@
 # Supplied v2 reel integration — 2026-11-03
 
-**House-style correction:** MJ now prefers visible page numbers, including the title page, with author/venue exceptions. The unchanged video’s contrary 46–49 second example is historical and awaits correction; see the [Claude prompt and exact edit targets](VIDEO-PAGE-NUMBERS.md).
+**Historical v2 record:** The main player now uses the corrected [v3 reel](VIDEO-V3.md). V2 and this review remain unchanged historical evidence. MJ’s current default is visible page numbers, including the title page, with author/venue exceptions; the contrary v2 example is superseded.
 
 The main player now uses the owner's supplied 71.14-second MP4, with the matching
 WebM, timed English speech captions, descriptive transcript and poster. The

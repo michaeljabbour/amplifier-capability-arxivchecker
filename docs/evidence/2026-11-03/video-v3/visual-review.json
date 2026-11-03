@@ -1,0 +1,72 @@
+{
+  "source_sha256": "11a775d3eecb0c5b6f71ba16b84ca196547c20819f6ef639938934e482a59fb4",
+  "source_size_bytes": 14727378,
+  "container_duration_seconds": 73.14,
+  "video_fps": 30,
+  "method": "Decoded actual frame-number selections with ffmpeg select/showinfo; no browser or video editing. Full-resolution extracted frames visually inspected through contact sheets and selected originals.",
+  "samples": {
+    "scene": {
+      "start_seconds": 44,
+      "interval_seconds": 0.5,
+      "end_seconds": 52,
+      "files": "scene-01.png through scene-17.png"
+    },
+    "story": {
+      "start_seconds": 0,
+      "interval_seconds": 4,
+      "end_seconds": 72,
+      "files": "story-01.png through story-19.png"
+    }
+  },
+  "observations": [
+    {
+      "time_seconds": 46.5,
+      "text": "HOUSE STYLE chip visible; page-number sentence has not fully appeared"
+    },
+    {
+      "time_seconds": 47.0,
+      "text": "HOUSE STYLE / Visible page numbers; footer 1 visible"
+    },
+    {
+      "time_seconds": 47.5,
+      "text": "Visible page numbers; footer 1 retained"
+    },
+    {
+      "time_seconds": 48.0,
+      "text": "Secondary line: Unless a venue says otherwise; footer 1 retained in gold outline"
+    },
+    {
+      "range_seconds": [
+        48,
+        50.5
+      ],
+      "text": "Page-number 1 remains visible in all half-second samples; no empty dashed-footer replacement"
+    },
+    {
+      "time_seconds": 50.8,
+      "text": "Corrected label and footer 1 fade together with whole page scene"
+    },
+    {
+      "time_seconds": 50.833333,
+      "text": "Page scene very faint but still present"
+    },
+    {
+      "time_seconds": 50.866667,
+      "text": "Whole page scene absent; transition toward rebuild scene"
+    },
+    {
+      "time_seconds": 51.5,
+      "text": "Rebuild scene on dark stage with generic main.tex / figures / references.bib entries"
+    }
+  ],
+  "privacy_review_scope": "No real study data, people, credentials, private paths, confidential/report labels or conflicting no-page-number wording observed in sampled frames. Opening cost example is labelled FICTIONAL EXAMPLE; chart is labelled ILLUSTRATION, NOT STUDY DATA. This is a visual sample review, not exhaustive OCR or audio review.",
+  "transcript_recommendation": {
+    "scene_1_through_6": "retain previous chapter times",
+    "scene_7_seconds": 50.84,
+    "scene_8_seconds": 56.74,
+    "scene_9_seconds": 65.04,
+    "scene_10_seconds": 67.54,
+    "scope": "Later +2s inferred from visual matches to v2 and bracketed scene transition frames; do not globally shift early narration/captions. New spoken-line timing requires separate audio alignment."
+  },
+  "limits": "No subjective listening or exact audio-caption sync approval. Observations use decoded frame PTS; no subframe transition precision is claimed."
+}

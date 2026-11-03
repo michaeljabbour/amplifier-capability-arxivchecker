@@ -7,7 +7,11 @@ The reviewed [arXiv format policy](https://info.arxiv.org/help/policies/format_r
 discusses line numbers, which are a separate feature; no universal page-number
 requirement or prohibition was identified in the reviewed policy.
 
-## Exact current-video conflict
+## Resolved in the supplied v3 reel
+
+The [v3 verification record](VIDEO-V3.md) documents the replacement narration, visible footer and retimed captions. The prompt and exact v2 edit targets below are preserved as history; they do not describe a remaining conflict in the current player.
+
+## Historical v2 conflict
 
 The unchanged v2 MP4 SHA-256 is
 `b449db7981ec99e201cd951823f11dcf15105b1a51aa9d8c0c71442e53af22c7`.
@@ -80,7 +84,7 @@ Do not re-add the removed homepage link row or publish/deploy anything unless
 separately asked. Return the new files and verification notes.
 ```
 
-## What remains intentionally unchanged here
+## Preserved historical v2 material
 
 The film, captions and transcripts continue to describe the existing v2 media
 accurately; changing those words alone would make them inaccurate. The v2
