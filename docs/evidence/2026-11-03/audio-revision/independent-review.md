@@ -45,3 +45,7 @@ generated narration, not microphone recordings. `independent_audio_review.py`
 records how this check was run and refuses to overwrite an existing result.
 Actual audible playback, pronunciation and natural pacing still require the
 separate listening review.
+
+Repository console-log copies normalize trailing whitespace only. The original
+captured logs are retained privately; recognized text, JSON, source/media hashes
+and measured results are unchanged.

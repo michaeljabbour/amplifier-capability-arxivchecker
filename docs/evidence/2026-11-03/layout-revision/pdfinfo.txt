@@ -1,6 +1,6 @@
 Title:           Fictional typesetting fixture
-Subject:         
-Keywords:        
+Subject:
+Keywords:
 Author:          Fixture exact author names
 Creator:         LaTeX with hyperref
 Producer:        pdfTeX-1.40.29

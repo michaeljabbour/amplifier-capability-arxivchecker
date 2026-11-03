@@ -30,3 +30,7 @@ python3 scripts/smoke_template.py --output /tmp/new-arxivchecker-layout
 The output directory must be new. TeX is trusted local source; this is not an OS
 sandbox. These records do not certify arXiv policy compliance, accessibility,
 science, rights or the final rendering on arXiv.
+
+The repository's `pdfinfo.txt` normalizes trailing whitespace only. Its original
+console output is preserved privately; the PDF and all measurement records are
+unchanged.
