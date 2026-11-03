@@ -1,0 +1,48 @@
+{
+  "observed_date": "2026-11-03",
+  "browser": "ChatGPT in-app browser",
+  "target": "loopback-only static preview of generated _site",
+  "status": "passed",
+  "viewports": [
+    {
+      "width": 1280,
+      "height": 720,
+      "document_scroll_width": 1280,
+      "landing_hero_visually_inspected": true
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "document_scroll_width": 390,
+      "landing_and_guide_visually_inspected": true
+    }
+  ],
+  "interactions": {
+    "claim_comparison_details_expanded": true,
+    "checklist_after_check": "1 of 5 review prompts marked.",
+    "checklist_after_reset": "0 of 5 review prompts marked.",
+    "guide_navigation": true
+  },
+  "video": {
+    "duration_seconds": 47.958333,
+    "observed_time_seconds": 8.2217,
+    "readyState": 4,
+    "paused": false,
+    "error": null,
+    "captions_visible": true
+  },
+  "limits": "Manual browser inspection plus read-only DOM measurements. No deployed-site test or model-run study benchmark.",
+  "temporary_viewport_reset": true,
+  "official_map_recheck": {
+    "access_date": "2026-11-03",
+    "desktop_width": 1280,
+    "desktop_scroll_width": 1280,
+    "settled_mobile_width": 390,
+    "settled_mobile_scroll_width": 390,
+    "canonical_maps_rendered": true,
+    "table_tabindex": "0",
+    "table_keyboard_scroll_observed": true,
+    "tables_scroll_within_container": true,
+    "temporary_viewport_reset": true
+  }
+}

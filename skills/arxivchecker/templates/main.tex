@@ -1,0 +1,91 @@
+% Neutral structural template. Replace every REPLACE_ME before release.
+% Checked policy map: ../references/requirements.md (2026-11-03; recheck before submission).
+% Exact 11pt, Letter, newtx and no page numbers are local preferences.
+% Official format guidance includes single spacing, 10-14pt and margins >= 1 inch:
+% https://info.arxiv.org/help/policies/format_requirements.html
+\documentclass[11pt]{article}
+\usepackage[letterpaper,margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{newtxtext,newtxmath}
+\usepackage[final]{microtype}
+\usepackage{graphicx,booktabs,tabularx}
+\usepackage{xcolor}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{hyperref}
+\definecolor{linkblue}{HTML}{1F4E9A}
+\hypersetup{colorlinks=true,linkcolor=linkblue,citecolor=linkblue,urlcolor=linkblue,
+  pdftitle={REPLACE_ME study title},pdfauthor={REPLACE_ME exact author names}}
+\pagestyle{empty}
+\makeatletter
+\let\ps@plain\ps@empty
+\makeatother
+
+\title{REPLACE_ME study title}
+% Exact names and affiliations must be supplied by the authors.
+% For a shared affiliation, use one centred block. Adapt for distinct affiliations.
+\author{REPLACE_ME exact full author name(s)\\[3pt]\normalsize REPLACE_ME exact affiliation(s)}
+\date{REPLACE_ME fixed month and year}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+
+\begin{abstract}
+REPLACE_ME problem, system built, study question, design and evidence-supported answer.
+State the reporting unit, population and main limitation. Do not insert example results.
+\end{abstract}
+
+\section{Introduction}
+REPLACE_ME problem, why it matters, contributions and scope.
+
+\section{Design and system under test}
+REPLACE_ME explain what was built and why. Include the key design visuals and their provenance.
+
+\section{Related work}
+REPLACE_ME cite verified sources and explain the comparison, rather than listing references.
+
+\section{Research question and prior decision rules}
+REPLACE_ME reproduce rules fixed before the run, with a dated source. Label later decisions exploratory.
+
+\section{Harness and apparatus}
+REPLACE_ME describe the implementation, versions, execution environment and checks.
+
+\section{Methods}
+REPLACE_ME population, inclusion/exclusion rules, sample unit, repeated measures, labels,
+uncertainty, analysis plan, missingness, costs and latency definitions.
+
+\section{Results}
+REPLACE_ME write from the extracted evidence ledger. Report counts with denominators and units.
+% Place each table/figure immediately after its first discussion. Inspect final float positions.
+% \begin{figure}[htbp]
+%   \centering\includegraphics[width=0.8\linewidth]{figures/results.pdf}
+%   \caption{REPLACE_ME reporting unit, population, n, uncertainty and source.}
+%   \label{fig:results}
+% \end{figure}
+
+\section{Discussion}
+REPLACE_ME explain what the evidence means and distinguish interpretation from measurement.
+
+\section{Limitations}
+REPLACE_ME negative findings, uncertainty, bias, generalizability and unmeasured quantities.
+
+\section{Conclusion}
+REPLACE_ME answer the question within the measured scope.
+
+\section*{Data and code availability}
+REPLACE_ME verified release locations, versions, licences and restrictions. Do not promise a release that has not happened.
+
+\section*{Use of AI tools}
+REPLACE_ME describe significant AI assistance actually used (for example code, experiments,
+analysis, synthetic labels/data, figures or drafting), with relevant tool/version details.
+Record human review accurately. Do not state that authors approved the paper before they have.
+
+% Add verified entries to references.bib and cite them in the text.
+% For the conservative clean-build path, generate main.bbl before preflight.
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\appendix
+\section{Supporting materials}
+REPLACE_ME relevant design history, examples, dataset documentation and additional visuals.
+\end{document}

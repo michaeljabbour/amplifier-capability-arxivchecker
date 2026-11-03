@@ -1,0 +1,32 @@
+{
+  "schema": "arxivchecker-portable-smoke/v1",
+  "observed_at": "2026-11-03T08:06:37.991094+00:00",
+  "python": "/opt/homebrew/opt/python@3.15/bin/python3.15",
+  "scope": "Temporary portable copy/install/export checks only; no global installation or model invocation",
+  "status": "passed",
+  "checks": {
+    "install_and_idempotence": {
+      "passed": true,
+      "files": 16
+    },
+    "installed_helper_cli": {
+      "passed": true,
+      "command": "python3 <temporary-host>/arxivchecker/scripts/arxivcheck.py --help"
+    },
+    "conflict_and_backup": {
+      "passed": true,
+      "local_change_retained": true
+    },
+    "symlink_destination_rejected": {
+      "passed": true
+    },
+    "deterministic_export_and_source_fidelity": {
+      "passed": true,
+      "files": 16,
+      "sha256": "af3d508d574c06b32b632d1cc77f8ba77745dce666c70317ff93563b47ab3837"
+    },
+    "export_no_overwrite": {
+      "passed": true
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "metrics": [
+    {
+      "id": "TODO_success_rate",
+      "source": "results.json",
+      "pointer": "/TODO_success_count",
+      "kind": "proportion",
+      "unit": "TODO explicit reporting unit and population",
+      "denominator_pointer": "/TODO_eligible_count"
+    },
+    {
+      "id": "TODO_cost",
+      "source": "results.json",
+      "pointer": "/TODO_cost_value",
+      "kind": "number",
+      "unit": "TODO currency, reporting unit and period",
+      "cost_scope": "TODO measured usage versus assumed pricing; price source/date; included and excluded costs"
+    }
+  ]
+}

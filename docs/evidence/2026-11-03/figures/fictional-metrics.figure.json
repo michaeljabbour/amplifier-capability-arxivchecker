@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "input": "docs/evidence/2026-11-03/figures/fictional-metrics.json",
+  "input_sha256": "37a38906d78fb8d261d8835ed1a349ed71b87ef9a56addc34bb41b9cd3b90f94",
+  "series": [
+    {
+      "id": "Empty control",
+      "value": 0,
+      "kind": "proportion",
+      "unit": "successes per fictional task",
+      "source": "fictional-results.json",
+      "source_sha256": "6c0eee5b2bd253f9b6c0831acd9311d4958525b35f1fe675e123f517f4213108",
+      "pointer": "/successes/Empty control",
+      "denominator": 10,
+      "rate": 0.0,
+      "wilson95": [
+        0.0,
+        0.2775327998628892
+      ]
+    },
+    {
+      "id": "Illustrative approach",
+      "value": 8,
+      "kind": "proportion",
+      "unit": "successes per fictional task",
+      "source": "fictional-results.json",
+      "source_sha256": "6c0eee5b2bd253f9b6c0831acd9311d4958525b35f1fe675e123f517f4213108",
+      "pointer": "/successes/Illustrative approach",
+      "denominator": 10,
+      "rate": 0.8,
+      "wilson95": [
+        0.49016247153664183,
+        0.9433178485456247
+      ]
+    },
+    {
+      "id": "Ceiling control",
+      "value": 10,
+      "kind": "proportion",
+      "unit": "successes per fictional task",
+      "source": "fictional-results.json",
+      "source_sha256": "6c0eee5b2bd253f9b6c0831acd9311d4958525b35f1fe675e123f517f4213108",
+      "pointer": "/successes/Ceiling control",
+      "denominator": 10,
+      "rate": 1.0,
+      "wilson95": [
+        0.7224672001371107,
+        0.9999999999999999
+      ]
+    }
+  ],
+  "outputs": {
+    "fictional-metrics.pdf": "d97dcfe397b7f4eff78a2933b6739a1c2ce2624eb4314327fd8186659c8c22a0",
+    "fictional-metrics.png": "03fd49b262f66c9d2a3331e417e4018e618d31dc22045c52cda0727a8a36db05"
+  },
+  "visual_review": "pending: inspect PNG at publication size; check labels, intervals, units and all expected series",
+  "limits": "Reproduces selected values. Does not validate experimental design, source truth, or justify selection."
+}

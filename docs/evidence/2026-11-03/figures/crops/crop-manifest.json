@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "input": "docs/evidence/2026-11-03/figures/fictional-artboard.png",
+  "input_sha256": "9fb81ec6c6e986ef8f7add229e4158aeeee6789cd9bb688c0bfb83ca9fe6c1b8",
+  "boxes_sha256": "99afce69508fabf5e6fcd3ca8d9e5c06f37d454e52f051045fbb5c9659d8312d",
+  "source_size": [
+    1200,
+    800
+  ],
+  "crops": [
+    {
+      "name": "design-with-footnote",
+      "box": [
+        30,
+        30,
+        570,
+        370
+      ],
+      "pixel_box": [
+        60,
+        60,
+        1140,
+        740
+      ]
+    }
+  ],
+  "outputs": {
+    "design-with-footnote.png": {
+      "sha256": "6f704dffcbe1a6841d0ee160a60d549ba0d80be12e2f2cb1ec0e767a7342b7be",
+      "size": [
+        1080,
+        680
+      ]
+    }
+  },
+  "visual_review": "pending: inspect every crop for clipped labels, footnotes, legends and intended panel boundaries"
+}

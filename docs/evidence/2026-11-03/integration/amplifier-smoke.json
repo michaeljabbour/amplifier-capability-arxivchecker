@@ -1,0 +1,217 @@
+{
+  "schema": "arxivchecker-integration-smoke/v1",
+  "observed_at": "2026-11-03T08:06:17.733618+00:00",
+  "python": "<AMPLIFIER_ENV>/bin/python",
+  "scope": "Cached local bundle composition, namespace resolution, skill loading, mode discovery and recipe validation only. No provider/model/session execution, remote fetching, global install or app configuration mutation.",
+  "status": "passed",
+  "records": [
+    {
+      "entry": "bundle.md",
+      "loaded": true,
+      "tools": [
+        "tool-context-intelligence-set-filters",
+        "tool-delegate",
+        "tool-context-intelligence-transcript",
+        "tool-skills",
+        "tool-filesystem",
+        "tool-bash",
+        "tool-web",
+        "tool-search",
+        "tool-todo",
+        "tool-apply-patch",
+        "tool-mode",
+        "tool-recipes"
+      ],
+      "hooks": [
+        "hooks-streaming-ui",
+        "hooks-status-context",
+        "hook-redaction",
+        "hooks-deprecation",
+        "hooks-logging",
+        "hook-context-intelligence",
+        "hooks-routing",
+        "hooks-todo-reminder",
+        "hooks-todo-display",
+        "hooks-session-naming",
+        "hooks-mode",
+        "hooks-approval"
+      ],
+      "namespace_paths": {
+        "@arxivchecker:skills": "<CHECKOUT>/skills",
+        "@arxivchecker:modes": "<CHECKOUT>/modes",
+        "@arxivchecker:recipes/arxivchecker-paper.yaml": "<CHECKOUT>/recipes/arxivchecker-paper.yaml"
+      },
+      "skill_discovered_and_loaded": true,
+      "modes": [
+        "arxiv"
+      ],
+      "recipe_validation": {
+        "success": true,
+        "output": {
+          "status": "valid",
+          "recipe": "arxivchecker-paper",
+          "version": "0.1.0",
+          "warnings": [],
+          "engine": {
+            "module": "amplifier_module_tool_recipes",
+            "module_file": "<AMPLIFIER_CACHE>/amplifier-bundle-recipes-2b1e350432fea9ba/modules/tool-recipes/amplifier_module_tool_recipes/__init__.py",
+            "module_dir": "<AMPLIFIER_CACHE>/amplifier-bundle-recipes-2b1e350432fea9ba/modules/tool-recipes/amplifier_module_tool_recipes",
+            "module_dir_real": "<AMPLIFIER_CACHE>/amplifier-bundle-recipes-2b1e350432fea9ba/modules/tool-recipes/amplifier_module_tool_recipes",
+            "module_dir_is_symlink": false,
+            "package_version": "0.1.0",
+            "git_sha": "7afaba7455743fb26b8d8a11cd1394eb7a01628a",
+            "git_ref": "refs/heads/main",
+            "git_root": "<AMPLIFIER_CACHE>/amplifier-bundle-recipes-2b1e350432fea9ba",
+            "bundle_cache_dir": "<AMPLIFIER_CACHE>/amplifier-bundle-recipes-2b1e350432fea9ba",
+            "bundle_cache_is_symlink": false,
+            "bundle_cache_resolves_to": "<AMPLIFIER_CACHE>/amplifier-bundle-recipes-2b1e350432fea9ba",
+            "bundle_cache_commit": "7afaba7455743fb26b8d8a11cd1394eb7a01628a",
+            "bundle_cache_ref": "main",
+            "editable_pth": [
+              {
+                "pth": "<AMPLIFIER_ENV>/lib/python3.12/site-packages/_editable_impl_amplifier_module_tool_recipes.pth",
+                "target": "<AMPLIFIER_CACHE>/amplifier-bundle-recipes-2b1e350432fea9ba/modules/tool-recipes",
+                "target_real": "<AMPLIFIER_CACHE>/amplifier-bundle-recipes-2b1e350432fea9ba/modules/tool-recipes"
+              }
+            ],
+            "python_executable": "<AMPLIFIER_ENV>/bin/python",
+            "warnings": []
+          }
+        },
+        "error": null
+      }
+    },
+    {
+      "entry": "behaviors/arxivchecker.yaml",
+      "loaded": true,
+      "tools": [
+        "tool-mode",
+        "tool-skills",
+        "tool-recipes"
+      ],
+      "hooks": [
+        "hooks-mode",
+        "hooks-approval"
+      ],
+      "namespace_paths": {
+        "@arxivchecker:skills": "<CHECKOUT>/skills",
+        "@arxivchecker:modes": "<CHECKOUT>/modes",
+        "@arxivchecker:recipes/arxivchecker-paper.yaml": "<CHECKOUT>/recipes/arxivchecker-paper.yaml"
+      },
+      "skill_discovered_and_loaded": true,
+      "modes": [
+        "arxiv"
+      ],
+      "recipe_validation": {
+        "success": true,
+        "output": {
+          "status": "valid",
+          "recipe": "arxivchecker-paper",
+          "version": "0.1.0",
+          "warnings": [],
+          "engine": {
+            "module": "amplifier_module_tool_recipes",
+            "module_file": "<AMPLIFIER_CACHE>/amplifier-bundle-recipes-2b1e350432fea9ba/modules/tool-recipes/amplifier_module_tool_recipes/__init__.py",
+            "module_dir": "<AMPLIFIER_CACHE>/amplifier-bundle-recipes-2b1e350432fea9ba/modules/tool-recipes/amplifier_module_tool_recipes",
+            "module_dir_real": "<AMPLIFIER_CACHE>/amplifier-bundle-recipes-2b1e350432fea9ba/modules/tool-recipes/amplifier_module_tool_recipes",
+            "module_dir_is_symlink": false,
+            "package_version": "0.1.0",
+            "git_sha": "7afaba7455743fb26b8d8a11cd1394eb7a01628a",
+            "git_ref": "refs/heads/main",
+            "git_root": "<AMPLIFIER_CACHE>/amplifier-bundle-recipes-2b1e350432fea9ba",
+            "bundle_cache_dir": "<AMPLIFIER_CACHE>/amplifier-bundle-recipes-2b1e350432fea9ba",
+            "bundle_cache_is_symlink": false,
+            "bundle_cache_resolves_to": "<AMPLIFIER_CACHE>/amplifier-bundle-recipes-2b1e350432fea9ba",
+            "bundle_cache_commit": "7afaba7455743fb26b8d8a11cd1394eb7a01628a",
+            "bundle_cache_ref": "main",
+            "editable_pth": [
+              {
+                "pth": "<AMPLIFIER_ENV>/lib/python3.12/site-packages/_editable_impl_amplifier_module_tool_recipes.pth",
+                "target": "<AMPLIFIER_CACHE>/amplifier-bundle-recipes-2b1e350432fea9ba/modules/tool-recipes",
+                "target_real": "<AMPLIFIER_CACHE>/amplifier-bundle-recipes-2b1e350432fea9ba/modules/tool-recipes"
+              }
+            ],
+            "python_executable": "<AMPLIFIER_ENV>/bin/python",
+            "warnings": []
+          }
+        },
+        "error": null
+      }
+    }
+  ],
+  "cache_modules": {
+    "amplifier-bundle-modes": {
+      "checkout": "<AMPLIFIER_CACHE>/amplifier-bundle-modes-85a0e90c360a77e3",
+      "revision": "a29ebceb72f02f4340290346d5a4fe0cf486dfec"
+    },
+    "amplifier-bundle-skills": {
+      "checkout": "<AMPLIFIER_CACHE>/amplifier-bundle-skills-5105b7c75992a85a",
+      "revision": "2f58408a879535df36da5c92d2b073f49271ade4"
+    },
+    "amplifier-bundle-recipes": {
+      "checkout": "<AMPLIFIER_CACHE>/amplifier-bundle-recipes-2b1e350432fea9ba",
+      "revision": "7afaba7455743fb26b8d8a11cd1394eb7a01628a"
+    }
+  },
+  "cached_includes": {
+    "git+https://github.com/microsoft/amplifier-foundation@main#subdirectory=bundles/anchors/bundle.md": {
+      "checkout": "<AMPLIFIER_CACHE>/amplifier-foundation-c909465861f9d6ce",
+      "revision": "81b9bb07eb8fa3b0be2f080fb560a3b203cb2ad1",
+      "suffix": "bundles/anchors/bundle.md"
+    },
+    "git+https://github.com/microsoft/amplifier-foundation@main#subdirectory=behaviors/streaming-ui.yaml": {
+      "checkout": "<AMPLIFIER_CACHE>/amplifier-foundation-c909465861f9d6ce",
+      "revision": "81b9bb07eb8fa3b0be2f080fb560a3b203cb2ad1",
+      "suffix": "behaviors/streaming-ui.yaml"
+    },
+    "git+https://github.com/microsoft/amplifier-foundation@main#subdirectory=behaviors/status-context.yaml": {
+      "checkout": "<AMPLIFIER_CACHE>/amplifier-foundation-c909465861f9d6ce",
+      "revision": "81b9bb07eb8fa3b0be2f080fb560a3b203cb2ad1",
+      "suffix": "behaviors/status-context.yaml"
+    },
+    "git+https://github.com/microsoft/amplifier-foundation@main#subdirectory=behaviors/redaction.yaml": {
+      "checkout": "<AMPLIFIER_CACHE>/amplifier-foundation-c909465861f9d6ce",
+      "revision": "81b9bb07eb8fa3b0be2f080fb560a3b203cb2ad1",
+      "suffix": "behaviors/redaction.yaml"
+    },
+    "git+https://github.com/microsoft/amplifier-foundation@main#subdirectory=behaviors/logging.yaml": {
+      "checkout": "<AMPLIFIER_CACHE>/amplifier-foundation-c909465861f9d6ce",
+      "revision": "81b9bb07eb8fa3b0be2f080fb560a3b203cb2ad1",
+      "suffix": "behaviors/logging.yaml"
+    },
+    "git+https://github.com/microsoft/amplifier-bundle-context-intelligence@main#subdirectory=behaviors/context-intelligence-logging.yaml": {
+      "checkout": "<AMPLIFIER_CACHE>/amplifier-bundle-context-intelligence-ecd41f3e6fa67bd2",
+      "revision": "2a8d7bd1e022971c395ec38ed797bf75fcf7aff7",
+      "suffix": "behaviors/context-intelligence-logging.yaml"
+    },
+    "git+https://github.com/microsoft/amplifier-bundle-context-intelligence@main#subdirectory=behaviors/context-intelligence-navigation.yaml": {
+      "checkout": "<AMPLIFIER_CACHE>/amplifier-bundle-context-intelligence-ecd41f3e6fa67bd2",
+      "revision": "2a8d7bd1e022971c395ec38ed797bf75fcf7aff7",
+      "suffix": "behaviors/context-intelligence-navigation.yaml"
+    },
+    "git+https://github.com/microsoft/amplifier-bundle-routing-matrix@main#subdirectory=behaviors/routing.yaml": {
+      "checkout": "<AMPLIFIER_CACHE>/amplifier-bundle-routing-matrix-972b0ce7f0cbc2f7",
+      "revision": "edf3603295c03fbe4cc06dc9d818fa84d9405d33",
+      "suffix": "behaviors/routing.yaml"
+    },
+    "git+https://github.com/microsoft/amplifier-bundle-modes@main#subdirectory=behaviors/modes.yaml": {
+      "checkout": "<AMPLIFIER_CACHE>/amplifier-bundle-modes-85a0e90c360a77e3",
+      "revision": "a29ebceb72f02f4340290346d5a4fe0cf486dfec",
+      "suffix": "behaviors/modes.yaml"
+    },
+    "git+https://github.com/microsoft/amplifier-bundle-redaction@main#subdirectory=behaviors/redaction.yaml": {
+      "checkout": "<AMPLIFIER_CACHE>/amplifier-bundle-redaction-445777b1949c63f3",
+      "revision": "10158afa15a8594c73fad40e2b56929e04d1c016",
+      "suffix": "behaviors/redaction.yaml"
+    }
+  },
+  "publication_normalization": {
+    "changed": "Machine-specific home, checkout and cache prefixes replaced with documented aliases. Module revisions, validation results and warning lists preserved.",
+    "aliases": [
+      "<CHECKOUT>",
+      "<AMPLIFIER_ENV>",
+      "<AMPLIFIER_CACHE>"
+    ],
+    "original_record": "Retained privately; not included in the repository or website."
+  }
+}

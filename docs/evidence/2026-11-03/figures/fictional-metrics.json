@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "metrics": [
+    {
+      "id": "Empty control",
+      "value": 0,
+      "kind": "proportion",
+      "unit": "successes per fictional task",
+      "source": "fictional-results.json",
+      "source_sha256": "6c0eee5b2bd253f9b6c0831acd9311d4958525b35f1fe675e123f517f4213108",
+      "pointer": "/successes/Empty control",
+      "denominator": 10,
+      "rate": 0.0,
+      "wilson95": [
+        0.0,
+        0.2775327998628892
+      ]
+    },
+    {
+      "id": "Illustrative approach",
+      "value": 8,
+      "kind": "proportion",
+      "unit": "successes per fictional task",
+      "source": "fictional-results.json",
+      "source_sha256": "6c0eee5b2bd253f9b6c0831acd9311d4958525b35f1fe675e123f517f4213108",
+      "pointer": "/successes/Illustrative approach",
+      "denominator": 10,
+      "rate": 0.8,
+      "wilson95": [
+        0.49016247153664183,
+        0.9433178485456247
+      ]
+    },
+    {
+      "id": "Ceiling control",
+      "value": 10,
+      "kind": "proportion",
+      "unit": "successes per fictional task",
+      "source": "fictional-results.json",
+      "source_sha256": "6c0eee5b2bd253f9b6c0831acd9311d4958525b35f1fe675e123f517f4213108",
+      "pointer": "/successes/Ceiling control",
+      "denominator": 10,
+      "rate": 1.0,
+      "wilson95": [
+        0.7224672001371107,
+        0.9999999999999999
+      ]
+    }
+  ]
+}

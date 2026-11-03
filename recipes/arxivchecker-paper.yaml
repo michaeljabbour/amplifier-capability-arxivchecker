@@ -1,0 +1,93 @@
+# Legacy agent:self recipe: the calling host carries this bundle's namespace
+# and tools. The canonical procedure lives in the skill, not this sequence.
+name: arxivchecker-paper
+description: "Inventory a completed study, prepare its paper in an explicit output folder, then report a checked local package and human decisions."
+version: "0.1.0"
+
+context:
+  study_dir:
+    type: string
+    required: true
+    description: "Readable folder containing this study's data, design, harness and methods"
+  output_dir:
+    type: string
+    required: true
+    description: "An explicitly authorized output folder, separate from source evidence"
+  author_details:
+    type: string
+    default: "Not supplied: leave placeholders and report the blocker"
+    description: "Exact author names, order and affiliations, without inference"
+  _approval_message: ""
+
+stages:
+  - name: evidence
+    steps:
+      - id: inventory-and-plan
+        agent: self
+        prompt: |
+          Read @arxivchecker:skills/arxivchecker/SKILL.md and follow its linked
+          canonical method. Study folder: {{study_dir}}. Proposed output folder:
+          {{output_dir}}. Exact author information: {{author_details}}.
+
+          Read only during this stage. Do not run study code or experiments.
+          Inventory the data, design, harness, draft, method log, visual assets,
+          references and permissions. Explain what was built and why. Identify
+          the scripts to inspect or adapt, the claims and denominators to check,
+          unsupported statements and missing inputs. Return a concrete work plan,
+          source/output boundaries and the few owner decisions needed. Do not
+          transplant example findings or invent missing metadata.
+        output: evidence_plan
+        timeout: 1200
+    approval:
+      required: true
+      prompt: |
+        {{evidence_plan}}
+
+        Approve this concrete preparation plan, correcting the evidence inventory,
+        output folder, author details or scope in your message. This authorizes
+        local paper preparation in that folder; it does not authorize submission.
+
+  - name: prepare
+    steps:
+      - id: prepare-paper
+        agent: self
+        prompt: |
+          Read @arxivchecker:skills/arxivchecker/SKILL.md and follow it.
+          Study: {{study_dir}}. Output: {{output_dir}}.
+          Author details: {{author_details}}.
+          Inventory and plan: {{evidence_plan}}.
+          Owner corrections and authorization, verbatim: {{_approval_message}}.
+
+          Prepare the paper and evidence records in the authorized output folder.
+          Preserve source evidence. Inspect code before executing it; do not rerun
+          experiments or install tools unless authorized. Extract current-study
+          numbers from data, verify references with primary sources, build figures
+          with required-series assertions, and inspect their renders. Write the
+          narrative from problem through design, harness, methods and results.
+          Preserve failed checks and unresolved authorship, rights or policy items.
+          Run available local preflight and package checks; mark unavailable or
+          skipped checks explicitly. Do not fabricate a successful compile or a
+          reference-verification result. Never submit, publish, or upload.
+
+          Return concrete deliverable paths, evidence and checks run, remaining
+          blockers, and what still requires a person. Read back key files.
+        output: preparation_record
+        timeout: 3600
+  - name: handoff
+    steps:
+      - id: audit-handoff
+        agent: self
+        prompt: |
+          Read @arxivchecker:skills/arxivchecker/SKILL.md and follow it.
+          Preparation record: {{preparation_record}}.
+          Source study: {{study_dir}}. Authorized output: {{output_dir}}.
+
+          Independently read the deliverables and test records. Check for invented
+          values or example contamination, denominator/unit/cost scope errors,
+          missing figures, unverified references, skipped checks called passed,
+          and conflation of local build with arXiv acceptance. Fix reversible
+          output-folder mistakes within the approved scope, preserving failure
+          history. Return the final paths, exact verification scope and blockers.
+          This recipe cannot confer author approval or submission authorization.
+        output: final_output
+        timeout: 1200

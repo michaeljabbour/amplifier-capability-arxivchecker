@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "main_tex": "main.tex",
+  "engine": "pdflatex",
+  "files": ["main.tex", "references.bib", "main.bbl"],
+  "authors": [
+    {"name": "TODO exact full author name", "affiliation": "TODO exact author-provided affiliation"}
+  ],
+  "human_review": [
+    "TODO author and scientific review",
+    "TODO figure and page visual inspection",
+    "TODO citation metadata and claim support",
+    "TODO AI-use disclosure, release rights, category, licence and endorsement"
+  ]
+}

@@ -1,0 +1,2 @@
+claim_id,manuscript_location,claim_text,source_path,source_sha256,extraction_command,metric_id,reporting_unit,population,denominator,exclusions,uncertainty,cost_scope,analysis_status,review_status,notes
+TODO,TODO,TODO,TODO,TODO,TODO,TODO,TODO,TODO,TODO,TODO,TODO,TODO,TODO,unreviewed,Replace this prompt row with study-specific evidence

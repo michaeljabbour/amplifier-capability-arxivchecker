@@ -1,0 +1,29 @@
+{
+  "name": "ArxivChecker",
+  "description": "Turn a finished study into a paper you can trace, rebuild and review.",
+  "status": "Local capability and website. Publication has not been performed.",
+  "version": "0.1.0",
+  "claim_example": {
+    "label": "Fictional teaching example; not a study result",
+    "before": "The system saved half the cost.",
+    "after": "On this held-out task set, priced model calls cost half as much as the baseline. Setup, unpriced calls and human review are excluded.",
+    "checks": [
+      {
+        "title": "Find the source",
+        "body": "Link the statement to an exact result file, field and extraction command. A sentence in an earlier draft is not a source."
+      },
+      {
+        "title": "Name the comparison",
+        "body": "Use the same tasks, success criterion and accounting scope for the system and baseline. State the denominator and every exclusion."
+      },
+      {
+        "title": "Keep the units",
+        "body": "Separate cost per call, per task and for the whole study. Record assumed prices and their date rather than treating an estimate as a bill."
+      },
+      {
+        "title": "Bound the conclusion",
+        "body": "Say what the evidence supports. Model-call savings on one test do not establish total cost savings or general performance."
+      }
+    ]
+  }
+}

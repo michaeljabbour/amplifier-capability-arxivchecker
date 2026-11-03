@@ -1,0 +1,28 @@
+ArxivChecker: Trace. Rebuild. Review.
+
+Silent text film. All meaning is conveyed by the on-screen text. No narration or music.
+Figures are illustrations, not study results.
+
+Your study is done. The paper is not.
+Start with the design, methods, raw results and draft.
+Inventory the study before writing.
+
+Every claim needs a route to evidence.
+Keep the source, denominator, unit and cost coverage together.
+Trace every claim to evidence and keep its limits visible.
+
+Build the figure. Then look at it.
+Missing series should fail loudly. Inspect labels, scales and panels.
+Rebuild figures from data, then inspect every figure.
+
+Tell the whole story. Check every reference.
+Problem, design, harness, test, results and limits—in that order.
+Explain the system and its test; verify reference details.
+
+Rebuild from the submission package.
+Check the build, fonts, filenames and all required source files.
+Test a clean build from the actual submission package.
+
+A person makes the final call.
+Review authorship, AI use, category, licence and release.
+Human review remains essential. ArxivChecker does not guarantee acceptance.

@@ -1,0 +1,16 @@
+_site/
+__pycache__/
+*.py[cod]
+.DS_Store
+.venv/
+.pytest_cache/
+.ruff_cache/
+.arxivchecker/
+*.aux
+*.log
+*.out
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+.private/
+private-validation/

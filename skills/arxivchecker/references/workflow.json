@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "stages": [
+    {"id": "inventory", "title": "Inventory the evidence", "description": "Read the design, harness, methods, draft and result files; preserve originals and record provenance.", "output": "Study file and source-hash inventory"},
+    {"id": "extract", "title": "Derive the numbers once", "description": "Extract from source data with explicit denominators, units, uncertainty, missingness and cost coverage.", "output": "Reproducible metrics and claim ledger"},
+    {"id": "figures", "title": "Build and inspect data figures", "description": "Require every expected series, render publication-sized charts and inspect their labels, units and scales.", "output": "Vector figures, previews and review notes"},
+    {"id": "design", "title": "Include the design visuals", "description": "Choose explanatory panels, preserve attribution and inspect every crop without hiding context or footnotes.", "output": "Checked design panels and crop record"},
+    {"id": "references", "title": "Verify every reference", "description": "Check metadata against authoritative records and read the cited material for claim support.", "output": "Reference verification ledger"},
+    {"id": "write", "title": "Write the paper as an argument", "description": "Tell the story from problem and design through harness, test, results and limitations, with accurate AI disclosure.", "output": "Evidence-bound LaTeX manuscript"},
+    {"id": "layout", "title": "Compile and inspect all pages", "description": "Read the build log and inspect the complete paper, title page, figures and tables at useful resolution.", "output": "Reviewed PDF and layout findings"},
+    {"id": "preflight", "title": "Run a clean preflight", "description": "Build exactly the allowlisted source in a new directory; inspect dependencies, logs, text and fonts.", "output": "Local portability report and clean-build PDF"},
+    {"id": "package", "title": "Package for two purposes", "description": "Keep the minimal submission archive separate from the review package and full study kit.", "output": "Explicit source archive and rebuild README"},
+    {"id": "handoff", "title": "Hand off the human decisions", "description": "Report remaining evidence, author review, release rights, category, licence, endorsement and submission decisions.", "output": "Honest review and submission checklist"}
+  ]
+}

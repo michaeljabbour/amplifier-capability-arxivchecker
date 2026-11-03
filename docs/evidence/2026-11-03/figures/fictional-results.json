@@ -1,0 +1,9 @@
+{
+  "note": "FICTIONAL TEST DATA ONLY; no measured study results",
+  "successes": {
+    "Empty control": 0,
+    "Illustrative approach": 8,
+    "Ceiling control": 10
+  },
+  "n": 10
+}

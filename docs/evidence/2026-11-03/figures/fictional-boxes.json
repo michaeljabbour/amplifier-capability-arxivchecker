@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "preview_width": 600,
+  "crops": [
+    {
+      "name": "design-with-footnote",
+      "box": [
+        30,
+        30,
+        570,
+        370
+      ]
+    }
+  ]
+}
