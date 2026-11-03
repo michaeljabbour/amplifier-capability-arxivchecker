@@ -79,9 +79,7 @@ copied through Right Shape. Its Microsoft MIT notice is retained in
 [theme/LICENSE](theme/LICENSE). Product content, illustration and interaction are
 new. No arXiv endorsement is implied.
 
-The manual GitHub Pages workflow is provided for an owner to run after establishing
-an authorized repository and Pages environment. Creating these files did not
-publish or deploy the site. There is no canonical hosted URL asserted in metadata.
+The marketing URL is [michaeljabbour.github.io/amplifier-capability-arxivchecker](https://michaeljabbour.github.io/amplifier-capability-arxivchecker/). The manual GitHub Pages workflow builds `_site/` and publishes it only when explicitly dispatched in the authorized Pages environment. Local builds do not deploy it; future updates require another manual dispatch.
 
 ## Concrete family comparison
 

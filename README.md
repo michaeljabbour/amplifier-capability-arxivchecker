@@ -77,7 +77,7 @@ node --check site/site.js
 python3 -m http.server 8000 --bind 127.0.0.1 --directory _site
 ```
 
-Open `http://127.0.0.1:8000`. The site uses local assets and system fonts, with no analytics, backend or runtime network requests. Generated `_site/` contains the portable downloads. The Pages workflow is available for an owner to run later; nothing is published by this local build.
+Open `http://127.0.0.1:8000`. The site uses local assets and system fonts, with no analytics, backend or runtime network requests. Generated `_site/` contains the portable downloads. The public marketing URL is [michaeljabbour.github.io/amplifier-capability-arxivchecker](https://michaeljabbour.github.io/amplifier-capability-arxivchecker/). The manual Pages workflow publishes the generated site when explicitly run; a local build alone does not deploy it.
 
 See [VALIDATION](docs/VALIDATION.md) for actual results and their limits, [BENCHMARK](docs/BENCHMARK.md) for the broader evaluation plan, and [PROVENANCE](docs/PROVENANCE.md) for the source skill and policy corrections. All demonstration studies and numbers shipped in this capability are fictional.
 
@@ -85,6 +85,6 @@ See [VALIDATION](docs/VALIDATION.md) for actual results and their limits, [BENCH
 
 Adapted from the locally installed `arxiv-paper-from-study` skill and its paper-production lessons. The capability and web structure follow Right Shape. The original paper and its executable study-specific scripts are retained at their source, not redistributed as generic results. Source hashes and reuse decisions are recorded in the provenance document.
 
-Source and skill are published in [the GitHub repository](https://github.com/michaeljabbour/amplifier-capability-arxivchecker) after a [privacy review](docs/PUBLIC-REVIEW.md). The website remains a local build; no separate hosted deployment or arXiv submission occurs automatically.
+Source and skill are published in [the GitHub repository](https://github.com/michaeljabbour/amplifier-capability-arxivchecker) after a [privacy review](docs/PUBLIC-REVIEW.md). The static marketing site is published separately through the manual GitHub Pages workflow. ArxivChecker does not submit papers to arXiv automatically.
 
 MIT for the new capability code and documentation; the copied family theme retains its own notice. `ArxivChecker` is an independent project name and does not imply affiliation with or approval by arXiv.

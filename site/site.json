@@ -1,7 +1,7 @@
 {
   "name": "ArxivChecker",
   "description": "Turn a finished study into a paper you can trace, rebuild and review.",
-  "status": "Source and skill are published on GitHub. This website has not been separately deployed.",
+  "status": "Portable skill and source are available on GitHub. Review every paper before submission.",
   "version": "0.1.0",
   "claim_example": {
     "label": "Fictional teaching example; not a study result",

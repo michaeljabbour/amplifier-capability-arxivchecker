@@ -85,8 +85,8 @@ checks, sampled visual review and preservation of all v1 asset bytes. All 50
 local regressions passed again; the site and JavaScript checks passed. Browser
 playback worked and was confirmed by the owner, who then requested no more
 interaction. The source and skill have since been published to GitHub; historical
-local/unpublished statements above describe the earlier snapshots. A separate
-website remains undeployed. See the video record for exact limitations.
+local/unpublished statements above describe the earlier snapshots. At the time of that review, the separate
+website had not been deployed. See the video record for exact limitations.
 
 ## Visible-page-number default and landing-page cleanup
 
