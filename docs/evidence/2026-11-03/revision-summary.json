@@ -1,0 +1,20 @@
+{
+  "date": "2026-11-03",
+  "status": "verified-local-revision",
+  "regression_tests": 50,
+  "site": {
+    "html_pages": 2,
+    "local_destinations": 71,
+    "markdown_destinations": 90,
+    "portable_files": 19,
+    "zip_sha256": "cba088815c8d0493c7ee4f910b94c09fabbbd03f1b207058b32926baa2a68869",
+    "audio_streams_checked": 3
+  },
+  "privacy": {
+    "independent_revision_review": "No findings in 62 changed/new candidates, 190 text/generated files, 19 archive entries and media metadata at that snapshot",
+    "coordinator_final_scan": "No path, email, credential or attachment-ID pattern findings in 210 source/generated text files and 19 archive members before this summary was added; generic new layout records visually reviewed"
+  },
+  "human_listening_review": "pending; the agent cannot hear tool audio",
+  "mac_reopen": "pending; native UI reports Mac locked",
+  "publication": "none"
+}

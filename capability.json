@@ -16,7 +16,9 @@
     "docs/VALIDATION.md",
     "docs/PROVENANCE.md",
     "docs/ARXIV-SUBMISSION.md",
-    "docs/ARXIV-REQUIREMENTS.md"
+    "docs/ARXIV-REQUIREMENTS.md",
+    "docs/ATTACHMENT-VERIFICATION.md",
+    "docs/PUBLIC-REVIEW.md"
   ],
   "site_builder": "native",
   "publication_status": "Local source and build only. No remote repository, hosted site, or arXiv submission has been published by this work.",

@@ -1,0 +1,64 @@
+
+[00:00:00.000 --> 00:00:07.000]   Your study is done, bring its design, methods, row results and draft together before writing.
+[00:00:08.000 --> 00:00:15.000]   Trace every claim to its source, say what you counted, the units and what the cost includes.
+[00:00:16.000 --> 00:00:23.000]   Build figures from the data, then inspect them, check every series, label, scale and panel.
+[00:00:24.000 --> 00:00:31.000]   Explain what you built, how you tested it, what happened and its limits, verify every reference.
+[00:00:32.000 --> 00:00:39.000]   Rebuild from the actual submission files, check the build, fonts, file names and required inputs.
+[00:00:40.000 --> 00:00:49.000]   People review the names, AIUs, writes and final claims, archive checker cannot guarantee exceptions.
+
+load_backend: loaded BLAS backend from /opt/homebrew/Cellar/ggml/0.27.0/libexec/libggml-blas.so
+load_backend: loaded MTL backend from /opt/homebrew/Cellar/ggml/0.27.0/libexec/libggml-metal.so
+load_backend: loaded CPU backend from /opt/homebrew/Cellar/ggml/0.27.0/libexec/libggml-cpu-apple_m4.so
+whisper_init_from_file_with_params_no_state: loading model from '<HOME>/.local/share/whisper-cpp/models/ggml-base.bin'
+whisper_init_with_params_no_state: use gpu    = 0
+whisper_init_with_params_no_state: flash attn = 1
+whisper_init_with_params_no_state: gpu_device = 0
+whisper_init_with_params_no_state: dtw        = 0
+whisper_init_with_params_no_state: devices    = 3
+whisper_init_with_params_no_state: backends   = 3
+whisper_model_load: loading model
+whisper_model_load: n_vocab       = 51865
+whisper_model_load: n_audio_ctx   = 1500
+whisper_model_load: n_audio_state = 512
+whisper_model_load: n_audio_head  = 8
+whisper_model_load: n_audio_layer = 6
+whisper_model_load: n_text_ctx    = 448
+whisper_model_load: n_text_state  = 512
+whisper_model_load: n_text_head   = 8
+whisper_model_load: n_text_layer  = 6
+whisper_model_load: n_mels        = 80
+whisper_model_load: ftype         = 1
+whisper_model_load: qntvr         = 0
+whisper_model_load: type          = 2 (base)
+whisper_model_load: adding 1608 extra tokens
+whisper_model_load: n_langs       = 99
+whisper_model_load:          CPU total size =   147.37 MB
+whisper_model_load: model size    =  147.37 MB
+whisper_backend_init_gpu: no GPU found
+whisper_backend_init: using BLAS backend
+whisper_init_state: kv self size  =    6.29 MB
+whisper_init_state: kv cross size =   18.87 MB
+whisper_init_state: kv pad  size  =    3.15 MB
+whisper_init_state: compute buffer (conv)   =   16.28 MB
+whisper_init_state: compute buffer (encode) =   23.09 MB
+whisper_init_state: compute buffer (cross)  =    4.66 MB
+whisper_init_state: compute buffer (decode) =   96.37 MB
+read_audio_data: reading audio data from '<HOME>/dev/2026-11-03/task/arxivchecker-revision/docs/evidence/2026-11-03/audio-revision/independent-full-16khz.wav' ...
+read_audio_data: trying to decode with miniaudio
+
+system_info: n_threads = 8 / 18 | WHISPER : VITISAI = 0 | COREML = 0 | OPENVINO = 0 | MTL : EMBED_LIBRARY = 1 | CPU : NEON = 1 | ARM_FMA = 1 | FP16_VA = 1 | MATMUL_INT8 = 1 | DOTPROD = 1 | SME = 1 | ACCELERATE = 1 | OPENMP = 1 | REPACK = 1 | 
+
+main: processing '<HOME>/dev/2026-11-03/task/arxivchecker-revision/docs/evidence/2026-11-03/audio-revision/independent-full-16khz.wav' (768000 samples, 48.0 sec), 8 threads, 1 processors, 5 beams + best of 5, lang = en, task = transcribe, timestamps = 1 ...
+
+output_txt: saving output to '<HOME>/dev/2026-11-03/task/arxivchecker-revision/docs/evidence/2026-11-03/audio-revision/independent-full-asr.txt'
+output_json: saving output to '<HOME>/dev/2026-11-03/task/arxivchecker-revision/docs/evidence/2026-11-03/audio-revision/independent-full-asr.json'
+
+whisper_print_timings:     load time =    45.24 ms
+whisper_print_timings:     fallbacks =   0 p /   0 h
+whisper_print_timings:      mel time =     7.39 ms
+whisper_print_timings:   sample time =   125.47 ms /   800 runs (     0.16 ms per run)
+whisper_print_timings:   encode time =  1101.23 ms /     3 runs (   367.08 ms per run)
+whisper_print_timings:   decode time =     8.32 ms /     7 runs (     1.19 ms per run)
+whisper_print_timings:   batchd time =   607.24 ms /   781 runs (     0.78 ms per run)
+whisper_print_timings:   prompt time =   152.42 ms /   187 runs (     0.82 ms per run)
+whisper_print_timings:    total time =  2080.99 ms

@@ -118,13 +118,22 @@ def reference_section(identifier: str, filename: str, source: str) -> str:
             + escape(filename) + '">' + markdown(source, "skills/arxivchecker/references/", 1) + '</section>')
 
 
-def guide(skill: str, reference: str, policy: str, requirements: str, submission: str) -> str:
+def writing_boundary(writing: str) -> str:
+    """Keep the public editorial-style boundary tied to the installed method."""
+    match = re.search(r"It is not an arXiv template[^.]+\.", writing)
+    if not match:
+        raise ValueError("The writing reference needs its explicit editorial-style boundary")
+    return match[0]
+
+
+def guide(skill: str, reference: str, policy: str, requirements: str, submission: str, writing: str) -> str:
     body = markdown(skill, "skills/arxivchecker/", 1)
     body += "<h2>The detailed workflow</h2>" + markdown(reference, "skills/arxivchecker/references/", 2)
     body += "<h2>Policy and project preferences</h2>" + markdown(policy, "skills/arxivchecker/references/", 2)
     body += reference_section("requirements-map", "references/requirements.md", requirements)
     body += reference_section("submission-map", "references/submission.md", submission)
-    return """<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; img-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'"><title>ArxivChecker complete playbook</title><link rel="icon" href="assets/favicon.svg"><link rel="stylesheet" href="assets/family.css"><link rel="stylesheet" href="assets/style.css"></head><body><a class="skip" href="#guide">Skip to the guide</a><header class="site-header wrap"><a class="site-brand" href="index.html"><img src="assets/favicon.svg" alt="" width="36" height="36"><span>ArxivChecker<small>Complete playbook</small></span></a><nav aria-label="Guide navigation"><a href="index.html#install">Get the capability</a><a href="SKILL.md" download>Download source</a></nav></header><main class="wrap guide" id="guide"><h1>The complete playbook</h1><p class="guide-intro">Built directly from the portable skill and canonical references, including the dated requirement and submission maps. The complete ZIP also carries tools and neutral templates.</p><nav class="guide-maps" aria-label="Official guidance maps"><a href="#requirements-map">Requirement and primary-citation map</a><a href="#submission-map">Submission-policy map</a><a href="https://info.arxiv.org/help/policies/format_requirements.html">Official arXiv format requirements</a></nav>""" + body + '<details><summary>View the exact canonical skill source</summary><label class="sr-only" for="skill-text">Canonical SKILL.md source</label><textarea id="skill-text" readonly spellcheck="false">' + escape(skill) + '</textarea></details><p><a href="index.html#install">Get the complete capability</a></p></main></body></html>'
+    body += reference_section("writing-style", "references/writing.md", writing)
+    return """<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; img-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'"><title>ArxivChecker complete playbook</title><link rel="icon" href="assets/favicon.svg"><link rel="stylesheet" href="assets/family.css"><link rel="stylesheet" href="assets/style.css"></head><body><a class="skip" href="#guide">Skip to the guide</a><header class="masthead"><div class="wrap"><a class="brand" href="index.html" aria-label="ArxivChecker home"><span class="brand-mark" aria-hidden="true"></span><span><b>Amplifier</b><small>Skills for thoughtful work</small></span></a><nav class="nav" aria-label="Guide navigation"><a href="index.html#install">Get the capability</a><a href="SKILL.md" download>Download source</a></nav></div></header><main class="wrap guide" id="guide"><h1>The complete playbook</h1><p class="guide-intro">Built directly from the portable skill and canonical references, including the dated requirement and submission maps. The complete ZIP also carries tools and neutral templates.</p><nav class="guide-maps" aria-label="Official guidance maps"><a href="#requirements-map">Requirement and primary-citation map</a><a href="#submission-map">Submission-policy map</a><a href="#writing-style">MJ’s publishing style</a><a href="https://info.arxiv.org/help/policies/format_requirements.html">Official arXiv format requirements</a></nav>""" + body + '<details><summary>View the exact canonical skill source</summary><label class="sr-only" for="skill-text">Canonical SKILL.md source</label><textarea id="skill-text" readonly spellcheck="false">' + escape(skill) + '</textarea></details><p><a href="index.html#install">Get the complete capability</a></p></main></body></html>'
 
 
 def build(output: Path) -> None:
@@ -148,6 +157,7 @@ def build(output: Path) -> None:
         "VERSION": escape(config["version"]),
         "STATUS": escape(config["status"]),
         "POLICY_DATE": escape(verification_date(portable["references/requirements.md"].decode())),
+        "WRITING_BOUNDARY": escape(writing_boundary(portable["references/writing.md"].decode())),
         "WORKFLOW": "".join('<li data-stage="' + escape(s["id"]) + '"><div><h3>' + escape(s["title"]) + "</h3><p>" + escape(s["description"]) + '</p><p class="stage-output">Output: ' + escape(s["output"]) + "</p></div></li>" for s in stages),
         "CLAIM_LABEL": escape(example["label"]),
         "CLAIM_BEFORE": escape(example["before"]),
@@ -170,7 +180,7 @@ def build(output: Path) -> None:
         for target in (output / name, output / data["skill_path"] / name):
             target.parent.mkdir(parents=True, exist_ok=True)
             target.write_bytes(content)
-    (output / "guide.html").write_text(guide(portable["SKILL.md"].decode(), portable["references/workflow.md"].decode(), portable["references/policy.md"].decode(), portable["references/requirements.md"].decode(), portable["references/submission.md"].decode()), encoding="utf-8")
+    (output / "guide.html").write_text(guide(portable["SKILL.md"].decode(), portable["references/workflow.md"].decode(), portable["references/policy.md"].decode(), portable["references/requirements.md"].decode(), portable["references/submission.md"].decode(), portable["references/writing.md"].decode()), encoding="utf-8")
     for name, target in (("site/theme/style.css", "family.css"), ("site/style.css", "style.css"), ("site/site.js", "site.js"), ("site/theme/LICENSE", "family-LICENSE.txt")):
         shutil.copy2(ROOT / name, assets / target)
     for path in sorted((ROOT / "site/assets").iterdir()):

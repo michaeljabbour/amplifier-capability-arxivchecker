@@ -1,5 +1,13 @@
 # Changelog
 
+## Local revision — 2026-11-03
+
+- Matched the actual Right Shape and Taste family pages: shared cream/charcoal palette, Amplifier masthead, product-title hero and common typography.
+- Added local synthetic narration to the full reel and short cut, synchronized captions, reproducible production and audio measurements.
+- Strengthened primary-source publishing and semantic LaTeX guidance, including the independently checked claims in the supplied secondary summary.
+- Added MJ's pedagogical style as substantive guidance: remove or explain jargon, use appropriate readable footnotes and choose visuals for understanding. These are house choices layered on official requirements.
+- Increased default chart labels and template footnotes for readability. Local build/layout evidence does not certify arXiv acceptance.
+
 ## 0.1.0 — 2026-11-03
 
 - Adapted the user's installed study-to-arXiv playbook into a reusable Amplifier capability with one canonical skill and neutral study, evidence, reference and LaTeX templates.

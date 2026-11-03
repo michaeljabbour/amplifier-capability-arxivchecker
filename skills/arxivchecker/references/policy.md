@@ -14,6 +14,10 @@ The [current TeX instructions](https://info.arxiv.org/help/submit_tex.html) and 
 
 ## Keep local preferences visibly local
 
+The [HTML markup guidance](https://info.arxiv.org/help/submit_latex_best_practices.html) recommends semantic source, standard frontmatter, image alternatives and compatible packages for conversion/accessibility. Keep this advice distinct from the format-policy requirements and from technical LaTeX documentation. Absence of a recommended feature is not automatically an arXiv rejection. The [requirements map](requirements.md#latex-source-and-typesetting-recommendations) records the sources and assessment scope.
+
 The starter's `article` class, Letter paper, 11 pt, newtx, microtype, booktabs, numeric natbib and dark-blue links are choices within applicable format requirements. No page numbers preserves the user's preference. Exact full names, balanced bylines, section order, vector-chart defaults, specific disclosure/limitations headings, crop previews and claim/reference ledgers are local method choices.
+
+The owner's pedagogical prose, explained jargon and useful-visual preferences are [house writing style](writing.md), not arXiv policy. Account quotas and special CS review/position-paper conditions are verified separately in the [submission map](submission.md#content-type-and-account-checks); they are not claims a PDF build can settle.
 
 Manifest schema, resource caps, overwrite protection, runner profiles, exactly three build passes and optional PDF comparison are local checks. Missing executables, unsupported routes, dynamic dependencies, warnings and pending visual reviews retain their own meanings. They cannot become a generic arXiv eligibility failure. Record what ran, what remains unassessed and what needs responsible submitter review.

@@ -1,19 +1,25 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:08.000
-Inventory the study before writing.
+00:00:00.350 --> 00:00:06.356
+Your study is done. Bring its design, methods, raw
+results, and draft together before writing.
 
-00:00:08.000 --> 00:00:16.000
-Trace every claim to evidence and keep its limits visible.
+00:00:08.350 --> 00:00:13.935
+Trace every claim to its source. Say what you counted,
+the units, and what the cost includes.
 
-00:00:16.000 --> 00:00:24.000
-Rebuild figures from data, then inspect every figure.
+00:00:16.350 --> 00:00:22.426
+Build figures from the data, then inspect them. Check
+every series, label, scale, and panel.
 
-00:00:24.000 --> 00:00:32.000
-Explain the system and its test; verify reference details.
+00:00:24.350 --> 00:00:30.477
+Explain what you built, how you tested it, what
+happened, and its limits. Verify every reference.
 
-00:00:32.000 --> 00:00:40.000
-Test a clean build from the actual submission package.
+00:00:32.350 --> 00:00:38.998
+Rebuild from the actual submission files. Check the
+build, fonts, filenames, and required inputs.
 
-00:00:40.000 --> 00:00:48.000
-Human review remains essential. ArxivChecker does not guarantee acceptance.
+00:00:40.350 --> 00:00:47.488
+People review the names, AI use, rights, and final
+claims. ArxivChecker cannot guarantee acceptance.

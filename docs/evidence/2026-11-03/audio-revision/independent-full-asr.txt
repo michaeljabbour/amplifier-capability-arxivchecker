@@ -1,0 +1,6 @@
+Your study is done, bring its design, methods, row results and draft together before writing.
+Trace every claim to its source, say what you counted, the units and what the cost includes.
+Build figures from the data, then inspect them, check every series, label, scale and panel.
+Explain what you built, how you tested it, what happened and its limits, verify every reference.
+Rebuild from the actual submission files, check the build, fonts, file names and required inputs.
+People review the names, AIUs, writes and final claims, archive checker cannot guarantee exceptions.

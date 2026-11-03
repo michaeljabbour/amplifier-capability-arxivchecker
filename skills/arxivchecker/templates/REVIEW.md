@@ -13,6 +13,8 @@ Status: TODO — template, no review completed.
 
 ## Visual and reference review
 
+- MJ's style: pedagogical argument, jargon removed or explained, useful explanatory visuals: TODO
+
 - Figure scripts, data inputs and expected series checked: TODO
 - Every chart preview and crop inspected at intended size: TODO
 - Complete paper contact sheet inspected: TODO

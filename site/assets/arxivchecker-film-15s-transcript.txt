@@ -1,0 +1,18 @@
+ArxivChecker: Trace. Rebuild. Review.
+
+15-second narrated explainer. Local synthetic voice: Samantha (US English), 165 words per minute. No music.
+Figures are illustrations, not study results. The story is the same six-scene study-to-paper workflow.
+
+00:00:00.000 — Scene 1
+On screen: Your study is done. The paper is not. Start with the design, methods, raw results and draft.
+Narration: Your study is done. Now bring the evidence together.
+
+00:00:05.000 — Scene 2
+On screen: Every claim needs a route to evidence. Keep the source, denominator, unit and cost coverage together.
+Narration: Trace every claim. Keep its denominator and limits visible.
+
+00:00:10.000 — Scene 6
+On screen: A person makes the final call. Review authorship, AI use, category, licence and release.
+Narration: Rebuild, review, then let people make the final call.
+
+The brand ArxivChecker is pronounced “Archive Checker” in the synthetic voice.

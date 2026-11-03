@@ -36,7 +36,7 @@ subpath hosting.
   comes from the canonical requirements map, never separate site metadata.
 - `../scripts/capability.py`: the builder imports the installer’s package enumerator
   and exporter. The site and installer ship precisely the same skill folder.
-- `assets/`: original favicon, SVG/PNG social card, silent films, captions, poster and transcript.
+- `assets/`: original favicon, SVG/PNG social card, narrated films, captions, poster and full/short transcripts.
 - `film-source/`: optional film regeneration source and instructions.
 
 The check validates local links/fragments, exact workflow and source fidelity,
@@ -49,10 +49,16 @@ Visual inspection and interaction checks remain separate from these structural c
 
 ## Design
 
-The characteristic element is a manuscript with proof marks and a visible route
-from claim to source. Cool paper `#f1f5f8`, navy ink `#132d43`, muted text
-`#4b6172`, teal evidence `#175f66` and red proof marks `#a53839`.
+The layout follows the actual family pages: a slim attribution band, the common
+Amplifier masthead, a large product name and pedagogical tagline on the left, and
+plain benefits, actions and limits on the right. Proof marks stay in the claim
+audit and original artwork. Shared family paper `#f6f4ee`, charcoal ink `#252823`, muted text
+`#64685e`, rules `#d8d8cc`, gold `#80642f`, sage accent `#486b61` and
+wash `#e9ede5`. Product proof marks use `#8c473d`.
 Georgia headings and Arial body use system fonts; no remote font requests.
+
+The full and short films include voiceover, English captions and separate
+transcripts. The player announces sound and waits for a click.
 
 No automatic playback or animation, tracking, study upload, browser persistence
 or backend. The review checklist resets on reload and makes no readiness claim.
@@ -69,3 +75,42 @@ new. No arXiv endorsement is implied.
 The manual GitHub Pages workflow is provided for an owner to run after establishing
 an authorized repository and Pages environment. Creating these files did not
 publish or deploy the site. There is no canonical hosted URL asserted in metadata.
+
+## Concrete family comparison
+
+Reviewed on 2026-11-03. These comparisons use the actual checked-out source files,
+not a newly invented palette. Live Right Shape and Taste pages were also inspected
+in the browser during this revision; the other URLs below are documented entry
+points and are not claimed as separately verified live renders here.
+
+| Reference | Source inspected | Documented page / observed convention |
+| --- | --- | --- |
+| Right Shape | `amplifier-skill-right-shape/site/theme/style.css`, `site/style.css`, `site/template.html` | [Live Right Shape](https://michaeljabbour.github.io/amplifier-skill-right-shape/): paper/charcoal, slim top band, Amplifier masthead, large two-line product title left and plain explanation right. Indigo is its product accent, not a new base palette. |
+| Taste × Elegance | `amplifier-skill-taste/site/theme/style.css`, `site/style.css`, `site/template.html`, README | [Live Taste](https://michaeljabbour.github.io/amplifier-skill-taste/): same base, sage accent, Georgia display, Arial body and narrated player with captions. |
+| Decisioncraft | `amplifier-smart-tool-decisioncraft/site/theme/style.css`, `site/README.md`, README | [Documented Decisioncraft page](https://michaeljabbour.github.io/amplifier-smart-tool-decisioncraft/): versioned Amplifier Smart Tools family theme; static source and labelled fictional examples. |
+| Unfold | `amplifier-smart-tool-unfold/site/theme/style.css`, `site/README.md`, README | [Documented Unfold fork page](https://robotdad.github.io/amplifier-smart-tool-unfold/): shared paper, gold details, typography and navigation. This is the documented robotdad fork, not an MJ-owned page. |
+| Project Handoff | `amplifier-skill-project-handoff/site/theme/style.css`, `site/style.css`, `site/template.html` | Local source comparison: common Amplifier masthead, product-name hero, two-column explanation, fine rules and portable-skill handoff. No live-page verification is claimed. |
+
+The common base declares `--paper:#f6f4ee`, `--ink:#252823`,
+`--muted:#64685e`, `--line:#d8d8cc`, `--gold:#80642f`,
+`--accent:#486b61`, `--wash:#e9ede5`, Georgia/Times serif and Arial/Helvetica
+sans. Its content wrapper is 1180 px with 80 px total desktop inset; the hero uses
+1.2fr/1fr columns, and primary actions use charcoal on paper. Product overrides
+vary accents and display scale while keeping that baseline.
+
+Source-theme SHA-256 for Right Shape, Taste, Decisioncraft and Project Handoff:
+`794600af68c7fc2af0340a5acc13051886441aca4f58870e7d4d110168638d20`.
+Unfold's theme hash is
+`9f87606ad071c908917c0e0620343f432e9fae27fbe66d994effc4369bdc969b`;
+its declared base tokens match, but its complete theme has other changes.
+
+Browser-computed values recorded for live Right Shape were body background
+`rgb(246,244,238)`, ink `rgb(37,40,35)`, Arial body, Georgia title at 94.72 px
+in the inspected desktop viewport, and the same paper/ink/line/gold/wash tokens.
+Taste's live page confirmed the same shared baseline. Viewport-dependent title
+size is evidence from that view, not a universal fixed value.
+
+ArxivChecker keeps the theme's MIT notice and does not copy institutional
+attribution or imply endorsement. The publication section distinguishes official
+requirements, LaTeX markup recommendations and the owner's publishing style.
+The full writing guide is rendered from the canonical installed reference.

@@ -25,5 +25,17 @@
         "body": "Say what the evidence supports. Model-call savings on one test do not establish total cost savings or general performance."
       }
     ]
+  },
+  "theme": {
+    "family": "Amplifier Smart Tools",
+    "version": "0.1.0",
+    "paper": "#f6f4ee",
+    "ink": "#252823",
+    "muted": "#64685e",
+    "line": "#d8d8cc",
+    "gold": "#80642f",
+    "accent": "#486b61",
+    "wash": "#e9ede5",
+    "proof": "#8c473d"
   }
 }

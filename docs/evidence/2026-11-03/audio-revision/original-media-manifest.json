@@ -1,0 +1,33 @@
+{
+  "note": "Original silent media retained in the original local repository while this revision was rendered separately. Names and hashes only; no private filesystem paths.",
+  "files": {
+    "site/assets/arxivchecker-film-15s.mp4": {
+      "sha256": "e2b534e038ad6518c712781197801f99129a4d403caa6bb67a0479b9ccd5a4ca",
+      "size_bytes": 100940
+    },
+    "site/assets/arxivchecker-film-15s.vtt": {
+      "sha256": "eb008cf55b1a1b43cec950d7b8d83485dcc3db19338dff61ef2064d3f097dc35",
+      "size_bytes": 271
+    },
+    "site/assets/arxivchecker-film-poster.jpg": {
+      "sha256": "5ea633e757b8d3e450bdba84eac266c34c34ff83e003b00d0a293e723fce5da7",
+      "size_bytes": 82515
+    },
+    "site/assets/arxivchecker-film-transcript.txt": {
+      "sha256": "8872453238f450967bed9c0757ba3ba0b9a8de9191a16df39ef7286efcc26fc4",
+      "size_bytes": 1122
+    },
+    "site/assets/arxivchecker-film.mp4": {
+      "sha256": "7ff47ea55658d0d3167fc1f28a6e0e9b5777dfa05bd4af2d5898cad7501bded3",
+      "size_bytes": 301632
+    },
+    "site/assets/arxivchecker-film.vtt": {
+      "sha256": "e1b1369afe44aa6052e7737269b2266b76a680512baafb0aa92f6df2d129ea86",
+      "size_bytes": 532
+    },
+    "site/assets/arxivchecker-film.webm": {
+      "sha256": "e1eb4902ba7d4dfaf7028872f95cbed11b2cede7eac0a277c69ae86d70483145",
+      "size_bytes": 383478
+    }
+  }
+}

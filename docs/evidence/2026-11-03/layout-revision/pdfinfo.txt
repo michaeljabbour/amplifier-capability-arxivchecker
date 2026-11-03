@@ -1,0 +1,22 @@
+Title:           Fictional typesetting fixture
+Subject:         
+Keywords:        
+Author:          Fixture exact author names
+Creator:         LaTeX with hyperref
+Producer:        pdfTeX-1.40.29
+CreationDate:    Tue Nov  3 09:08:48 2026 EST
+ModDate:         Tue Nov  3 09:08:48 2026 EST
+Custom Metadata: yes
+Metadata Stream: no
+Tagged:          no
+UserProperties:  no
+Suspects:        no
+Form:            none
+JavaScript:      no
+Pages:           2
+Encrypted:       no
+Page size:       612 x 792 pts (letter)
+Page rot:        0
+File size:       87208 bytes
+Optimized:       no
+PDF version:     1.7

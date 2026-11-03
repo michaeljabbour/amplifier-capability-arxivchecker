@@ -1,23 +1,28 @@
 #!/usr/bin/env python3
-"""Generate the original, silent ArxivChecker text films locally.
+"""Generate the narrated ArxivChecker explainer films locally.
 
 Optional production-only dependencies: Pillow and ffmpeg. Neither is needed to
-build, view or use the website/capability. No network calls or generated speech.
-Supply fonts explicitly on other platforms; the defaults are macOS system fonts.
+build, view or use the website/capability. No network calls or provider credits.
+Run synthesize_voice.py first with the reviewed narration.json and an installed
+macOS voice. Supply fonts explicitly on other platforms. Source speech is never
+time-compressed or truncated; each scene has a measured pause before and after.
 """
 import argparse
+import hashlib
+import json
 from pathlib import Path
 import subprocess
 import tempfile
+import textwrap
 
 from PIL import Image, ImageDraw, ImageFont
 
-PAPER = '#f1f5f8'
-INK = '#132d43'
-MUTED = '#536879'
-RED = '#a53839'
-TEAL = '#175f66'
-RULE = '#b9cbd7'
+PAPER = '#f6f4ee'
+INK = '#252823'
+MUTED = '#64685e'
+RED = '#80642f'
+TEAL = '#486b61'
+RULE = '#d8d8cc'
 WHITE = '#ffffff'
 WIDTH, HEIGHT = 1280, 720
 SCALE = 2
@@ -81,7 +86,7 @@ def make_frame(index, serif, sans):
     text(80, 389, description, 27, fill=MUTED, spacing=14)
     line(76, 570, 1204, 570)
     text(80, 604, 'Trace. Rebuild. Review.', 23, fill=TEAL)
-    text(930, 606, 'A silent text film', 20, fill=MUTED)
+    text(930, 606, 'Narrated explainer', 20, fill=MUTED)
 
     # Each scene uses a different view of the manuscript's evidence trail.
     if index == 0:
@@ -135,27 +140,62 @@ def make_frame(index, serif, sans):
 
 
 def run(args):
-    subprocess.run(args, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.PIPE)
+    result = subprocess.run(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    if result.returncode:
+        raise RuntimeError(result.stderr[-6000:])
+    return result
 
 
-def write_vtt(path, scene_indices, duration):
-    def timestamp(seconds):
-        return f'00:{seconds//60:02d}:{seconds%60:02d}.000'
+def timestamp(seconds):
+    milliseconds = round(seconds * 1000)
+    hours, milliseconds = divmod(milliseconds, 3600000)
+    minutes, milliseconds = divmod(milliseconds, 60000)
+    seconds, milliseconds = divmod(milliseconds, 1000)
+    return f'{hours:02d}:{minutes:02d}:{seconds:02d}.{milliseconds:03d}'
+
+
+def write_vtt(path, clips, duration):
     lines = ['WEBVTT', '']
-    for n, index in enumerate(scene_indices):
-        lines.extend([f'{timestamp(n*duration)} --> {timestamp((n+1)*duration)}', SCENES[index][2], ''])
+    for n, clip in enumerate(clips):
+        start = n * duration + 0.35
+        end = start + clip['duration_seconds']
+        lines.extend([f'{timestamp(start)} --> {timestamp(end)}', textwrap.fill(clip['caption'], width=56), ''])
     path.write_text('\n'.join(lines), encoding='utf-8')
 
 
-def encode(directory, scene_indices, duration, target, webm=False):
+def encode(directory, scene_indices, duration, audio_path, target, webm=False):
     concat = directory / ('webm.txt' if webm else target.stem+'.txt')
     lines = []
     for index in scene_indices:
         lines.extend([f"file '{(directory / f'frame-{index}.png').as_posix()}'", f'duration {duration}'])
     lines.append(f"file '{(directory / f'frame-{scene_indices[-1]}.png').as_posix()}'")
     concat.write_text('\n'.join(lines)+'\n', encoding='utf-8')
-    codec = ['-c:v', 'libvpx-vp9', '-crf', '37', '-b:v', '0'] if webm else ['-c:v', 'libx264', '-crf', '25', '-preset', 'slow', '-movflags', '+faststart']
-    run(['ffmpeg', '-hide_banner', '-loglevel', 'error', '-y', '-f', 'concat', '-safe', '0', '-i', str(concat), '-t', str(len(scene_indices)*duration), '-r', '24', '-an', *codec, '-pix_fmt', 'yuv420p', str(target)])
+    codec = ['-c:v', 'libvpx-vp9', '-crf', '37', '-b:v', '0', '-c:a', 'libopus', '-b:a', '96k'] if webm else ['-c:v', 'libx264', '-crf', '25', '-preset', 'slow', '-movflags', '+faststart', '-c:a', 'aac', '-b:a', '128k']
+    run(['ffmpeg', '-hide_banner', '-loglevel', 'error', '-y', '-f', 'concat', '-safe', '0', '-i', str(concat), '-i', str(audio_path), '-map', '0:v:0', '-map', '1:a:0', '-t', str(len(scene_indices)*duration), '-r', '24', *codec, '-ar', '48000', '-ac', '1', '-pix_fmt', 'yuv420p', str(target)])
+
+
+def mix_voice(directory, audio_source, clips, duration, cut):
+    """Pad every speech clip, then normalize the complete cut with two passes."""
+    paths = []
+    for index, clip in enumerate(clips):
+        source = audio_source / f'{cut}-{index}.aiff'
+        if hashlib.sha256(source.read_bytes()).hexdigest() != clip['sha256']:
+            raise ValueError(f'Speech input changed: {source.name}')
+        if clip['duration_seconds'] <= 0 or clip['duration_seconds'] > duration - 0.6:
+            raise ValueError(f'Speech will not fit without truncation: {source.name}')
+        padded = directory / f'{cut}-{index}-padded.wav'
+        run(['ffmpeg', '-hide_banner', '-loglevel', 'error', '-y', '-i', str(source), '-af', f'aresample=48000,adelay=350:all=1,apad=whole_dur={duration},atrim=duration={duration}', '-ar', '48000', '-ac', '1', '-c:a', 'pcm_s16le', str(padded)])
+        paths.append(padded)
+    concat = directory / f'{cut}-audio.txt'
+    concat.write_text('\n'.join(f"file '{p.as_posix()}'" for p in paths) + '\n')
+    unnormalized = directory / f'{cut}-unnormalized.wav'
+    run(['ffmpeg', '-hide_banner', '-loglevel', 'error', '-y', '-f', 'concat', '-safe', '0', '-i', str(concat), '-c:a', 'pcm_s16le', str(unnormalized)])
+    measured = run(['ffmpeg', '-hide_banner', '-i', str(unnormalized), '-af', 'loudnorm=I=-18:TP=-1.5:LRA=7:print_format=json', '-f', 'null', '-'])
+    loudness, _end = json.JSONDecoder().raw_decode(measured.stderr[measured.stderr.rfind('{'):])
+    filters = f"loudnorm=I=-18:TP=-1.5:LRA=7:measured_I={loudness['input_i']}:measured_TP={loudness['input_tp']}:measured_LRA={loudness['input_lra']}:measured_thresh={loudness['input_thresh']}:offset={loudness['target_offset']}:linear=true:print_format=json"
+    target = directory / f'{cut}-master.wav'
+    run(['ffmpeg', '-hide_banner', '-y', '-i', str(unnormalized), '-af', filters, '-ar', '48000', '-ac', '1', '-c:a', 'pcm_s16le', str(target)])
+    return target
 
 
 def main():
@@ -163,8 +203,16 @@ def main():
     parser.add_argument('--serif-font', type=Path, default=Path('/System/Library/Fonts/Supplemental/Georgia.ttf'))
     parser.add_argument('--sans-font', type=Path, default=Path('/System/Library/Fonts/Supplemental/Arial.ttf'))
     parser.add_argument('--output', type=Path, default=Path(__file__).resolve().parents[1] / 'assets')
+    parser.add_argument('--audio-source', type=Path, required=True, help='directory made by synthesize_voice.py')
     parser.add_argument('--skip-webm', action='store_true')
     args = parser.parse_args()
+    voice_manifest = json.loads((args.audio_source / 'voice-manifest.json').read_text())
+    narration_path = Path(__file__).with_name('narration.json')
+    if hashlib.sha256(narration_path.read_bytes()).hexdigest() != voice_manifest['plan_sha256']:
+        parser.error('Narration changed since speech was generated. Regenerate the voice source.')
+    clips = {cut: [clip for clip in voice_manifest['clips'] if clip['cut'] == cut] for cut in ('full', 'short')}
+    if len(clips['full']) != 6 or len(clips['short']) != 3:
+        parser.error('Expected six full scenes and three short scenes of speech.')
     for font_path in [args.serif_font, args.sans_font]:
         if not font_path.is_file():
             parser.error(f'Font not found: {font_path}. Supply an installed font path.')
@@ -176,17 +224,22 @@ def main():
             frame.save(directory / f'frame-{index}.png')
             if index == 0:
                 frame.save(args.output / 'arxivchecker-film-poster.jpg', quality=93)
-        encode(directory, list(range(6)), 8, args.output / 'arxivchecker-film.mp4')
-        encode(directory, [0, 1, 5], 5, args.output / 'arxivchecker-film-15s.mp4')
+        full_audio = mix_voice(directory, args.audio_source, clips['full'], 8, 'full')
+        short_audio = mix_voice(directory, args.audio_source, clips['short'], 5, 'short')
+        encode(directory, list(range(6)), 8, full_audio, args.output / 'arxivchecker-film.mp4')
+        encode(directory, [0, 1, 5], 5, short_audio, args.output / 'arxivchecker-film-15s.mp4')
         if not args.skip_webm:
-            encode(directory, list(range(6)), 8, args.output / 'arxivchecker-film.webm', webm=True)
-    write_vtt(args.output / 'arxivchecker-film.vtt', list(range(6)), 8)
-    write_vtt(args.output / 'arxivchecker-film-15s.vtt', [0, 1, 5], 5)
-    transcript = ['ArxivChecker: Trace. Rebuild. Review.', '', 'Silent text film. All meaning is conveyed by the on-screen text. No narration or music.', 'Figures are illustrations, not study results.', '']
-    for title, description, caption in SCENES:
-        transcript.extend([title.replace('\n', ' '), description.replace('\n', ' '), caption, ''])
-    (args.output / 'arxivchecker-film-transcript.txt').write_text('\n'.join(transcript), encoding='utf-8')
-    print('Generated original 48-second and 15-second silent films, poster, captions and transcript.')
+            encode(directory, list(range(6)), 8, full_audio, args.output / 'arxivchecker-film.webm', webm=True)
+    write_vtt(args.output / 'arxivchecker-film.vtt', clips['full'], 8)
+    write_vtt(args.output / 'arxivchecker-film-15s.vtt', clips['short'], 5)
+    for cut, indices, duration, suffix in [('full', list(range(6)), 8, ''), ('short', [0, 1, 5], 5, '-15s')]:
+        transcript = ['ArxivChecker: Trace. Rebuild. Review.', '', f'{len(indices)*duration}-second narrated explainer. Local synthetic voice: Samantha (US English), 165 words per minute. No music.', 'Figures are illustrations, not study results. The story is the same six-scene study-to-paper workflow.', '']
+        for scene, (index, clip) in enumerate(zip(indices, clips[cut])):
+            title, description, _caption = SCENES[index]
+            transcript.extend([f'{timestamp(scene*duration)} — Scene {index+1}', 'On screen: ' + title.replace('\n', ' ') + ' ' + description.replace('\n', ' '), 'Narration: ' + clip['caption'], ''])
+        transcript.append('The brand ArxivChecker is pronounced “Archive Checker” in the synthetic voice.')
+        (args.output / f'arxivchecker-film{suffix}-transcript.txt').write_text('\n'.join(transcript) + '\n', encoding='utf-8')
+    print('Generated 48-second and 15-second narrated films, poster, synchronized captions and transcripts.')
 
 
 if __name__ == '__main__':

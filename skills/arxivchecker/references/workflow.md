@@ -6,6 +6,8 @@ Use this procedure for a completed study or to identify why a draft is not yet r
 
 Read the study README, design document, harness README/source, methods log, draft, dataset documentation and result files before writing. Identify the question, what was actually built, what was run and what the design merely proposes. Record file paths, revisions or hashes and who supplied author names, affiliations and release decisions. Check whether there are corrected, partial, failed or superseded runs. Preserve the original kit.
 
+Before calling the work submission-ready, identify its content type and intended category. Use the [submission map](submission.md#content-type-and-account-checks) for special CS review/position-paper conditions and submitter quotas. Original-study, review and position-paper routes must not be silently substituted for one another. Account conditions require the submitter's actual status; the local helper cannot infer it.
+
 Run `arxivcheck.py inventory` to obtain a local file/hash inventory. It does not infer which results are valid. Inspect executable scripts before running them. Work on copies in a private output directory and never insert test records into shared or production stores.
 
 ## 2. Derive the numbers once
@@ -34,7 +36,9 @@ For each cited work, check title, complete author list/order, year, version, ven
 
 Explain the problem and stakes, then the design/system with visuals, related work, question and decision rules fixed before the run, harness/apparatus, methods, results, discussion, limitations and conclusion. Finish with availability, significant AI use, references and appendices. Keep proposed capabilities, implemented features and measured results distinct. Explain how the harness generated and verified the evidence. Include negative and inconclusive findings. Use exact author-provided names and affiliations in a balanced byline. Never infer institutional approval from an affiliation.
 
-Use `templates/main.tex` as a neutral structural starter. Keep the no-page-numbers preference unless the user or venue asks otherwise; no page-number prohibition was found in the checked format policy. Letter paper, exact 11 pt and one-inch margins, newtx, numeric natbib, microtype and booktabs are local styling choices within the official single-spacing, 10–14 point and minimum one-inch margin guidance; see [requirements](requirements.md). Adapt them for the study's field or publisher requirements. Significant AI use belongs in a specific statement (code, experiments, analysis, synthetic labels/data, figures, drafting or editing as applicable); do not assert author review has happened before it has. Tools are not authors.
+Apply the [house writing guide](writing.md): teach the argument, remove unnecessary jargon or explain needed terms, and use visuals when they improve understanding. These are the owner's editorial preferences, not submission-policy gates. Follow arXiv's [recommended semantic markup](requirements.md#latex-source-and-typesetting-recommendations): use structural headings and frontmatter, meaningful emphasis and helpful image alternatives with a compatible package version. Check converted structure as well as visual appearance; a heading painted with font commands is not the same as a semantic section.
+
+Use `templates/main.tex` as a neutral structural starter. Keep the no-page-numbers preference unless the user or venue asks otherwise; no page-number prohibition was found in the checked format policy. Letter paper, exact 11 pt and 1.05-inch geometry, newtx, numeric natbib, microtype and booktabs are local styling choices within the official single-spacing, 10–14 point and minimum one-inch margin guidance; see [requirements](requirements.md). The small geometry buffer leaves room for ink protrusion and footnotes; inspect rendered margins rather than trusting a declaration. Adapt these defaults for the study's field or publisher requirements. Significant AI use belongs in a specific statement (code, experiments, analysis, synthetic labels/data, figures, drafting or editing as applicable); do not assert author review has happened before it has. Tools are not authors.
 
 ## 7. Compile and inspect all pages
 
@@ -59,3 +63,5 @@ Write a README describing the study's contents, what changed from the draft, pre
 ## 10. Hand off the human decisions
 
 Report the state accurately: draft prepared, checks passed/failed, visual review completed/not completed, and unresolved evidence. Ask the responsible authors to review labels, scientific interpretation, authorship and affiliations, significant AI-use wording, release rights, public code/data URLs, category, licence, endorsement and the final arXiv-rendered PDF. Do not invent their approvals. Publish or submit only if explicitly asked. For a brief colleague update, tell the story in the user's voice: what we ran, the answer and the surprise, with one or two important numbers.
+
+Include any unresolved content-type evidence or account-capacity decision in that handoff. Do not claim an available monthly or active-submission slot without the responsible submitter checking their account.

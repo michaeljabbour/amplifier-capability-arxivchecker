@@ -1,0 +1,57 @@
+{
+  "observed_date": "2026-11-03",
+  "scope": "Local revision preview; actual rendered browser checks, not a hosted deployment",
+  "family": {
+    "live_references": [
+      "https://michaeljabbour.github.io/amplifier-skill-right-shape/",
+      "https://michaeljabbour.github.io/amplifier-skill-taste/"
+    ],
+    "revision_computed_background": "rgb(246, 244, 238)",
+    "revision_computed_ink": "rgb(37, 40, 35)",
+    "revision_h1_font": "Georgia, \"Times New Roman\", serif",
+    "source_comparison": "site/README.md"
+  },
+  "viewports": [
+    {
+      "width": 1280,
+      "height": 720,
+      "document_scroll_width": 1280,
+      "hero_visually_inspected": true
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "document_scroll_width": 390,
+      "landing_and_guide_visually_inspected": true,
+      "policy_tables_scroll_in_350px_containers": true
+    }
+  ],
+  "full_film": {
+    "in_app_browser": {
+      "duration_seconds": 48,
+      "final_time_seconds": 48,
+      "ended": true,
+      "paused": true,
+      "muted": false,
+      "readyState": 4,
+      "error": null
+    },
+    "mac_edge": {
+      "duration_seconds": 48,
+      "observed_time_seconds": 0.11545,
+      "subsequent_visual_time_seconds": 10,
+      "paused": false,
+      "muted": false,
+      "readyState": 4,
+      "error": null,
+      "captions_visibly_rendered": true
+    },
+    "volume_property": "not available through read-only DOM surface",
+    "decoded_byte_property": "not available through read-only DOM surface"
+  },
+  "audio_review": "Encoded speech, full decode, timing, loudness and independent offline ASR checked separately. The agent cannot hear tool audio in this environment; a subjective listening review was not completed. The ASR report preserves uncertainties, especially final-scene AI-use/rights and acceptance wording.",
+  "connection_interruption": "Additional low-level read-only audio-state query lost the Mac connection. No content mutation was attempted. Connection subsequently recovered; native UI reported Mac locked.",
+  "last_native_visibility_status": "Reopening integrated page remains pending until the Mac is unlocked.",
+  "viewport_override_reset": true,
+  "limits": "No subjective ear review, moderation decision, scientific benchmark or deployed-site check."
+}

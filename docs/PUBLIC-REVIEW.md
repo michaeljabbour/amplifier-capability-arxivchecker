@@ -15,3 +15,16 @@ The quality workflow added afterward contains only source checkout and local tes
 The source paper and original installed skill remain private and unchanged. Only generic method adaptations, neutral templates and explicitly fictional fixtures are included. Media metadata is generic; browser code has no network/storage calls, and no external runtime assets are loaded.
 
 [Validation](VALIDATION.md) records local tests and their limits. [Provenance](PROVENANCE.md) records the adaptation. Publication does not establish arXiv acceptance or scientific approval, and the website must be deployed separately from a source push.
+
+## Revision review — 2026-11-03
+
+An independent read-only audit covered 62 changed/new files relative to `67c670e`, 190 text/generated blobs, all 19 portable ZIP members and media metadata. It found no private machine paths, personal email addresses, credentials/secrets, private Library identifiers or transplanted study results in the reviewed revision. The supplied secondary guidance is represented only by independently verified official-source conclusions; no raw attachment is included.
+
+This supplements the initial review above. It covers the local revision only; no publication, push or deployment was performed as part of this revision audit.
+
+The coordinator subsequently inspected the fictional layout fixture's source,
+PDF, page renders, build summary and font evidence, plus the browser-review JSON
+and final 50-test log. These additions contain generic names, illustrative
+content and local-check results. A final scan of 210 source/generated text files and all 19 ZIP members found no
+private paths, attachment identifiers, personal emails or credential patterns.
+The original source skill remains outside the repository.

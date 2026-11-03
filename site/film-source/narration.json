@@ -1,0 +1,22 @@
+{
+  "voice": "Samantha",
+  "locale": "en_US",
+  "words_per_minute": 165,
+  "full": [
+    "Your study is done. Bring its design, methods, raw results, and draft together before writing.",
+    "Trace every claim to its source. Say what you counted, the units, and what the cost includes.",
+    "Build figures from the data, then inspect them. Check every series, label, scale, and panel.",
+    "Explain what you built, how you tested it, what happened, and its limits. Verify every reference.",
+    "Rebuild from the actual submission files. Check the build, fonts, filenames, and required inputs.",
+    "People review the names, AI use, rights, and final claims. ArxivChecker cannot guarantee acceptance."
+  ],
+  "short": [
+    "Your study is done. Now bring the evidence together.",
+    "Trace every claim. Keep its denominator and limits visible.",
+    "Rebuild, review, then let people make the final call."
+  ],
+  "pronunciation": {
+    "ArxivChecker": "Archive Checker"
+  },
+  "note": "Local synthetic narration of the existing six-scene story. No external provider, music, human voice recording, or new empirical claim."
+}

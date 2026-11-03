@@ -1,10 +1,11 @@
 % Neutral structural template. Replace every REPLACE_ME before release.
 % Checked policy map: ../references/requirements.md (2026-11-03; recheck before submission).
-% Exact 11pt, Letter, newtx and no page numbers are local preferences.
+% Exact 11pt, Letter, 1.05in geometry, newtx and no page numbers are local preferences.
+% The small extra margin leaves room for glyph protrusion and footnote descenders; inspect actual output.
 % Official format guidance includes single spacing, 10-14pt and margins >= 1 inch:
 % https://info.arxiv.org/help/policies/format_requirements.html
 \documentclass[11pt]{article}
-\usepackage[letterpaper,margin=1in]{geometry}
+\usepackage[letterpaper,margin=1.05in]{geometry}
 \usepackage[T1]{fontenc}
 \usepackage{newtxtext,newtxmath}
 \usepackage[final]{microtype}
@@ -12,6 +13,8 @@
 \usepackage{xcolor}
 \usepackage[numbers,sort&compress]{natbib}
 \usepackage{hyperref}
+% MJ's readability choice, not a universal arXiv footnote specification.
+\renewcommand{\footnotesize}{\fontsize{10}{12}\selectfont}
 \definecolor{linkblue}{HTML}{1F4E9A}
 \hypersetup{colorlinks=true,linkcolor=linkblue,citecolor=linkblue,urlcolor=linkblue,
   pdftitle={REPLACE_ME study title},pdfauthor={REPLACE_ME exact author names}}
@@ -53,12 +56,16 @@ REPLACE_ME describe the implementation, versions, execution environment and chec
 \section{Methods}
 REPLACE_ME population, inclusion/exclusion rules, sample unit, repeated measures, labels,
 uncertainty, analysis plan, missingness, costs and latency definitions.
+% House style: explain essential terms in the text. A short \footnote{definition}
+% can hold secondary detail, but never hide a material method or limitation there.
 
 \section{Results}
 REPLACE_ME write from the extracted evidence ledger. Report counts with denominators and units.
 % Place each table/figure immediately after its first discussion. Inspect final float positions.
 % \begin{figure}[htbp]
-%   \centering\includegraphics[width=0.8\linewidth]{figures/results.pdf}
+%   \centering\includegraphics[width=0.8\linewidth,alt={REPLACE_ME useful image description}]{figures/results.pdf}
+%   The alt option follows current arXiv HTML recommendations; verify selected
+%   graphics package/toolchain compatibility rather than inferring a format rule.
 %   \caption{REPLACE_ME reporting unit, population, n, uncertainty and source.}
 %   \label{fig:results}
 % \end{figure}

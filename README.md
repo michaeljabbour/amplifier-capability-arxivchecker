@@ -31,7 +31,7 @@ For Amplifier, add the local behavior to your existing host as described in [INS
 | [Artboard cropper](skills/arxivchecker/scripts/crop_artboards.py) | Explicit, bounded crops with provenance and a visual-review record |
 | [Templates](skills/arxivchecker/templates/) | Neutral LaTeX, extraction and package specifications; no inherited study results |
 | [Amplifier bundle](bundle.md) | Skill discovery, mode and a staged recipe with review checkpoints |
-| [Website](site/README.md) | Guide, fictional claim demonstration, self-review checklist, downloads and captioned text films |
+| [Website](site/README.md) | Guide, fictional claim demonstration, self-review checklist, downloads and narrated films with captions and transcripts |
 
 The core helper's interfaces are deliberately small:
 
@@ -51,9 +51,13 @@ The figure and crop helpers need matplotlib and Pillow respectively. LaTeX prefl
 
 The dated [format and file requirements](docs/ARXIV-REQUIREMENTS.md) and [submission-policy map](docs/ARXIV-SUBMISSION.md) distinguish stated requirements, conditional routes, recommendations and local preferences. They link directly to current official arXiv documentation, verified on 2026-11-03. Recheck before submitting: toolchains and policies change, and a local check never establishes acceptance.
 
+The [verification record](docs/ATTACHMENT-VERIFICATION.md) checks the supplied secondary guidance against official sources without redistributing the private attachment.
+
 ## The reporting standard
 
 Tell the full story: problem, design, related work, question and decision rules, apparatus, methods, results and limits. A results-only summary misses what was built and why. Keep predeclared analyses distinct from exploratory ones.
+
+Use [MJ's writing guide](skills/arxivchecker/references/writing.md) for pedagogical prose, explained jargon and visuals that help the reader understand. It is house style, separate from arXiv policy.
 
 Check the denominator without hiding the full population or changing the question after the run. State the unit next to the measure. A model-call estimate is not the total study cost; disclose pricing assumptions, excluded calls, synthetic data, human work and agent usage. Record AI assistance accurately and let the authors approve the wording.
 

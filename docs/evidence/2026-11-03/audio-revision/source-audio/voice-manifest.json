@@ -1,0 +1,89 @@
+{
+  "voice": "Samantha",
+  "locale": "en_US",
+  "words_per_minute": 165,
+  "plan_sha256": "209ce061b8603ef30ed42a1f2bbf43ade2cff0103b7807761e871374c4c32c6d",
+  "clips": [
+    {
+      "cut": "full",
+      "scene": 0,
+      "caption": "Your study is done. Bring its design, methods, raw results, and draft together before writing.",
+      "tts_text": "Your study is done. Bring its design, methods, raw results, and draft together before writing.",
+      "duration_seconds": 6.006395,
+      "scene_seconds": 8,
+      "sha256": "a998b057db217111e96e36e940822eff21d89902697a0a65e0ae5ca30e2b5750"
+    },
+    {
+      "cut": "full",
+      "scene": 1,
+      "caption": "Trace every claim to its source. Say what you counted, the units, and what the cost includes.",
+      "tts_text": "Trace every claim to its source. Say what you counted, the units, and what the cost includes.",
+      "duration_seconds": 5.584626,
+      "scene_seconds": 8,
+      "sha256": "328adbb75d273bfcbde9dfb50f83d0c24fb03d0d4b64e602d7cd80375d252b33"
+    },
+    {
+      "cut": "full",
+      "scene": 2,
+      "caption": "Build figures from the data, then inspect them. Check every series, label, scale, and panel.",
+      "tts_text": "Build figures from the data, then inspect them. Check every series, label, scale, and panel.",
+      "duration_seconds": 6.076281,
+      "scene_seconds": 8,
+      "sha256": "5ee4aa13a2a1db6668fb51578c080119b4a310ee7acaff5adc704a6efb470d95"
+    },
+    {
+      "cut": "full",
+      "scene": 3,
+      "caption": "Explain what you built, how you tested it, what happened, and its limits. Verify every reference.",
+      "tts_text": "Explain what you built, how you tested it, what happened, and its limits. Verify every reference.",
+      "duration_seconds": 6.126667,
+      "scene_seconds": 8,
+      "sha256": "44678a790a0713af358cefd14c91c086c1ee13e5bfa181912f04900e9ad07b65"
+    },
+    {
+      "cut": "full",
+      "scene": 4,
+      "caption": "Rebuild from the actual submission files. Check the build, fonts, filenames, and required inputs.",
+      "tts_text": "Rebuild from the actual submission files. Check the build, fonts, filenames, and required inputs.",
+      "duration_seconds": 6.648209,
+      "scene_seconds": 8,
+      "sha256": "fb5aa3c73f87a72b6a522f5612e2114cf93addd726af404806201936e6f66c94"
+    },
+    {
+      "cut": "full",
+      "scene": 5,
+      "caption": "People review the names, AI use, rights, and final claims. ArxivChecker cannot guarantee acceptance.",
+      "tts_text": "People review the names, AI use, rights, and final claims. Archive Checker cannot guarantee acceptance.",
+      "duration_seconds": 7.138186,
+      "scene_seconds": 8,
+      "sha256": "5323d253a259cac294ebd9922a5184967ea976c5e505b3fb7226e61aaa50d11a"
+    },
+    {
+      "cut": "short",
+      "scene": 0,
+      "caption": "Your study is done. Now bring the evidence together.",
+      "tts_text": "Your study is done. Now bring the evidence together.",
+      "duration_seconds": 2.952971,
+      "scene_seconds": 5,
+      "sha256": "03f0e78156c4880aef5bcf078919a075cb7843656d8c074b4e8e3a8ca76f7078"
+    },
+    {
+      "cut": "short",
+      "scene": 1,
+      "caption": "Trace every claim. Keep its denominator and limits visible.",
+      "tts_text": "Trace every claim. Keep its denominator and limits visible.",
+      "duration_seconds": 3.56449,
+      "scene_seconds": 5,
+      "sha256": "5511f43b1515f625ed82bda03c92a25fa71520c4a078d654860acd643596d6d0"
+    },
+    {
+      "cut": "short",
+      "scene": 2,
+      "caption": "Rebuild, review, then let people make the final call.",
+      "tts_text": "Rebuild, review, then let people make the final call.",
+      "duration_seconds": 3.339274,
+      "scene_seconds": 5,
+      "sha256": "fa97d1b1b5ee3191fc1ade4b3731d5a6d6d24befb2689dcfa5e5e38430d22733"
+    }
+  ]
+}

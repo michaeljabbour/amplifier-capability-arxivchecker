@@ -7,6 +7,8 @@ description: Turn a completed study, results folder, design document, harness an
 
 Make the paper tell the full story of what was built, why it was tested and what the evidence supports. Start with the study's files, never the old draft's numbers. A local preflight is evidence about a build; it is not peer review or a guarantee of arXiv acceptance.
 
+Apply [MJ's publishing style](references/writing.md) on top of the official requirements: teach the reader the study, remove unnecessary jargon, explain essential terms in context or a suitable footnote, and use visuals that help readers understand. This is substantive editorial guidance, not an arXiv rule.
+
 ## Start here
 
 1. Read [workflow](references/workflow.md), [policy](references/policy.md), the dated [format/file requirement map](references/requirements.md) and [submission-policy map](references/submission.md). Recheck official sources before an actual submission. Distinguish stated requirements, conditional routes, recommendations and local checks; leave eligibility unassessed when a route is unsupported.

@@ -1,0 +1,104 @@
+% Neutral structural template. Replace every Fixture before release.
+% Checked policy map: ../references/requirements.md (2026-11-03; recheck before submission).
+% Exact 11pt, Letter, 1.05in geometry, newtx and no page numbers are local preferences.
+% The small extra margin leaves room for glyph protrusion and footnote descenders; inspect actual output.
+% Official format guidance includes single spacing, 10-14pt and margins >= 1 inch:
+% https://info.arxiv.org/help/policies/format_requirements.html
+\documentclass[11pt]{article}
+\usepackage[letterpaper,margin=1.05in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{newtxtext,newtxmath}
+\usepackage[final]{microtype}
+\usepackage{graphicx,booktabs,tabularx}
+\usepackage{xcolor}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{hyperref}
+% MJ's readability choice, not a universal arXiv footnote specification.
+\renewcommand{\footnotesize}{\fontsize{10}{12}\selectfont}
+\definecolor{linkblue}{HTML}{1F4E9A}
+\hypersetup{colorlinks=true,linkcolor=linkblue,citecolor=linkblue,urlcolor=linkblue,
+  pdftitle={Fictional typesetting fixture},pdfauthor={Fixture exact author names}}
+\pagestyle{empty}
+\makeatletter
+\let\ps@plain\ps@empty
+\makeatother
+
+\title{Fictional typesetting fixture}
+% Exact names and affiliations must be supplied by the authors.
+% For a shared affiliation, use one centred block. Adapt for distinct affiliations.
+\author{Example Researcher\\[3pt]\normalsize Fictional Laboratory}
+\date{November 2026}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+
+\begin{abstract}
+Fixture problem, system built, study question, design and evidence-supported answer.
+State the reporting unit, population and main limitation. Do not insert example results.
+\end{abstract}
+
+\section{Introduction}
+Fixture problem, why it matters, contributions and scope.
+
+\section{Design and system under test}
+Fixture explain what was built and why. Include the key design visuals and their provenance.
+
+\section{Related work}
+Fixture cite verified sources and explain the comparison, rather than listing references.
+
+\section{Research question and prior decision rules}
+Fixture reproduce rules fixed before the run, with a dated source. Label later decisions exploratory.
+
+\section{Harness and apparatus}
+Fixture describe the implementation, versions, execution environment and checks.
+
+\section{Methods}
+This is a software fixture, not a scientific study. A test runner\footnote{A program that executes the checks and records the results.} checks the template.\cite{fixture}
+
+Fixture population, inclusion/exclusion rules, sample unit, repeated measures, labels,
+uncertainty, analysis plan, missingness, costs and latency definitions.
+% House style: explain essential terms in the text. A short \footnote{definition}
+% can hold secondary detail, but never hide a material method or limitation there.
+
+\section{Results}
+Fixture write from the extracted evidence ledger. Report counts with denominators and units.
+\begin{figure}[htbp]\centering
+\fbox{\parbox{0.8\linewidth}{\centering Study files $\rightarrow$ checked values $\rightarrow$ reviewable paper}}
+\caption{An illustrative workflow, not study data. Each step needs its own evidence and review.}\end{figure}
+
+% Place each table/figure immediately after its first discussion. Inspect final float positions.
+% \begin{figure}[htbp]
+%   \centering\includegraphics[width=0.8\linewidth,alt={Fixture useful image description}]{figures/results.pdf}
+%   The alt option follows current arXiv HTML recommendations; verify selected
+%   graphics package/toolchain compatibility rather than inferring a format rule.
+%   \caption{Fixture reporting unit, population, n, uncertainty and source.}
+%   \label{fig:results}
+% \end{figure}
+
+\section{Discussion}
+Fixture explain what the evidence means and distinguish interpretation from measurement.
+
+\section{Limitations}
+Fixture negative findings, uncertainty, bias, generalizability and unmeasured quantities.
+
+\section{Conclusion}
+Fixture answer the question within the measured scope.
+
+\section*{Data and code availability}
+Fixture verified release locations, versions, licences and restrictions. Do not promise a release that has not happened.
+
+\section*{Use of AI tools}
+Fixture describe significant AI assistance actually used (for example code, experiments,
+analysis, synthetic labels/data, figures or drafting), with relevant tool/version details.
+Record human review accurately. Do not state that authors approved the paper before they have.
+
+% Add verified entries to references.bib and cite them in the text.
+% For the conservative clean-build path, generate main.bbl before preflight.
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\appendix
+\section{Supporting materials}
+Fixture relevant design history, examples, dataset documentation and additional visuals.
+\end{document}

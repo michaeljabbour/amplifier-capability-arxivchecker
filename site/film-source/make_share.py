@@ -10,8 +10,8 @@ from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
 
 SCALE = 2
-PAPER, INK, MUTED = '#f1f5f8', '#132d43', '#4b6172'
-RED, TEAL, RULE, SHADOW = '#a53839', '#175f66', '#c6d3de', '#dbe5ed'
+PAPER, INK, MUTED = '#f6f4ee', '#252823', '#64685e'
+RED, TEAL, RULE, SHADOW = '#8c473d', '#486b61', '#d8d8cc', '#e6e4da'
 
 
 def main():
@@ -31,11 +31,11 @@ def main():
         path = {'sans': args.sans_font, 'serif': args.serif_font, 'bold': args.bold_font}[family]
         target.text((x*SCALE, y*SCALE), content, font=ImageFont.truetype(str(path), size*SCALE), fill=fill, anchor='ls')
 
-    text(draw, 75, 88, 'ArxivChecker', 25, family='bold')
-    text(draw, 75, 246, 'Every claim needs', 69, family='serif')
-    text(draw, 75, 325, 'a way back.', 69, family='serif')
-    text(draw, 78, 435, 'Turn a finished study into a paper', 26, MUTED)
-    text(draw, 78, 474, 'you can trace, rebuild and review.', 26, MUTED)
+    text(draw, 75, 88, 'An Amplifier capability', 22, family='bold')
+    text(draw, 75, 246, 'Arxiv', 86, family='serif')
+    text(draw, 75, 335, 'Checker', 86, family='serif')
+    text(draw, 78, 435, 'Make the study clear.', 29, MUTED)
+    text(draw, 78, 478, 'Keep the evidence close.', 29, MUTED)
     text(draw, 78, 575, 'An independent Amplifier-compatible capability', 18, MUTED)
     panel = Image.new('RGBA', (280*SCALE, 380*SCALE), (0, 0, 0, 0))
     p = ImageDraw.Draw(panel)

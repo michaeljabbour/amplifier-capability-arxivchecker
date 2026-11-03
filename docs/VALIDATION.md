@@ -27,3 +27,52 @@ A fictional document generated from the actual neutral template compiled in thre
 Every actual study needs review of scientific claims and denominators, figure/page readability, references and support for cited claims, exact author information, AI-use disclosure, permissions, release rights, arXiv category, licence and endorsement. The helpers cannot confer those approvals.
 
 The original source skill is preserved outside this repository. This capability is local and unpublished; no push, hosted deployment or arXiv submission has occurred.
+
+## Family, narration and publishing-style revision
+
+The subsequent local revision passed all 50 regression tests again with the
+existing Python 3.14 environment, including optional figure/crop rendering. See
+[the revision test log](evidence/2026-11-03/tests-revision-python314.txt). The final
+static check passed two HTML pages, 71 local links/assets/fragments, 90 Markdown
+destinations and 19 byte-exact portable files; all three film audio streams were
+inspected. ZIP SHA-256: `cba088815c8d0493c7ee4f910b94c09fabbbd03f1b207058b32926baa2a68869`.
+JavaScript syntax passed. No new software was installed.
+
+The revision keeps official rules, arXiv/LaTeX recommendations
+and MJ's pedagogical style in three labelled layers. The canonical [writing
+guide](../skills/arxivchecker/references/writing.md) is included in the installed
+skill, ZIP and rendered playbook. [The supplied-guidance audit](ATTACHMENT-VERIFICATION.md)
+records corrections checked against primary sources, without redistributing the
+private attachment.
+
+The family comparison uses actual Right Shape, Taste, Decisioncraft, Unfold and
+Project Handoff sources, with live Right Shape/Taste browser inspection and
+computed-colour evidence. The revised page matches the cream/charcoal/gold/sage
+baseline and common masthead/product-title layout. See [site provenance](../site/README.md).
+Desktop 1280×720 and mobile 390×844 views were inspected; both landing and guide
+have no horizontal document overflow. Wide policy tables scroll within their
+containers. The viewport override was reset. [Browser revision record](evidence/2026-11-03/browser-revision.json).
+
+Full MP4/WebM and 15-second MP4 now contain locally generated synthetic narration,
+matching English captions and separate transcripts. All three decode fully, have
+zero clipped samples and measured loudness near −18 LUFS. Source clips fit their
+scenes without time compression or truncation. The full film played to its
+48-second end in the in-app browser without an error. Mac Edge also showed
+unmuted playback and visible captions. Independent offline speech recognition
+matched all 27 short-cut words; the full cut had seven diagnostic word edits,
+including unresolved final-scene wording. These checks are **not a subjective
+listening review**: the agent cannot hear tool audio in this environment. Human
+pronunciation/pacing review remains pending, and the independent report preserves
+the uncertainty. See [audio evidence](evidence/2026-11-03/audio-revision/README.md)
+and [independent review](evidence/2026-11-03/audio-revision/independent-review.md).
+
+The actual starter was rebuilt with a footnote and vector illustration, and both
+pages were visually inspected. Rendered word bounds are inside a one-inch text
+envelope. The 1.05-inch geometry buffer, 10 pt footnote and 10 pt chart defaults
+are house readability choices. A fixture float-placement issue was corrected
+before the final render; see [layout evidence](evidence/2026-11-03/layout-revision/README.md).
+This is partial layout evidence for a fictional fixture, not arXiv certification.
+
+No push, public repository creation, hosted deployment or arXiv submission was
+performed. Reopening the final page visibly on the Mac requires the Mac to be
+unlocked; the connection's native UI reported it locked during final review.

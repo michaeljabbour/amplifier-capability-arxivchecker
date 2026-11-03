@@ -101,8 +101,8 @@ def render(input_path, series, output):
         raise ValueError("rendering needs matplotlib in this Python environment; core checks do not") from exc
     matplotlib.rcParams.update({
         "font.family": "serif", "font.serif": ["STIXGeneral", "DejaVu Serif"],
-        "mathtext.fontset": "stix", "font.size": 8, "axes.labelsize": 8,
-        "xtick.labelsize": 7.5, "ytick.labelsize": 7.5, "pdf.fonttype": 42,
+        "mathtext.fontset": "stix", "font.size": 10, "axes.labelsize": 10,
+        "xtick.labelsize": 10, "ytick.labelsize": 10, "pdf.fonttype": 42,
         "axes.spines.top": False, "axes.spines.right": False,
     })
     fig, ax = plt.subplots(figsize=(6.5, max(2.0, 0.38 * len(selected) + 0.8)), layout="constrained")

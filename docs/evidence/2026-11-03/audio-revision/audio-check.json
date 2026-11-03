@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "checks": [
+    {
+      "file": "arxivchecker-film.mp4",
+      "sha256": "9e156fad92afeaf1aab2a3b7c64370f342e891279cbe8b5452654d069b5bd5ff",
+      "duration_seconds": 48.0,
+      "audio_codec": "aac",
+      "sample_rate_hz": 48000,
+      "channels": 1,
+      "complete_decode": "passed",
+      "decoded_samples": 2304000,
+      "sample_peak_dbfs": -2.723,
+      "rms_dbfs": -18.447,
+      "clipped_samples": 0,
+      "integrated_loudness_lufs": -18.02,
+      "true_peak_dbtp": -2.72,
+      "loudness_range_lu": 3.8,
+      "listening_review": "required separately: signal checks cannot establish spoken intelligibility or pacing"
+    },
+    {
+      "file": "arxivchecker-film.webm",
+      "sha256": "268109885f5e54dfa82c241a78e6c5ed294291e6faba23f2496e8be952a8dd4d",
+      "duration_seconds": 48.008,
+      "audio_codec": "opus",
+      "sample_rate_hz": 48000,
+      "channels": 1,
+      "complete_decode": "passed",
+      "decoded_samples": 2304000,
+      "sample_peak_dbfs": -2.666,
+      "rms_dbfs": -18.427,
+      "clipped_samples": 0,
+      "integrated_loudness_lufs": -17.99,
+      "true_peak_dbtp": -2.66,
+      "loudness_range_lu": 3.8,
+      "listening_review": "required separately: signal checks cannot establish spoken intelligibility or pacing"
+    },
+    {
+      "file": "arxivchecker-film-15s.mp4",
+      "sha256": "6040eaeb268679f443ade9c47c4859b23a6e350c720006a5432711c58ff693c8",
+      "duration_seconds": 15.0,
+      "audio_codec": "aac",
+      "sample_rate_hz": 48000,
+      "channels": 1,
+      "complete_decode": "passed",
+      "decoded_samples": 720000,
+      "sample_peak_dbfs": -3.282,
+      "rms_dbfs": -18.866,
+      "clipped_samples": 0,
+      "integrated_loudness_lufs": -18.01,
+      "true_peak_dbtp": -3.28,
+      "loudness_range_lu": 3.7,
+      "listening_review": "required separately: signal checks cannot establish spoken intelligibility or pacing"
+    }
+  ],
+  "captions": [
+    {
+      "file": "arxivchecker-film.vtt",
+      "spoken_script_matches": true,
+      "cues": [
+        {
+          "scene": 1,
+          "start_seconds": 0.35,
+          "end_seconds": 6.356,
+          "script_match": true
+        },
+        {
+          "scene": 2,
+          "start_seconds": 8.35,
+          "end_seconds": 13.935,
+          "script_match": true
+        },
+        {
+          "scene": 3,
+          "start_seconds": 16.35,
+          "end_seconds": 22.426,
+          "script_match": true
+        },
+        {
+          "scene": 4,
+          "start_seconds": 24.35,
+          "end_seconds": 30.477,
+          "script_match": true
+        },
+        {
+          "scene": 5,
+          "start_seconds": 32.35,
+          "end_seconds": 38.998,
+          "script_match": true
+        },
+        {
+          "scene": 6,
+          "start_seconds": 40.35,
+          "end_seconds": 47.488,
+          "script_match": true
+        }
+      ]
+    },
+    {
+      "file": "arxivchecker-film-15s.vtt",
+      "spoken_script_matches": true,
+      "cues": [
+        {
+          "scene": 1,
+          "start_seconds": 0.35,
+          "end_seconds": 3.303,
+          "script_match": true
+        },
+        {
+          "scene": 2,
+          "start_seconds": 5.35,
+          "end_seconds": 8.914,
+          "script_match": true
+        },
+        {
+          "scene": 3,
+          "start_seconds": 10.35,
+          "end_seconds": 13.689,
+          "script_match": true
+        }
+      ]
+    }
+  ]
+}

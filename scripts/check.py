@@ -8,6 +8,8 @@ import hashlib
 import json
 from pathlib import Path
 import re
+import shutil
+import subprocess
 import sys
 from urllib.parse import unquote, urlsplit
 from zipfile import ZipFile
@@ -16,7 +18,7 @@ sys.dont_write_bytecode = True
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 import capability
-from build import reference_section, verification_date
+from build import reference_section, verification_date, writing_boundary
 
 
 class Page(HTMLParser):
@@ -107,7 +109,7 @@ def check(output: Path) -> None:
     source = capability.file_map(data)
     guide_source = (output / "guide.html").read_text()
     assert pages[output / "guide.html"].skill == source["SKILL.md"].decode(), "Guide source differs from canonical skill"
-    for identifier, filename in (("requirements-map", "references/requirements.md"), ("submission-map", "references/submission.md")):
+    for identifier, filename in (("requirements-map", "references/requirements.md"), ("submission-map", "references/submission.md"), ("writing-style", "references/writing.md")):
         canonical = source[filename].decode()
         assert reference_section(identifier, filename, canonical) in guide_source, f"Rendered canonical map differs: {filename}"
         assert identifier in pages[output / "guide.html"].ids, f"Missing browser map anchor: {identifier}"
@@ -133,7 +135,7 @@ def check(output: Path) -> None:
         assert all(html.escape(str(stage[key]), quote=True) in text for key in ("title", "description", "output")), "Site workflow summary differs"
     assert len(pages[output / "index.html"].inputs) == 5, "Expected five review prompts"
     assert all("autoplay" not in v and "controls" in v for p in pages.values() for v in p.video), "Films must use explicit playback controls"
-    for name in ("arxivchecker-film.mp4", "arxivchecker-film.webm", "arxivchecker-film-15s.mp4", "arxivchecker-film.vtt", "arxivchecker-film-15s.vtt", "arxivchecker-film-poster.jpg", "arxivchecker-film-transcript.txt", "social-card.svg", "social-card.png", "favicon.svg"):
+    for name in ("arxivchecker-film.mp4", "arxivchecker-film.webm", "arxivchecker-film-15s.mp4", "arxivchecker-film.vtt", "arxivchecker-film-15s.vtt", "arxivchecker-film-poster.jpg", "arxivchecker-film-transcript.txt", "arxivchecker-film-15s-transcript.txt", "social-card.svg", "social-card.png", "favicon.svg"):
         assert (output / "assets" / name).is_file(), f"Missing asset: {name}"
     for name in ("arxivchecker-film.vtt", "arxivchecker-film-15s.vtt"):
         assert (output / "assets" / name).read_text().startswith("WEBVTT\n"), f"Invalid caption header {name}"
@@ -143,6 +145,24 @@ def check(output: Path) -> None:
     js = (output / "assets/site.js").read_text()
     assert not re.search(r"\b(?:fetch|XMLHttpRequest|WebSocket|localStorage|sessionStorage)\b", js), "Unexpected network or persistence code"
     raw = (output / "index.html").read_text()
+    assert "narrated explainer" in raw and "Sound on" in raw, "Player must describe the requested voiceover"
+    assert not re.search(r"silent|audio-free|no narration", raw, re.I), "Stale silent-film description"
+    assert "guide.html#writing-style" in pages[output / "index.html"].links, "Missing visible publishing-style guide"
+    assert "https://info.arxiv.org/help/submit_latex_best_practices.html" in pages[output / "index.html"].links, "Missing official LaTeX recommendation link"
+    assert writing_boundary(source["references/writing.md"].decode()) in raw, "Editorial-style boundary differs from canonical writing guide"
+    assert all(label in raw for label in ("Official requirements", "LaTeX recommendations", "MJ’s publishing style")), "Publishing layers must remain distinct"
+    family = json.loads((ROOT / "site/site.json").read_text())["theme"]
+    family_css = (output / "assets/family.css").read_text()
+    for token in ("paper", "ink", "muted", "line", "gold", "accent", "wash"):
+        value = re.search(r"--" + token + r":\s*([^;]+);", family_css)
+        assert value and value[1].strip() == family[token], f"Family token differs: {token}"
+    assert "Skills for thoughtful work" in raw and 'class="masthead"' in raw, "Missing common family masthead"
+    audio_checks = 0
+    if shutil.which("ffprobe"):
+        for name in ("arxivchecker-film.mp4", "arxivchecker-film.webm", "arxivchecker-film-15s.mp4"):
+            result = subprocess.run(["ffprobe", "-v", "error", "-select_streams", "a", "-show_entries", "stream=codec_type", "-of", "json", str(output / "assets" / name)], capture_output=True, text=True, check=True, timeout=15)
+            assert json.loads(result.stdout).get("streams"), f"Requested voiceover audio stream missing: {name}"
+            audio_checks += 1
     for phrase in ("Fictional", "not a study result", "human review", "No arXiv endorsement", "connect-src 'none'", "default-src 'self'", "mandatory rules", "conditional requirements", "arXiv recommendations", "local profile", "does not certify arXiv acceptance", "does not by itself establish that arXiv would reject"):
         assert phrase in raw, f"Required scope label absent: {phrase}"
     assert "https://info.arxiv.org/help/policies/format_requirements.html" in pages[output / "index.html"].links, "Missing direct official-format link"
@@ -155,6 +175,8 @@ def check(output: Path) -> None:
     print(f"PASS: {len(source)} portable files, exact guide source/downloads/ZIP and SHA-256")
     print("PASS: ten canonical workflow stages, offline runtime assets, accessible controls and explicit claim limits")
     print("PASS: canonical requirement/submission maps rendered in browser, primary citations linked and local-profile scope explicit")
+    print("PASS: canonical publishing-style guide, three distinct publishing layers and shared family tokens/masthead")
+    print(f"Voiceover audio-stream checks: {audio_checks} films inspected" if audio_checks else "Voiceover audio-stream checks: not run; ffprobe is unavailable")
     print("ZIP SHA-256: " + digest)
 
 

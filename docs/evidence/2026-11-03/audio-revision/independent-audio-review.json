@@ -1,0 +1,211 @@
+{
+  "observed_at": "2026-11-03T13:36:25.373061+00:00",
+  "scope": "Independent offline diagnostic ASR and decoded sample/timing checks. ASR is not human listening, a pronunciation guarantee, or proof of subjective pacing.",
+  "asr_engine": {
+    "binary": "<HOMEBREW>/bin/whisper-cli",
+    "version": "whisper.cpp version: 1.9.5",
+    "cached_model": "ggml-base.bin",
+    "model_bytes": 147951465,
+    "model_sha256": "60ed5bc3dd14eea856493d334349b405782ddcaf0028d4b5df4088345fba2efe",
+    "device": "CPU",
+    "language": "en",
+    "script_prompt": null,
+    "network_downloads_installations_provider_calls": false
+  },
+  "source_clip_checks": [
+    {
+      "cut": "full",
+      "scene": 1,
+      "source_hash_matches": true,
+      "speech_source_end_in_scene_seconds": 6.356395,
+      "remaining_scene_seconds": 1.643605
+    },
+    {
+      "cut": "full",
+      "scene": 2,
+      "source_hash_matches": true,
+      "speech_source_end_in_scene_seconds": 5.934626,
+      "remaining_scene_seconds": 2.065374
+    },
+    {
+      "cut": "full",
+      "scene": 3,
+      "source_hash_matches": true,
+      "speech_source_end_in_scene_seconds": 6.426281,
+      "remaining_scene_seconds": 1.573719
+    },
+    {
+      "cut": "full",
+      "scene": 4,
+      "source_hash_matches": true,
+      "speech_source_end_in_scene_seconds": 6.476667,
+      "remaining_scene_seconds": 1.523333
+    },
+    {
+      "cut": "full",
+      "scene": 5,
+      "source_hash_matches": true,
+      "speech_source_end_in_scene_seconds": 6.998209,
+      "remaining_scene_seconds": 1.001791
+    },
+    {
+      "cut": "full",
+      "scene": 6,
+      "source_hash_matches": true,
+      "speech_source_end_in_scene_seconds": 7.488186,
+      "remaining_scene_seconds": 0.511814
+    },
+    {
+      "cut": "short",
+      "scene": 1,
+      "source_hash_matches": true,
+      "speech_source_end_in_scene_seconds": 3.302971,
+      "remaining_scene_seconds": 1.697029
+    },
+    {
+      "cut": "short",
+      "scene": 2,
+      "source_hash_matches": true,
+      "speech_source_end_in_scene_seconds": 3.91449,
+      "remaining_scene_seconds": 1.08551
+    },
+    {
+      "cut": "short",
+      "scene": 3,
+      "source_hash_matches": true,
+      "speech_source_end_in_scene_seconds": 3.689274,
+      "remaining_scene_seconds": 1.310726
+    }
+  ],
+  "cuts": [
+    {
+      "asset": "site/assets/arxivchecker-film.mp4",
+      "asset_sha256": "9e156fad92afeaf1aab2a3b7c64370f342e891279cbe8b5452654d069b5bd5ff",
+      "decoded_duration_seconds": 48.0,
+      "expected_seconds": 48,
+      "decoded_sample_peak_dbfs": -2.72,
+      "decoded_samples_at_full_scale": 0,
+      "expected_spoken_text": "Your study is done. Bring its design, methods, raw results, and draft together before writing. Trace every claim to its source. Say what you counted, the units, and what the cost includes. Build figures from the data, then inspect them. Check every series, label, scale, and panel. Explain what you built, how you tested it, what happened, and its limits. Verify every reference. Rebuild from the actual submission files. Check the build, fonts, filenames, and required inputs. People review the names, AI use, rights, and final claims. Archive Checker cannot guarantee acceptance.",
+      "asr_text": "Your study is done, bring its design, methods, row results and draft together before writing. Trace every claim to its source, say what you counted, the units and what the cost includes. Build figures from the data, then inspect them, check every series, label, scale and panel. Explain what you built, how you tested it, what happened and its limits, verify every reference. Rebuild from the actual submission files, check the build, fonts, file names and required inputs. People review the names, AIUs, writes and final claims, archive checker cannot guarantee exceptions.",
+      "expected_words": 92,
+      "recognized_words": 92,
+      "word_edit_distance": 7,
+      "word_error_rate": 0.076087,
+      "differences": [
+        {
+          "operation": "replace",
+          "expected": "raw",
+          "recognized": "row"
+        },
+        {
+          "operation": "replace",
+          "expected": "filenames",
+          "recognized": "file names"
+        },
+        {
+          "operation": "replace",
+          "expected": "ai use rights",
+          "recognized": "aius writes"
+        },
+        {
+          "operation": "replace",
+          "expected": "acceptance",
+          "recognized": "exceptions"
+        }
+      ],
+      "scene_activity": [
+        {
+          "scene": 1,
+          "threshold_dbfs": -45,
+          "window_ms": 20,
+          "first_active_in_scene_seconds": 0.36,
+          "last_active_in_scene_seconds": 6.32,
+          "silent_tail_at_threshold_seconds": 1.68
+        },
+        {
+          "scene": 2,
+          "threshold_dbfs": -45,
+          "window_ms": 20,
+          "first_active_in_scene_seconds": 0.34,
+          "last_active_in_scene_seconds": 5.88,
+          "silent_tail_at_threshold_seconds": 2.12
+        },
+        {
+          "scene": 3,
+          "threshold_dbfs": -45,
+          "window_ms": 20,
+          "first_active_in_scene_seconds": 0.36,
+          "last_active_in_scene_seconds": 6.38,
+          "silent_tail_at_threshold_seconds": 1.62
+        },
+        {
+          "scene": 4,
+          "threshold_dbfs": -45,
+          "window_ms": 20,
+          "first_active_in_scene_seconds": 0.34,
+          "last_active_in_scene_seconds": 6.42,
+          "silent_tail_at_threshold_seconds": 1.58
+        },
+        {
+          "scene": 5,
+          "threshold_dbfs": -45,
+          "window_ms": 20,
+          "first_active_in_scene_seconds": 0.34,
+          "last_active_in_scene_seconds": 6.94,
+          "silent_tail_at_threshold_seconds": 1.06
+        },
+        {
+          "scene": 6,
+          "threshold_dbfs": -45,
+          "window_ms": 20,
+          "first_active_in_scene_seconds": 0.36,
+          "last_active_in_scene_seconds": 7.44,
+          "silent_tail_at_threshold_seconds": 0.56
+        }
+      ],
+      "asr_json": "independent-full-asr.json"
+    },
+    {
+      "asset": "site/assets/arxivchecker-film-15s.mp4",
+      "asset_sha256": "6040eaeb268679f443ade9c47c4859b23a6e350c720006a5432711c58ff693c8",
+      "decoded_duration_seconds": 15.0,
+      "expected_seconds": 15,
+      "decoded_sample_peak_dbfs": -3.346,
+      "decoded_samples_at_full_scale": 0,
+      "expected_spoken_text": "Your study is done. Now bring the evidence together. Trace every claim. Keep its denominator and limits visible. Rebuild, review, then let people make the final call.",
+      "asr_text": "Your study is done, now bring the evidence together. Trace every claim, keep its denominator and limits visible. Rebuild, review, then let people make the final call.",
+      "expected_words": 27,
+      "recognized_words": 27,
+      "word_edit_distance": 0,
+      "word_error_rate": 0.0,
+      "differences": [],
+      "scene_activity": [
+        {
+          "scene": 1,
+          "threshold_dbfs": -45,
+          "window_ms": 20,
+          "first_active_in_scene_seconds": 0.36,
+          "last_active_in_scene_seconds": 3.26,
+          "silent_tail_at_threshold_seconds": 1.74
+        },
+        {
+          "scene": 2,
+          "threshold_dbfs": -45,
+          "window_ms": 20,
+          "first_active_in_scene_seconds": 0.34,
+          "last_active_in_scene_seconds": 3.88,
+          "silent_tail_at_threshold_seconds": 1.12
+        },
+        {
+          "scene": 3,
+          "threshold_dbfs": -45,
+          "window_ms": 20,
+          "first_active_in_scene_seconds": 0.34,
+          "last_active_in_scene_seconds": 3.66,
+          "silent_tail_at_threshold_seconds": 1.34
+        }
+      ],
+      "asr_json": "independent-short-asr.json"
+    }
+  ]
+}

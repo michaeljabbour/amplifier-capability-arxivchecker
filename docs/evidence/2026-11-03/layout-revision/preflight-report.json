@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "status": "local-preflight-pass",
+  "scope": "Local manifest safety and limited static heuristics. Findings are not arXiv eligibility decisions. See references/requirements.md and references/submission.md, verified 2026-11-03; recheck official sources before submission.",
+  "arxiv_eligibility": "not-assessed",
+  "errors": [],
+  "warnings": [
+    "main.tex: static scan cannot resolve all class/package/macro dependencies; inspect clean-build recorder",
+    "Author spelling/affiliations, reference metadata and claim accuracy require human verification.",
+    "No figure or page has been visually inspected by this checker.",
+    "This local policy does not certify current arXiv acceptance or licensing."
+  ],
+  "human_review": [
+    "Fictional software fixture only; inspect actual paper and policies separately."
+  ],
+  "files": [
+    {
+      "path": "main.bbl",
+      "sha256": "9886a7959769bac0797a77bc5eede407b8027557b48e782a2a445dcc0a8f8e25"
+    },
+    {
+      "path": "main.tex",
+      "sha256": "af189c8969f56b123f56d935602e4331a00effc20c2cc6d4055ef6bc59dda6ac"
+    },
+    {
+      "path": "references.bib",
+      "sha256": "e69e0a9dd47050da425542cfb933788861c8bd062ae052d1bc5555b0a1a1dcec"
+    }
+  ],
+  "pages": 2,
+  "pdf_sha256": "c3d3043ad5a88e866db2f9ba0b5752495a2192e54eb91321a9f90d35f1848452",
+  "text_sha256": "fdc9a1166fdbe1afcaacd5b9c4d51e21862a36c4f634789ea8b24c406ef6f101",
+  "build_policy": "Three pdflatex passes, no shell escape, no bibliography engine. Supply .bbl when needed; this is a conservative local policy, not an arXiv requirement. Compile trusted source only; this is not an OS sandbox."
+}
