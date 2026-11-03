@@ -21,7 +21,7 @@
     "docs/PUBLIC-REVIEW.md"
   ],
   "site_builder": "native",
-  "publication_status": "Local source and build only. No remote repository, hosted site, or arXiv submission has been published by this work.",
+  "publication_status": "Source and skill published at michaeljabbour/amplifier-capability-arxivchecker. No separate hosted website or arXiv submission has been published by this work.",
   "planned_repository": "michaeljabbour/amplifier-capability-arxivchecker",
   "evidence_summary": "Deterministic packaging and local checks are separate from model behavior and scientific review. See docs/VALIDATION.md for the checks actually run."
 }

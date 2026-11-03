@@ -1,0 +1,10 @@
+Your study is done. One result becomes a sentence.
+Archive Checker, a skill for your AI assistant, starts with the evidence, not the old draft's numbers.
+It traces the claim to its source, and adds the comparison and what's left out.
+Figures come straight from the data.
+If a result goes missing, the build stops.
+The paper tells the story in order from the problem to its limits.
+It sets the paper in latex and sorts the rules. Archive asks for margins of at least an inch.
+Archive advises a description for every figure, and your house style leaves off the page numbers.
+Then it rebuilds the paper in an empty folder from only the files you'll send.
+You decide the names, how AI was used, the license, and the final claims.

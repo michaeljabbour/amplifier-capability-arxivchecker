@@ -1,0 +1,217 @@
+{
+  "full": {
+    "cue_count": 17,
+    "vtt_srt_equal": true,
+    "end": 60.35,
+    "overlaps": [],
+    "invalid_durations": [],
+    "max_lines": 2,
+    "max_line_chars": 42,
+    "max_chars_per_second": 20.481927710843372,
+    "cues": [
+      {
+        "a": 0.27,
+        "b": 1.86,
+        "lines": [
+          "Your study is done."
+        ],
+        "text": "Your study is done."
+      },
+      {
+        "a": 2.02,
+        "b": 4.05,
+        "lines": [
+          "One result becomes a sentence."
+        ],
+        "text": "One result becomes a sentence."
+      },
+      {
+        "a": 5.92,
+        "b": 9.25,
+        "lines": [
+          "ArxivChecker, a skill",
+          "for your AI assistant,"
+        ],
+        "text": "ArxivChecker, a skill for your AI assistant,"
+      },
+      {
+        "a": 9.32,
+        "b": 12.75,
+        "lines": [
+          "starts with the evidence,",
+          "not the old draft’s numbers."
+        ],
+        "text": "starts with the evidence, not the old draft’s numbers."
+      },
+      {
+        "a": 13.23,
+        "b": 14.89,
+        "lines": [
+          "It traces the claim to its source,"
+        ],
+        "text": "It traces the claim to its source,"
+      },
+      {
+        "a": 14.93,
+        "b": 18.26,
+        "lines": [
+          "and adds the comparison",
+          "and what’s left out."
+        ],
+        "text": "and adds the comparison and what’s left out."
+      },
+      {
+        "a": 23.2,
+        "b": 25.09,
+        "lines": [
+          "Figures come straight from the data."
+        ],
+        "text": "Figures come straight from the data."
+      },
+      {
+        "a": 25.34,
+        "b": 28.21,
+        "lines": [
+          "If a result goes missing, the build stops."
+        ],
+        "text": "If a result goes missing, the build stops."
+      },
+      {
+        "a": 31.25,
+        "b": 35.54,
+        "lines": [
+          "The paper tells the story in order,",
+          "from the problem to its limits."
+        ],
+        "text": "The paper tells the story in order, from the problem to its limits."
+      },
+      {
+        "a": 36.07,
+        "b": 39.32,
+        "lines": [
+          "It sets the paper in",
+          "LaTeX, and sorts the rules."
+        ],
+        "text": "It sets the paper in LaTeX, and sorts the rules."
+      },
+      {
+        "a": 39.61,
+        "b": 42.6,
+        "lines": [
+          "arXiv asks for margins",
+          "of at least an inch."
+        ],
+        "text": "arXiv asks for margins of at least an inch."
+      },
+      {
+        "a": 42.98,
+        "b": 46.01,
+        "lines": [
+          "arXiv advises a description",
+          "for every figure."
+        ],
+        "text": "arXiv advises a description for every figure."
+      },
+      {
+        "a": 46.1,
+        "b": 48.73,
+        "lines": [
+          "And your house style leaves",
+          "off the page numbers."
+        ],
+        "text": "And your house style leaves off the page numbers."
+      },
+      {
+        "a": 49.11,
+        "b": 51.83,
+        "lines": [
+          "Then it rebuilds the",
+          "paper in an empty folder,"
+        ],
+        "text": "Then it rebuilds the paper in an empty folder,"
+      },
+      {
+        "a": 51.87,
+        "b": 54.08,
+        "lines": [
+          "from only the files you’ll send."
+        ],
+        "text": "from only the files you’ll send."
+      },
+      {
+        "a": 55.08,
+        "b": 56.44,
+        "lines": [
+          "You decide the names,"
+        ],
+        "text": "You decide the names,"
+      },
+      {
+        "a": 56.48,
+        "b": 60.35,
+        "lines": [
+          "how AI was used, the license",
+          "and the final claims."
+        ],
+        "text": "how AI was used, the license and the final claims."
+      }
+    ],
+    "caption_matches_edit_words": true,
+    "sha256": {
+      "site/assets/arxivchecker-film-v2.vtt": "f7c945114a7b56ab5e27b24decf6272ed094a4bf61b6652accdf410d30c2f7e8",
+      "site/film-source/v2/arxivchecker-film-v2.srt": "265274f325e1b6147b7c2c83d8245e4d5190e0e43ec77cdc136da63ec1c7e2f7",
+      "site/assets/arxivchecker-film-v2-transcript.txt": "71e1099f693bc33d6ef684318aefc8d3d1ca81ccabacfff84bbbb5f5bbd5b233"
+    }
+  },
+  "-15s": {
+    "cue_count": 4,
+    "vtt_srt_equal": true,
+    "end": 11.47,
+    "overlaps": [],
+    "invalid_durations": [],
+    "max_lines": 2,
+    "max_line_chars": 34,
+    "max_chars_per_second": 20.481927710843383,
+    "cues": [
+      {
+        "a": 0.0,
+        "b": 2.0,
+        "lines": [
+          "One result becomes a sentence."
+        ],
+        "text": "One result becomes a sentence."
+      },
+      {
+        "a": 2.72,
+        "b": 6.15,
+        "lines": [
+          "starts with the evidence,",
+          "not the old draft’s numbers."
+        ],
+        "text": "starts with the evidence, not the old draft’s numbers."
+      },
+      {
+        "a": 6.44,
+        "b": 8.1,
+        "lines": [
+          "It traces the claim to its source,"
+        ],
+        "text": "It traces the claim to its source,"
+      },
+      {
+        "a": 8.14,
+        "b": 11.47,
+        "lines": [
+          "and adds the comparison",
+          "and what’s left out."
+        ],
+        "text": "and adds the comparison and what’s left out."
+      }
+    ],
+    "sha256": {
+      "site/assets/arxivchecker-film-v2-15s.vtt": "a0735f00db8c8dec07c743b0a63d69e23420ef82825a1eb43cac2422ddda6dfa",
+      "site/film-source/v2/arxivchecker-film-v2-15s.srt": "7203c1f3ed5af6d2ebadfb7ca5f26a6e80d6e76daa397352ddd078ad4386cb0d",
+      "site/assets/arxivchecker-film-v2-15s-transcript.txt": "97ca61db763b835b9ec6035a9f8cc9486ee8c64d15f48011c4177812269b3ba8"
+    }
+  }
+}

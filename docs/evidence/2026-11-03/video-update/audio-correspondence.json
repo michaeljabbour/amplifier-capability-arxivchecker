@@ -1,0 +1,108 @@
+{
+  "webm_audio_vs_attachment": {
+    "reference_duration": 71.14,
+    "target_duration": 71.14,
+    "best_lag_samples": 0,
+    "best_lag_ms": 0.0,
+    "correlation": 0.9984220266342163,
+    "linear_gain": 1.001835823059082,
+    "difference_rms_relative_db": -25.011960983276367
+  },
+  "short_audio_vs_concatenated_attachment_ranges": {
+    "reference_duration": 14.5,
+    "target_duration": 14.5,
+    "best_lag_samples": 0,
+    "best_lag_ms": 0.0,
+    "correlation": 0.9799460768699646,
+    "linear_gain": 1.2414723634719849,
+    "difference_rms_relative_db": -14.011459350585938
+  },
+  "cut_ranges": [
+    [
+      2.05,
+      4.75
+    ],
+    [
+      9.3,
+      12.95
+    ],
+    [
+      13.14,
+      19.04
+    ],
+    [
+      65.89,
+      68.14
+    ]
+  ],
+  "voice_line_correspondence": [
+    {
+      "attachment": [
+        2.05,
+        4.75
+      ],
+      "short": [
+        0,
+        2.7
+      ],
+      "reference_duration": 2.7,
+      "target_duration": 2.7,
+      "best_lag_samples": 0,
+      "best_lag_ms": 0.0,
+      "correlation": 0.9643895030021667,
+      "linear_gain": 1.2223049402236938,
+      "difference_rms_relative_db": -11.551947593688965
+    },
+    {
+      "attachment": [
+        9.3,
+        12.95
+      ],
+      "short": [
+        2.7,
+        6.35
+      ],
+      "reference_duration": 3.65,
+      "target_duration": 3.65,
+      "best_lag_samples": 0,
+      "best_lag_ms": 0.0,
+      "correlation": 0.9995219111442566,
+      "linear_gain": 1.2666531801223755,
+      "difference_rms_relative_db": -30.195327758789062
+    },
+    {
+      "attachment": [
+        13.14,
+        19.04
+      ],
+      "short": [
+        6.349999999999999,
+        12.25
+      ],
+      "reference_duration": 5.9,
+      "target_duration": 5.9,
+      "best_lag_samples": 0,
+      "best_lag_ms": 0.0,
+      "correlation": 0.9662283062934875,
+      "linear_gain": 1.224025011062622,
+      "difference_rms_relative_db": -11.778129577636719
+    },
+    {
+      "attachment": [
+        65.89,
+        68.14
+      ],
+      "short": [
+        12.249999999999996,
+        14.5
+      ],
+      "reference_duration": 2.25,
+      "target_duration": 2.25,
+      "best_lag_samples": -1,
+      "best_lag_ms": -0.0625,
+      "correlation": 0.999394953250885,
+      "linear_gain": 1.2646703720092773,
+      "difference_rms_relative_db": -29.17303466796875
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "date": "2026-11-03",
+  "main_reel": "site/assets/arxivchecker-film-v2.mp4",
+  "source": "User-supplied updated MP4; source Library identity retained privately.",
+  "files": [
+    {
+      "path": "site/assets/arxivchecker-film-v2-15s-transcript.txt",
+      "bytes": 768,
+      "sha256": "a5808c3382d1f8367a4db406dbbef419ad8a5561c3ddfc8e7d7736909f96fbb4"
+    },
+    {
+      "path": "site/assets/arxivchecker-film-v2-15s.mp4",
+      "bytes": 4802354,
+      "sha256": "c0c8831bd72d8688d595ed9671c6dcd128278c8d4b39fa4394879270cc0c8dd9"
+    },
+    {
+      "path": "site/assets/arxivchecker-film-v2-15s.vtt",
+      "bytes": 301,
+      "sha256": "a0735f00db8c8dec07c743b0a63d69e23420ef82825a1eb43cac2422ddda6dfa"
+    },
+    {
+      "path": "site/assets/arxivchecker-film-v2-poster.jpg",
+      "bytes": 248664,
+      "sha256": "ef22c42fb1877354b80cff5136c6d5ff1929f2f863c33437a02cb8928df2b804"
+    },
+    {
+      "path": "site/assets/arxivchecker-film-v2-transcript.txt",
+      "bytes": 3509,
+      "sha256": "d0283e9a2176f21b9504e15d20665e07880ce95742bb813efe849f24dd16f9d7"
+    },
+    {
+      "path": "site/assets/arxivchecker-film-v2.mp4",
+      "bytes": 14287205,
+      "sha256": "b449db7981ec99e201cd951823f11dcf15105b1a51aa9d8c0c71442e53af22c7"
+    },
+    {
+      "path": "site/assets/arxivchecker-film-v2.vtt",
+      "bytes": 1261,
+      "sha256": "f7c945114a7b56ab5e27b24decf6272ed094a4bf61b6652accdf410d30c2f7e8"
+    },
+    {
+      "path": "site/assets/arxivchecker-film-v2.webm",
+      "bytes": 6299612,
+      "sha256": "155129e0fd29ad56ab15351ea123ce3b7f011a37bcc51ee8e418e38472e7a4f8"
+    }
+  ],
+  "prior_local_full_mp4_sha256": "fa9789ffee440de21fb7e3a58e6d0dc14cfb3c529857bc5452f65185b79e9476",
+  "comparison": "Prior local MP4 and supplied MP4 have identical encoded streams and decoded samples/frames; container bytes differ."
+}

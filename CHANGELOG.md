@@ -1,5 +1,12 @@
 # Changelog
 
+## Local revision — 2026-11-03 (launch film v2)
+
+- Added a new 71-second narrated launch film and a 14.5-second cut (Sizzle; ElevenLabs voice, score and effects) with timed WebVTT/SRT captions, transcripts and a poster, as `site/assets/arxivchecker-film-v2*`. The page now plays v2 and links the previous 48-second film; every v1 asset is unchanged.
+- Integrated the exact user-supplied MP4; preserved local originals privately, reconciled the transcript with the final on-screen AI-use wording and sanitized internal identifiers/workspace paths in public production notes.
+- The film teaches one fictional claim traced to its evidence, then figures, story order, LaTeX layout, a clean local rebuild and the decisions that stay with authors. It keeps arXiv policy, arXiv recommendations, house style and local checks visibly distinct and makes no acceptance or performance claim.
+- `scripts/check.py` now also requires the v2 films, captions, poster and transcripts, and checks the v2 audio streams. Film source, brief and verification record: `site/film-source/v2/`.
+
 ## Local revision — 2026-11-03
 
 - Matched the actual Right Shape and Taste family pages: shared cream/charcoal palette, Amplifier masthead, product-title hero and common typography.

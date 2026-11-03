@@ -1,0 +1,244 @@
+{
+  "date": "2026-11-03",
+  "scope": "Read-only independent technical/caption/audio review; authoritative attached MP4. All diagnostics in /tmp, no repository edits/install/network/providers or human-listening claim.",
+  "authoritative_mp4_sha256": "b449db7981ec99e201cd951823f11dcf15105b1a51aa9d8c0c71442e53af22c7",
+  "attachment_vs_original_local_mp4": {
+    "file_sha256_equal": false,
+    "encoded_audio_equal": true,
+    "encoded_video_equal": true,
+    "decoded_audio_equal": true,
+    "decoded_video_equal": true,
+    "explanation": "Identical streams and decoded samples/frames; differences confined to container bytes."
+  },
+  "media": {
+    "local-full": {
+      "sha256": "fa9789ffee440de21fb7e3a58e6d0dc14cfb3c529857bc5452f65185b79e9476",
+      "size": 14293080,
+      "clean_decode": true,
+      "measured_integrated_lufs": "-16.06",
+      "measured_true_peak_dbfs": "-3.85"
+    },
+    "local-webm": {
+      "sha256": "155129e0fd29ad56ab15351ea123ce3b7f011a37bcc51ee8e418e38472e7a4f8",
+      "size": 6299612,
+      "clean_decode": true,
+      "measured_integrated_lufs": "-16.02",
+      "measured_true_peak_dbfs": "-3.94"
+    },
+    "attachment": {
+      "sha256": "b449db7981ec99e201cd951823f11dcf15105b1a51aa9d8c0c71442e53af22c7",
+      "size": 14287205,
+      "clean_decode": true,
+      "measured_integrated_lufs": "-16.06",
+      "measured_true_peak_dbfs": "-3.85"
+    },
+    "local-short": {
+      "sha256": "c0c8831bd72d8688d595ed9671c6dcd128278c8d4b39fa4394879270cc0c8dd9",
+      "size": 4802354,
+      "clean_decode": true,
+      "measured_integrated_lufs": "-14.04",
+      "measured_true_peak_dbfs": "-2.05"
+    }
+  },
+  "recognition": {
+    "full": {
+      "expected_normalized_words": 132,
+      "recognized_normalized_words": 132,
+      "exact_match_after_case_punctuation_and_declared_brand_pronunciation_normalization": true
+    },
+    "short": {
+      "expected_normalized_words": 29,
+      "recognized_normalized_words": 29,
+      "exact_match_after_case_punctuation_and_declared_brand_pronunciation_normalization": true
+    },
+    "normalization": "Case/punctuation ignored; ArxivChecker -> Archive Checker; arXiv -> archive. No ASR prompt, CPU offline existing whisper.cpp base model.",
+    "model_sha256": "60ed5bc3dd14eea856493d334349b405782ddcaf0028d4b5df4088345fba2efe"
+  },
+  "captions": {
+    "full": {
+      "cue_count": 17,
+      "vtt_srt_equal": true,
+      "end": 60.35,
+      "overlaps": [],
+      "invalid_durations": [],
+      "max_lines": 2,
+      "max_line_chars": 42,
+      "max_chars_per_second": 20.481927710843372,
+      "caption_matches_edit_words": true
+    },
+    "-15s": {
+      "cue_count": 4,
+      "vtt_srt_equal": true,
+      "end": 11.47,
+      "overlaps": [],
+      "invalid_durations": [],
+      "max_lines": 2,
+      "max_line_chars": 34,
+      "max_chars_per_second": 20.481927710843383
+    }
+  },
+  "audio_correspondence": {
+    "webm_audio_vs_attachment": {
+      "reference_duration": 71.14,
+      "target_duration": 71.14,
+      "best_lag_samples": 0,
+      "best_lag_ms": 0.0,
+      "correlation": 0.9984220266342163,
+      "linear_gain": 1.001835823059082,
+      "difference_rms_relative_db": -25.011960983276367
+    },
+    "short_audio_vs_concatenated_attachment_ranges": {
+      "reference_duration": 14.5,
+      "target_duration": 14.5,
+      "best_lag_samples": 0,
+      "best_lag_ms": 0.0,
+      "correlation": 0.9799460768699646,
+      "linear_gain": 1.2414723634719849,
+      "difference_rms_relative_db": -14.011459350585938
+    },
+    "cut_ranges": [
+      [
+        2.05,
+        4.75
+      ],
+      [
+        9.3,
+        12.95
+      ],
+      [
+        13.14,
+        19.04
+      ],
+      [
+        65.89,
+        68.14
+      ]
+    ],
+    "voice_line_correspondence": [
+      {
+        "attachment": [
+          2.05,
+          4.75
+        ],
+        "short": [
+          0,
+          2.7
+        ],
+        "reference_duration": 2.7,
+        "target_duration": 2.7,
+        "best_lag_samples": 0,
+        "best_lag_ms": 0.0,
+        "correlation": 0.9643895030021667,
+        "linear_gain": 1.2223049402236938,
+        "difference_rms_relative_db": -11.551947593688965
+      },
+      {
+        "attachment": [
+          9.3,
+          12.95
+        ],
+        "short": [
+          2.7,
+          6.35
+        ],
+        "reference_duration": 3.65,
+        "target_duration": 3.65,
+        "best_lag_samples": 0,
+        "best_lag_ms": 0.0,
+        "correlation": 0.9995219111442566,
+        "linear_gain": 1.2666531801223755,
+        "difference_rms_relative_db": -30.195327758789062
+      },
+      {
+        "attachment": [
+          13.14,
+          19.04
+        ],
+        "short": [
+          6.349999999999999,
+          12.25
+        ],
+        "reference_duration": 5.9,
+        "target_duration": 5.9,
+        "best_lag_samples": 0,
+        "best_lag_ms": 0.0,
+        "correlation": 0.9662283062934875,
+        "linear_gain": 1.224025011062622,
+        "difference_rms_relative_db": -11.778129577636719
+      },
+      {
+        "attachment": [
+          65.89,
+          68.14
+        ],
+        "short": [
+          12.249999999999996,
+          14.5
+        ],
+        "reference_duration": 2.25,
+        "target_duration": 2.25,
+        "best_lag_samples": -1,
+        "best_lag_ms": -0.0625,
+        "correlation": 0.999394953250885,
+        "linear_gain": 1.2646703720092773,
+        "difference_rms_relative_db": -29.17303466796875
+      }
+    ]
+  },
+  "limits": [
+    "ASR confirms word sequence under declared normalization, not human listening or exact subsecond timing; base token timestamps sometimes collapse multiple words onto a boundary.",
+    "Caption timing is consistent with the production word timeline and roughly corresponds to ASR speech spans; precise perceptual synchronization still needs listening/playback.",
+    "Existing production verification contains claims such as voice-to-bed, frame lint, and pYIN analysis which were read but not independently rerun.",
+    "The archived production scripts reference absent edit/edit.json,web/,tools/,audio/ files; source takes are explicitly omitted. Production scripts were inspected, not executed."
+  ],
+  "mismatches": [
+    "The full transcript on-screen AI label says Disclose significant AI use, while the final composition source says How you disclose AI use; parent is correcting transcript and archived generator. Transcript narration itself matches captions.",
+    "Measured short loudness is -14.04 LUFS using local FFmpeg, versus -13.8 in verification.txt; true peak -2.05 dBFS agrees approximately with -2.0. Full measures -16.06 LUFS versus reported -16.0. These are observations, not loudness failures."
+  ],
+  "source_hashes": {
+    "build.py": "9aa4ca3d38aba767088d7a30f7882d8331f91e4ab63cbfd8c29efe18dc0d62ae",
+    "make_edit.py": "4544abad2079af953d61c9e3d2e969c385ca3adda095e6abac8ca218727177c8",
+    "render.py": "9cdce695641db3fddd0bdcadac7178bab4024338c62efb54de7606d24cf2234d",
+    "lint-rules.json": "7462a8bfde6f4b40888ce616e0487d013aa9b12fcf340b725d2aedf33304a8f7",
+    "make_transcripts.py": "0744f2615b935dc911f729a4843c7e042a4ffe26340d8a171c3b408bdabc2025",
+    "verification.txt": "23e95803f2b6e949de56c213e1b246cf81d9f9f20a7d3cfb850559d5a1d82dde",
+    "edit.json": "795d7b6bf9df58719cb471e6305a3ca36abe49ae1396ffbb315fc0ae68621ccb",
+    "README.md": "47be7212f4e33a8a9ed06112bc909c1b7d9298f58dd9c154e29ec770d873462b",
+    "GENERATION-LOG.md": "f309c6de27699b9c859997f026f253a04bf64de62d124f44d0b1ae98a301f755",
+    "make_captions.py": "464a4e6158be02ad1e1726af4392d50d6973aec21ba7522e5b3c51768e4e82f4",
+    "BRIEF.md": "6f398d817248481d31bb29d346bb7a297589131c75478a1c779afcce6a534ba3",
+    "index.src.html": "b78f037a24347b3f2eaa353504d549e3990af47e9b1bbfdfb4634bf3292b4b38",
+    "mix.py": "d440cd35cf039325cc186b0d0c05bfca218aef66eded519886e3d9b42a5ea785",
+    "deliver.py": "0ad3ba285f9c394ff0312cb6f7fb30f9aa8835a1821ab5fdaf2a47766904a788"
+  },
+  "tool_versions": {
+    "ffmpeg": "ffmpeg version 9.0.2 Copyright (c) 2000-2026 the FFmpeg developers",
+    "whisper_cli": [
+      "",
+      "usage: whisper-cli [options] file0 file1 ..."
+    ]
+  },
+  "caption_timeline_reproduction": {
+    "full": {
+      "reproduced_from_voice_word_clock_and_cut_ranges": true,
+      "mismatch_cue_indices": [],
+      "count": 17
+    },
+    "-15s": {
+      "reproduced_from_voice_word_clock_and_cut_ranges": true,
+      "mismatch_cue_indices": [],
+      "count": 4
+    }
+  },
+  "webm_picture_followup": {
+    "full_sequence_ssim": 0.963057,
+    "sampled_frames": 11,
+    "sampled_downscaled_mean_absolute_RGB_difference_range": [
+      0.32604681069958846,
+      0.4568261316872428
+    ],
+    "RGB_sample_scale": "0–255",
+    "sampled_median_RGB_difference": 0,
+    "observation": "No content/version mismatch in the sampled images. Similarity statistics are not a human picture review or an assertion of lossless equivalence."
+  }
+}

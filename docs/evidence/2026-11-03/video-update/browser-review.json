@@ -1,0 +1,19 @@
+{
+  "date": "2026-11-03",
+  "browser": "Microsoft Edge on Mac",
+  "target": "loopback-only integrated main-page preview",
+  "main_video": "assets/arxivchecker-film-v2.mp4",
+  "observed": {
+    "duration_seconds": 71.14,
+    "width": 1920,
+    "height": 1080,
+    "playback_advanced_to_seconds": 28.196519,
+    "readyState": 4,
+    "error": null,
+    "muted": false,
+    "english_track": "showing"
+  },
+  "main_page": "71-second description, 14.5-second short cut, previous version and review links were visible",
+  "owner_feedback": "Owner subsequently confirmed the video works and requested that browser interaction stop. No further browser interaction was performed.",
+  "limits": "Playback/content checks, not a certification of subjective audio quality or subsecond caption synchronization; no hosted-site deployment."
+}

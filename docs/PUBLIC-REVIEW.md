@@ -28,3 +28,15 @@ and final 50-test log. These additions contain generic names, illustrative
 content and local-check results. A final scan of 210 source/generated text files and all 19 ZIP members found no
 private paths, attachment identifiers, personal emails or credential patterns.
 The original source skill remains outside the repository.
+
+## Supplied v2 film update — 2026-11-03
+
+Reviewed the owner's 29 prepared candidates, related generated files, media
+metadata and sampled frames. No credentials, personal contact details, private
+study material or private media metadata were found. Internal production flow
+identifiers, cloud workspace paths and unrelated project references in source
+notes were omitted from public copies; originals were preserved privately. The
+exact supplied MP4 has the same encoded/decoded picture and sound as the
+prepared local v2. All v1 asset bytes remain unchanged. See [video integration
+and independent review](VIDEO-UPDATE.md) for verification scope, rights and
+listening limitations. The final independent recheck covered 42 candidates, 152 generated files and all 19 ZIP members, with no privacy blockers. Subsequent test/browser records contain only generic local-check observations; the staged snapshot is scanned again before commit.

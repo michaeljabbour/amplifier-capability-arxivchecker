@@ -1,0 +1,11 @@
+ArxivChecker: Trace. Rebuild. Review.
+
+14.5-second cut of the v2 launch film. Fictional example; not a study result.
+
+00:00  On screen: The system saved half the cost. A gold thread hangs loose from the full stop.
+       Narration: One result becomes a sentence.
+00:03  On screen: The thread pulls taut into results.json. Wordmark: ArxivChecker.
+       Narration: starts with the evidence, not the old draft’s numbers.
+00:06  On screen: The sentence rebuilds as: On this held-out task set, priced model calls cost half as much as the baseline. Setup, unpriced calls and human review are excluded.
+       Narration: It traces the claim to its source, and adds the comparison and what’s left out.
+00:12  On screen: ArxivChecker · Trace. Rebuild. Review. (no voice)

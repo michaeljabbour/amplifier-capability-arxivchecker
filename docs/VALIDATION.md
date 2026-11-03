@@ -76,3 +76,14 @@ This is partial layout evidence for a fictional fixture, not arXiv certification
 No push, public repository creation, hosted deployment or arXiv submission was
 performed. Reopening the final page visibly on the Mac requires the Mac to be
 unlocked; the connection's native UI reported it locked during final review.
+
+## Supplied v2 reel update
+
+The subsequent [video integration record](VIDEO-UPDATE.md) describes the exact
+owner-supplied MP4, independent full/short caption recognition, format/audio
+checks, sampled visual review and preservation of all v1 asset bytes. All 50
+local regressions passed again; the site and JavaScript checks passed. Browser
+playback worked and was confirmed by the owner, who then requested no more
+interaction. The source and skill have since been published to GitHub; historical
+local/unpublished statements above describe the earlier snapshots. A separate
+website remains undeployed. See the video record for exact limitations.

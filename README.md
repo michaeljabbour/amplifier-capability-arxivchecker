@@ -33,6 +33,8 @@ For Amplifier, add the local behavior to your existing host as described in [INS
 | [Amplifier bundle](bundle.md) | Skill discovery, mode and a staged recipe with review checkpoints |
 | [Website](site/README.md) | Guide, fictional claim demonstration, self-review checklist, downloads and narrated films with captions and transcripts |
 
+The current main reel is the [v2 MP4](https://github.com/michaeljabbour/amplifier-capability-arxivchecker/blob/main/site/assets/arxivchecker-film-v2.mp4), with a matching WebM, captions and short cut. See [video verification and limits](docs/VIDEO-UPDATE.md).
+
 The core helper's interfaces are deliberately small:
 
 ```sh
@@ -81,6 +83,6 @@ See [VALIDATION](docs/VALIDATION.md) for actual results and their limits, [BENCH
 
 Adapted from the locally installed `arxiv-paper-from-study` skill and its paper-production lessons. The capability and web structure follow Right Shape. The original paper and its executable study-specific scripts are retained at their source, not redistributed as generic results. Source hashes and reuse decisions are recorded in the provenance document.
 
-Local capability prepared for publication after a [privacy review](docs/PUBLIC-REVIEW.md). No remote repository or hosted site is assumed to exist. No submission, push or deployment occurs automatically.
+Source and skill are published in [the GitHub repository](https://github.com/michaeljabbour/amplifier-capability-arxivchecker) after a [privacy review](docs/PUBLIC-REVIEW.md). The website remains a local build; no separate hosted deployment or arXiv submission occurs automatically.
 
 MIT for the new capability code and documentation; the copied family theme retains its own notice. `ArxivChecker` is an independent project name and does not imply affiliation with or approval by arXiv.

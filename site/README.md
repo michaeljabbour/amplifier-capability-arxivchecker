@@ -37,7 +37,7 @@ subpath hosting.
 - `../scripts/capability.py`: the builder imports the installer’s package enumerator
   and exporter. The site and installer ship precisely the same skill folder.
 - `assets/`: original favicon, SVG/PNG social card, narrated films, captions, poster and full/short transcripts.
-- `film-source/`: optional film regeneration source and instructions.
+- `film-source/`: optional film regeneration source and instructions. `film-source/v2/` holds the brief, composition source, edit and verification record for the v2 launch film (`assets/arxivchecker-film-v2*`), which the page now plays; the v1 film remains in `assets/`.
 
 The check validates local links/fragments, exact workflow and source fidelity,
 ZIP membership and contents, SHA-256, local runtime assets, explicit claim limits,

@@ -135,9 +135,9 @@ def check(output: Path) -> None:
         assert all(html.escape(str(stage[key]), quote=True) in text for key in ("title", "description", "output")), "Site workflow summary differs"
     assert len(pages[output / "index.html"].inputs) == 5, "Expected five review prompts"
     assert all("autoplay" not in v and "controls" in v for p in pages.values() for v in p.video), "Films must use explicit playback controls"
-    for name in ("arxivchecker-film.mp4", "arxivchecker-film.webm", "arxivchecker-film-15s.mp4", "arxivchecker-film.vtt", "arxivchecker-film-15s.vtt", "arxivchecker-film-poster.jpg", "arxivchecker-film-transcript.txt", "arxivchecker-film-15s-transcript.txt", "social-card.svg", "social-card.png", "favicon.svg"):
+    for name in ("arxivchecker-film.mp4", "arxivchecker-film.webm", "arxivchecker-film-15s.mp4", "arxivchecker-film.vtt", "arxivchecker-film-15s.vtt", "arxivchecker-film-poster.jpg", "arxivchecker-film-transcript.txt", "arxivchecker-film-15s-transcript.txt", "arxivchecker-film-v2.mp4", "arxivchecker-film-v2.webm", "arxivchecker-film-v2-15s.mp4", "arxivchecker-film-v2.vtt", "arxivchecker-film-v2-15s.vtt", "arxivchecker-film-v2-poster.jpg", "arxivchecker-film-v2-transcript.txt", "arxivchecker-film-v2-15s-transcript.txt", "social-card.svg", "social-card.png", "favicon.svg"):
         assert (output / "assets" / name).is_file(), f"Missing asset: {name}"
-    for name in ("arxivchecker-film.vtt", "arxivchecker-film-15s.vtt"):
+    for name in ("arxivchecker-film.vtt", "arxivchecker-film-15s.vtt", "arxivchecker-film-v2.vtt", "arxivchecker-film-v2-15s.vtt"):
         assert (output / "assets" / name).read_text().startswith("WEBVTT\n"), f"Invalid caption header {name}"
     for name in ("family.css", "style.css"):
         css = (output / "assets" / name).read_text()
@@ -159,7 +159,7 @@ def check(output: Path) -> None:
     assert "Skills for thoughtful work" in raw and 'class="masthead"' in raw, "Missing common family masthead"
     audio_checks = 0
     if shutil.which("ffprobe"):
-        for name in ("arxivchecker-film.mp4", "arxivchecker-film.webm", "arxivchecker-film-15s.mp4"):
+        for name in ("arxivchecker-film.mp4", "arxivchecker-film.webm", "arxivchecker-film-15s.mp4", "arxivchecker-film-v2.mp4", "arxivchecker-film-v2.webm", "arxivchecker-film-v2-15s.mp4"):
             result = subprocess.run(["ffprobe", "-v", "error", "-select_streams", "a", "-show_entries", "stream=codec_type", "-of", "json", str(output / "assets" / name)], capture_output=True, text=True, check=True, timeout=15)
             assert json.loads(result.stdout).get("streams"), f"Requested voiceover audio stream missing: {name}"
             audio_checks += 1

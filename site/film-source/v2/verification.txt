@@ -1,0 +1,35 @@
+SUPPLIED PRODUCTION RECORD. The measurements and approvals below describe the originating production session. Independent checks of the supplied final video are recorded separately in docs/VIDEO-UPDATE.md; unprovided raw audit reports are not presented as rerun evidence.
+
+ArxivChecker launch film v2 (internal render r3) · verification · 2026-11-03
+
+Deliverables
+  arxivchecker-film-v2.mp4     1920x1080, 30 fps, 2134 frames, 71.14 s, H.264 + AAC, BT.709 tags
+  arxivchecker-film-v2.webm    1920x1080, 30 fps, 2134 frames, VP9 + Opus, BT.709 tags
+  arxivchecker-film-v2-15s.mp4 1920x1080, 30 fps, 434 frames, 14.50 s (four master ranges)
+  captions: .vtt and .srt for both; transcripts for both; poster (frame at 6.9 s)
+
+Measured (all on the final files unless noted)
+  Loudness            full -16.0 LUFS, true peak -3.9 dBFS (linear normalisation); 15 s cut -13.8 LUFS, -2.0 dBFS
+  Speech recognition  131 of 131 scripted words (100%), faster-whisper on the final mix; gate 97%
+  Voice over bed      lowest 11.3 LU on any line (gate 8 LU)
+  Voice takes         emphasis/last words checked with pYIN voicing and spectrograms; three lines reworded after
+                      every first take whispered on "draft", "asks", "house style", "you"; re-voiced after the critic
+  Layout lint         2134 frames: 0 issues (copy, type size, reading time, collisions, safe area, contrast);
+                      1 noted exception: the second LaTeX source line types on and compiles while spoken
+  Motion audit        2134 frames: 0 flags outside 8 marked bursts and cuts
+  Pops / black        no single-frame pops; no black segment of 0.08 s or longer
+  Decode              no decode errors (ffmpeg null decode of all three files)
+  Revision proof      r2 vs r1 PSNR under 40 dB only at 11.5-21.5 s, 53.3-54.0 s, 61.7-61.9 s (the intended fixes)
+
+Reviews
+  Creative gate on storyboard v1 (fresh agent, saw the sketches): 10/15; five fixes made before MJ saw v2
+  Storyboard v2 approved by MJ, 2026-11-03 12:05 ("go! just make it clear")
+  Second critic on r2 (fresh agent, saw 11 full frames and the 0.5 s sheet): fixes made in r3:
+    "It advises" -> "arXiv advises" (precision); narration now says "a skill for your AI assistant";
+    "your house style"; the page number sits in an empty footer; D's fix shows its cause ("Name fixed, rebuilt");
+    "How you disclose AI use" with the arXiv policy chip; level signature line; the page carries over from the
+    story scene into the LaTeX scene; the rebuild plays on the charcoal stage.
+  Not seen or measured: how it sounds. Listening review by MJ is pending.
+
+Claims checked against the repo (BRIEF.md ledger): no acceptance promise, no performance or time-saved claim,
+every number and file fictional and labelled; arXiv policy / recommendation / house style / local check kept distinct.

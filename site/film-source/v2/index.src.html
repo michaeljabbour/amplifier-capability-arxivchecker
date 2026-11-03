@@ -1,0 +1,544 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>ArxivChecker film</title>
+<style>html,body{margin:0;background:#111}canvas{display:block}</style>
+</head>
+<body>
+<canvas id="c" width="1920" height="1080"></canvas>
+<script>
+/*AUDIT_HOOK*/
+const EDIT = /*EDIT*/null;
+const W = 1920, H = 1080, FPS = 30, DUR = EDIT.duration, T = EDIT.T, SC = EDIT.SC;
+const C = { paper:'#f6f4ee', ink:'#252823', muted:'#64685e', line:'#d8d8cc', gold:'#80642f', gold2:'#c39a52', sage:'#486b61',
+            wash:'#e9ede5', proof:'#8c473d', white:'#fdfcf9', desk:'#e6e0d2', faint:'#efeee7' };
+const SERIF = '"Gelasio", Georgia, serif', SANS = '"Liberation Sans", Arial, sans-serif', MONO = '"LM Mono", monospace', TEX = '"LM Roman", serif';
+const canvas = document.getElementById('c'), ctx = canvas.getContext('2d');
+// The question frame is held for FZ[1] s of real time; scenes run on visual time.
+const FZ = EDIT.freeze || [1e9, 0];
+const VIS = tr => tr < FZ[0] ? tr : (tr < FZ[0] + FZ[1] ? FZ[0] : tr - FZ[1]);
+const REAL = tv => tv < FZ[0] ? tv : tv + FZ[1];
+let RT = 0;   // real time, for ambient motion that must not freeze
+auditInstall(ctx, W, H);
+
+// ---------- helpers ----------
+const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
+const seg = (t, a, b) => clamp((t - a) / (b - a));
+const eSine = p => 0.5 - 0.5 * Math.cos(Math.PI * clamp(p));
+const eOut = p => 1 - Math.pow(1 - clamp(p), 3);
+const eIn = p => Math.pow(clamp(p), 3);
+const lerp = (a, b, p) => a + (b - a) * p;
+const win = (t, a, b, fi = 0.3, fo = 0.3) => Math.min(seg(t, a, a + fi), 1 - seg(t, b - fo, b));
+function mulberry32(a) { return function () { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+function font(size, opt = {}) { return `${opt.italic ? 'italic ' : ''}${opt.weight || 400} ${size}px ${opt.font || SERIF}`; }
+function text(s, x, y, size, color, opt = {}) {
+  if ((opt.alpha ?? 1) <= 0.003) return;
+  ctx.save(); ctx.font = font(size, opt); ctx.fillStyle = color; ctx.globalAlpha *= (opt.alpha ?? 1);
+  ctx.textAlign = opt.align || 'left'; ctx.textBaseline = 'alphabetic';
+  if (opt.track) ctx.letterSpacing = opt.track + 'px';
+  ctx.fillText(s, x, y); ctx.restore();
+}
+function measure(s, size, opt = {}) { ctx.save(); ctx.font = font(size, opt); if (opt.track) ctx.letterSpacing = opt.track + 'px'; const w = ctx.measureText(s).width; ctx.restore(); return w; }
+// Masked reveal: the line rises into a clip rectangle.
+function reveal(s, x, y, size, color, p, opt = {}) {
+  if (p <= 0 || (opt.alpha ?? 1) <= 0.003) return;
+  const w = measure(s, size, opt) + 24, al = opt.align || 'left';
+  const x0 = al === 'left' ? x - 6 : al === 'center' ? x - w / 2 : x - w + 6;
+  ctx.save(); ctx.beginPath(); ctx.rect(x0, y - size * 1.05, w, size * 1.4); ctx.clip();
+  auditMask(x0, y - size * 1.05, x0 + w, y + size * 0.35);
+  text(s, x, y + (1 - eOut(p)) * size * 1.15, size, color, opt);
+  auditUnmask(); ctx.restore();
+}
+// Write-on: a left-to-right wipe.
+function wipe(s, x, y, size, color, p, opt = {}) {
+  if (p <= 0) return;
+  const w = measure(s, size, opt) + 30;
+  ctx.save(); ctx.beginPath(); ctx.rect(x - 10, y - size * 1.1, w * p + 10, size * 1.5); ctx.clip();
+  auditMask(x - 10, y - size * 1.1, x + w * p, y + size * 0.4);
+  text(s, x, y, size, color, opt); auditUnmask(); ctx.restore();
+}
+function fill(color, a = 1) { ctx.save(); ctx.globalAlpha *= a; ctx.fillStyle = color; ctx.fillRect(0, 0, W, H); ctx.restore(); auditCover(ctx.globalAlpha * a); }
+function rrect(x, y, w, h, r, fillc, stroke, lw = 2, a = 1, dash) {
+  if (a <= 0) return; ctx.save(); ctx.globalAlpha *= a; ctx.beginPath(); ctx.roundRect(x, y, w, h, r);
+  if (fillc) { ctx.fillStyle = fillc; ctx.fill(); }
+  if (stroke) { ctx.strokeStyle = stroke; ctx.lineWidth = lw; if (dash) ctx.setLineDash(dash); ctx.stroke(); }
+  ctx.restore();
+}
+function dot(x, y, r, color, a = 1) { if (a <= 0) return; ctx.save(); ctx.globalAlpha *= a; ctx.fillStyle = color; ctx.beginPath(); ctx.arc(x, y, r, 0, 7); ctx.fill(); ctx.restore(); }
+
+// ---------- the motif: a gold thread ----------
+// Catmull-Rom through control points, sampled; drawn up to fraction p (or between p0 and p1).
+function spline(P, n = 24) {
+  const out = []; const Q = [P[0], ...P, P[P.length - 1]];
+  for (let i = 1; i < Q.length - 2; i++) for (let k = 0; k < n; k++) {
+    const t = k / n, [p0, p1, p2, p3] = [Q[i - 1], Q[i], Q[i + 1], Q[i + 2]], t2 = t * t, t3 = t2 * t;
+    out.push([0.5 * ((2 * p1[0]) + (-p0[0] + p2[0]) * t + (2 * p0[0] - 5 * p1[0] + 4 * p2[0] - p3[0]) * t2 + (-p0[0] + 3 * p1[0] - 3 * p2[0] + p3[0]) * t3),
+              0.5 * ((2 * p1[1]) + (-p0[1] + p2[1]) * t + (2 * p0[1] - 5 * p1[1] + 4 * p2[1] - p3[1]) * t2 + (-p0[1] + 3 * p1[1] - 3 * p2[1] + p3[1]) * t3)]);
+  }
+  out.push(P[P.length - 1]); return out;
+}
+function thread(P, p1, opt = {}) {
+  const p0 = opt.from || 0; if (p1 <= p0 || (opt.alpha ?? 1) <= 0) return null;
+  const S = opt.raw ? P : spline(P), L = [0]; for (let i = 1; i < S.length; i++) L.push(L[i - 1] + Math.hypot(S[i][0] - S[i - 1][0], S[i][1] - S[i - 1][1]));
+  const tot = L[L.length - 1], a = p0 * tot, b = p1 * tot;
+  ctx.save(); ctx.globalAlpha *= (opt.alpha ?? 1); ctx.strokeStyle = opt.color || C.gold; ctx.lineWidth = opt.width || 4; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+  ctx.beginPath(); let started = false, end = S[0];
+  for (let i = 1; i < S.length; i++) {
+    if (L[i] < a) continue; if (L[i - 1] > b) break;
+    const sa = clamp((a - L[i - 1]) / (L[i] - L[i - 1] || 1)), sb = clamp((b - L[i - 1]) / (L[i] - L[i - 1] || 1));
+    const A = [lerp(S[i - 1][0], S[i][0], sa), lerp(S[i - 1][1], S[i][1], sa)], B = [lerp(S[i - 1][0], S[i][0], sb), lerp(S[i - 1][1], S[i][1], sb)];
+    if (!started) { ctx.moveTo(A[0], A[1]); started = true; } ctx.lineTo(B[0], B[1]); end = B;
+  }
+  ctx.stroke(); ctx.restore(); return end;
+}
+function bez(p0, c1, c2, p3, n = 48) { const o = []; for (let i = 0; i <= n; i++) { const t = i / n, u = 1 - t; o.push([u*u*u*p0[0] + 3*u*u*t*c1[0] + 3*u*t*t*c2[0] + t*t*t*p3[0], u*u*u*p0[1] + 3*u*u*t*c1[1] + 3*u*t*t*c2[1] + t*t*t*p3[1]]); } return o; }
+function chip(label, x, y, kind, p, opt = {}) {
+  if (p <= 0) return 0;
+  const size = opt.size || 36, k = eOut(p), padX = 22, h = size * 1.7;
+  const w = measure(label, size, { font: SANS, weight: 700, track: 1.5 }) + padX * 2;
+  const bg = { pol: C.ink, rec: C.sage, hs: C.gold, loc: null, locd: null }[kind];
+  ctx.save(); ctx.globalAlpha *= Math.min(1, k * 1.4) * (opt.alpha ?? 1);
+  ctx.translate(x, y + (1 - k) * 14);
+  rrect(0, 0, w, h, 8, bg, kind === 'loc' ? C.ink : kind === 'locd' ? C.paper : null, 3);
+  text(label, padX, h * 0.68, size, kind === 'loc' ? C.ink : kind === 'locd' ? C.paper : C.white, { font: SANS, weight: 700, track: 1.5 });
+  ctx.restore(); return w;
+}
+function check(x, y, s, color, p = 1, a = 1) {
+  if (p <= 0) return; thread([[x, y], [x + s * 0.35, y + s * 0.35], [x + s, y - s * 0.45]], p, { raw: true, color, width: s * 0.16, alpha: a });
+}
+
+// static paper grain
+const grain = document.createElement('canvas'); grain.id = 'grain'; grain.width = W; grain.height = H;
+(() => { const g = grain.getContext('2d'), img = g.createImageData(W, H), r = mulberry32(11); for (let i = 0; i < img.data.length; i += 4) { const v = r() * 255; img.data[i] = img.data[i + 1] = img.data[i + 2] = v; img.data[i + 3] = 9; } g.putImageData(img, 0, 0); })();
+
+// ---------- 1: one result becomes a sentence ----------
+const CARDS = [
+  { s: 'design.md', x: 1180, y: 120, z: 0.7, r: -5, dx: 260, dy: -120 },
+  { s: 'harness/', x: 1460, y: 330, z: 1.1, r: 4, dx: 300, dy: 40 },
+  { s: 'results.json', x: 1240, y: 640, z: 0.9, r: -3, dx: 260, dy: 200 },
+  { s: 'figures/', x: 860, y: 820, z: 0.6, r: 5, dx: 0, dy: 260 },
+  { s: 'draft.tex', x: 1530, y: 790, z: 1.2, r: -6, dx: 320, dy: 220 },
+];
+const cardImg = {};
+function buildCards() {
+  for (const c of CARDS) {
+    const cv = document.createElement('canvas'); cv.id = 'card-' + c.s; cv.width = 380; cv.height = 220; const g = cv.getContext('2d');
+    g.fillStyle = C.white; g.strokeStyle = C.line; g.lineWidth = 2; g.beginPath(); g.roundRect(4, 4, 372, 212, 10); g.fill(); g.stroke();
+    g.font = `400 40px ${MONO}`; g.fillStyle = C.ink; g.fillText(c.s, 30, 70);
+    g.fillStyle = '#dcdcd1'; for (let i = 0; i < 4; i++) g.fillRect(30, 104 + i * 26, i === 3 ? 180 : 300, 10);
+    cardImg[c.s] = cv;
+  }
+}
+const CLAIM = 'The system saved half the cost.', CLAIM_X = 160, CLAIM_Y = 560, CLAIM_PX = 112;
+function looseThread(t, xe) {
+  const s = Math.sin(RT * 2.1) * 10, s2 = Math.sin(RT * 1.4 + 1) * 14;
+  return [[xe - 4, CLAIM_Y + 8], [xe + 8 + s * 0.3, CLAIM_Y + 70], [xe - 14 + s, CLAIM_Y + 140], [xe + 6 + s2, CLAIM_Y + 215]];
+}
+function tautThread(xe) { return [[xe - 4, CLAIM_Y + 8], [xe - 4, CLAIM_Y + 330], [960, 1080 + 260], [960, 1080 + 440]]; }
+function scene1(t, dy = 0) {
+  fill(C.paper);
+  const push = 1 + 0.03 * eSine(seg(t, 0, 9.2));
+  ctx.save(); ctx.translate(0, -dy);
+  // cards: true parallax at depth z, then they soften as the sentence arrives
+  const soft = eSine(seg(t, 2.3, 3.3));
+  for (const c of CARDS) {
+    const k = eOut(seg(t, 0, 2.4 + c.z * 0.3));
+    const px = c.x + c.dx * c.z * (1 - k), py = c.y + c.dy * c.z * (1 - k);
+    const sc = 1 + (push - 1) * c.z * 1.5;
+    ctx.save(); ctx.translate(960 + (px - 960) * sc, 540 + (py - 540) * sc); ctx.rotate(c.r * Math.PI / 180); ctx.scale(sc * 0.9, sc * 0.9);
+    ctx.globalAlpha = lerp(1, 0.32, soft) * Math.min(1, k * 2.5); if (soft > 0) ctx.filter = `blur(${(soft * 5).toFixed(2)}px)`;
+    ctx.drawImage(cardImg[c.s], -190, -110); ctx.restore();
+  }
+  ctx.save(); ctx.translate(960, 540); ctx.scale(push, push); ctx.translate(-960, -540);
+  reveal('Your study is done.', CLAIM_X, 330, 56, C.muted, seg(t, 0.3, 0.75), { font: SANS, alpha: 1 - seg(t, T.evidence - 0.45, T.evidence - 0.1) });
+  // the polished sentence writes on by "sentence"
+  const wp = eSine(seg(t, T.L1b_sentence - 1.05, T.L1b_sentence + 0.1));
+  ctx.save(); ctx.globalAlpha *= 1 - seg(t, T.evidence + 0.15, T.evidence + 0.5); wipe(CLAIM, CLAIM_X, CLAIM_Y, CLAIM_PX, C.ink, wp); ctx.restore();
+  const xe = CLAIM_X + measure(CLAIM, CLAIM_PX);
+  // one sheen pass
+  const sh = seg(t, 3.75, 4.45);
+  if (sh > 0 && sh < 1) {
+    ctx.save(); ctx.beginPath(); ctx.rect(CLAIM_X - 10, CLAIM_Y - 110, xe - CLAIM_X + 20, 150); ctx.clip();
+    const gx = lerp(CLAIM_X - 300, xe + 300, eSine(sh)); const g = ctx.createLinearGradient(gx - 160, 0, gx + 160, 0);
+    g.addColorStop(0, 'rgba(246,244,238,0)'); g.addColorStop(0.5, 'rgba(246,244,238,0.55)'); g.addColorStop(1, 'rgba(246,244,238,0)');
+    ctx.fillStyle = g; ctx.fillRect(CLAIM_X - 10, CLAIM_Y - 110, xe - CLAIM_X + 20, 150); ctx.restore();
+  }
+  // the thread: loose, then taut on "evidence"
+  const tk = eOut(seg(t, T.evidence, T.evidence + 0.28));
+  if (tk <= 0) thread(looseThread(t, xe), eOut(seg(t, 3.9, 4.6)), { width: 4 });
+  else {
+    const L = spline(looseThread(t, xe)), Tt = spline(tautThread(xe));
+    const n = Math.max(L.length, Tt.length), P = [];
+    for (let i = 0; i < n; i++) { const a = L[Math.min(L.length - 1, Math.round(i * (L.length - 1) / (n - 1)))], b = Tt[Math.min(Tt.length - 1, Math.round(i * (Tt.length - 1) / (n - 1)))]; P.push([lerp(a[0], b[0], tk), lerp(a[1], b[1], tk)]); }
+    // drawn length grows from the loose end to the full taut path as it pulls
+    thread(P, lerp(0.42, 1, eSine(seg(t, T.evidence + 0.05, T.evidence + 0.9))), { raw: true, width: 4, color: tk > 0.5 ? C.gold2 : C.gold });
+  }
+  const qa = 1 - seg(t, T.evidence - 0.45, T.evidence - 0.1);
+  reveal('Half of what?', CLAIM_X, 760, 96, C.gold, seg(t, 4.85, 5.3), { italic: true, alpha: qa });
+  text('FICTIONAL EXAMPLE', CLAIM_X, 1000, 24, C.muted, { font: SANS, weight: 700, track: 3, alpha: seg(t, 2.6, 3.0) * (1 - seg(t, T.evidence, T.evidence + 0.3)) });
+  ctx.restore();
+  ctx.restore();
+}
+
+// ---------- 2: the turn ----------
+function scene2(t) {
+  const dy = 1080 * eSine(seg(t, T.evidence + 0.12, T.evidence + 1.25));
+  scene1(t, dy);
+  // the charcoal stage below the desk edge
+  ctx.save(); ctx.translate(0, 1080 - dy); ctx.fillStyle = C.ink; ctx.fillRect(0, 0, W, H); ctx.restore();
+  if (dy >= 1079) auditCover(1);
+  // the thread continues down onto the stage, into the results file
+  const xe = CLAIM_X + measure(CLAIM, CLAIM_PX);
+  ctx.save(); ctx.translate(0, -dy);
+  if (seg(t, T.evidence, T.evidence + 0.28) >= 1) thread(tautThread(xe), lerp(0.42, 1, eSine(seg(t, T.evidence + 0.05, T.evidence + 0.9))), { from: 0.55, width: 4, color: C.gold2 });
+  // results.json card
+  const ca = seg(t, T.evidence + 0.7, T.evidence + 1.1);
+  ctx.save(); ctx.globalAlpha = ca; ctx.translate(960, 1080 + 600);
+  rrect(-300, -150, 600, 300, 14, C.white, null); text('results.json', 0, 18, 56, C.ink, { font: MONO, align: 'center' });
+  ctx.fillStyle = '#d8d8cc'; for (let i = 0; i < 2; i++) ctx.fillRect(-200, 60 + i * 30, i ? 240 : 400, 10);
+  ctx.restore(); ctx.restore();
+}
+
+// ---------- 3: the sentence gains its limits ----------
+const JX = 160, JY = 250, JL = 60, JPX = 40;
+const JSON_LINES = [
+  ['{', ''], ['  "task_set":', ' "held-out",'], ['  "compare":', ' "baseline",'], ['  "cost_scope":', ' "priced model calls",'],
+  ['  "excluded":', ' ["setup", "unpriced calls", "human review"]'], ['}', ''],
+];
+const N1a = 'On this held-out task set, ', N1b = 'priced model calls', N2a = 'cost half as much ', N2b = 'as the baseline.', N3 = 'Setup, unpriced calls and human review are excluded.';
+const NY1 = 690, NY2 = 790, NY3 = 890, NPX = 72;
+function jsonEnd(i) { const [k, v] = JSON_LINES[i]; return JX + measure(k + v, JPX, { font: MONO }); }
+function scene3body(t, a = 1) {
+  fill(C.paper);
+  ctx.save(); ctx.globalAlpha *= a;
+  const ja = 1;
+  text('results.json', JX + 1312, 180, 36, C.muted, { font: MONO, alpha: ja, align: 'right' });
+  const hl = eOut(seg(t, T.source - 0.1, T.source + 0.25)) * ja;
+  if (hl > 0) rrect(JX - 24, JY - 46, 1360, JL * 6 + 14, 12, C.wash, null, 2, hl);
+  JSON_LINES.forEach(([k, v], i) => {
+    const y = JY + i * JL;
+    text(k, JX, y, JPX, C.gold, { font: MONO, alpha: ja });
+    text(v, JX + measure(k, JPX, { font: MONO }), y, JPX, C.ink, { font: MONO, alpha: ja });
+  });
+  // the old sentence dissolves as the traced one is built in its place
+  const oa = 1 - seg(t, T.source + 0.05, T.source + 0.4);
+  text(CLAIM, JX, NY1, NPX, C.muted, { alpha: oa });
+  const x1b = JX + measure(N1a, NPX), x2b = JX + measure(N2a, NPX);
+  const ta = 1;
+  const t1 = T.source + 0.2, t3 = T.source + 0.6, t2 = T.comparison - 0.25, t4 = T.left - 0.25;
+  // each phrase lights the line of the file it came from
+  [[1, t1], [3, t3], [2, t2], [4, t4]].forEach(([i, t0]) => {
+    const p = eOut(seg(t, t0, t0 + 0.3)) * ta; if (p <= 0) return;
+    ctx.fillStyle = C.gold; ctx.globalAlpha *= 1; ctx.save(); ctx.globalAlpha *= p; ctx.fillRect(JX, JY + i * JL + 10, (jsonEnd(i) - JX) * p, 4); ctx.restore();
+  });
+  reveal(N1a, JX, NY1, NPX, C.gold, seg(t, t1 + 0.3, t1 + 0.6));
+  reveal(N1b, x1b, NY1, NPX, C.gold, seg(t, t3 + 0.3, t3 + 0.6));
+  reveal(N2a, JX, NY2, NPX, C.ink, seg(t, t3 + 0.5, t3 + 0.8));
+  reveal(N2b, x2b, NY2, NPX, C.gold, seg(t, t2 + 0.3, t2 + 0.6));
+  reveal(N3, JX, NY3, 56, C.gold, seg(t, t4 + 0.3, t4 + 0.6), { italic: true });
+  text('FICTIONAL EXAMPLE', JX, 1010, 24, C.muted, { font: SANS, weight: 700, track: 3 });
+  ctx.restore();
+}
+function scene3(t) {
+  // aperture: the results file opens out of the card on the stage
+  if (t < SC.s3) {
+    scene2(t);
+    const r = 1300 * eSine(seg(t, SC.s3 - 0.85, SC.s3));
+    if (r > 0) {
+      ctx.save(); ctx.beginPath(); ctx.arc(960, 600, r, 0, 7); ctx.clip(); auditClip(960, 600, r);
+      scene3body(t); ctx.restore(); auditUnclip();
+    }
+    return;
+  }
+  const out = seg(t, SC.s4 - 0.35, SC.s4);
+  scene3body(t, 1 - out);
+  // the main thread arrives from the dive and hooks the file
+  thread(bez([960, -20], [960, 170], [JX - 60, 120], [JX - 60, JY - 40]).concat([[JX - 60, JY + 5 * JL], [JX - 60, NY1 - 50], [JX - 60, NY3 + 10]]), eSine(seg(t, SC.s3 - 0.2, T.left + 0.2)), { raw: true, width: 4, alpha: 1 - out });
+}
+
+// ---------- 4: draw it from the data ----------
+const ROWS = ['A', 'B', 'C', 'D'], RY = [380, 470, 560, 650], BX = [900, 1120, 1340, 1560], BH = [250, 400, 320, 360], BASE = 840, BW = 140;
+function scene4(t) {
+  fill(C.paper);
+  const a = win(t, SC.s4, SC.s5, 0.35, 0.3);
+  ctx.save(); ctx.globalAlpha = a;
+  text('results.json', 160, 290, 36, C.muted, { font: MONO });
+  // the axis
+  ctx.fillStyle = C.ink; ctx.fillRect(780, BASE, 920 * eSine(seg(t, SC.s4 + 0.1, SC.s4 + 0.6)), 4);
+  const tA = [22.25, 22.7, 23.15], fixT = 28.2, missT = T.missing, stopT = T.stops;
+  const renamed = seg(t, missT - 0.05, missT + 0.25) * (1 - seg(t, fixT, fixT + 0.25));
+  ROWS.forEach((r, i) => {
+    const y = RY[i], ap = eOut(seg(t, SC.s4 + 0.2 + i * 0.12, SC.s4 + 0.55 + i * 0.12));
+    if (i < 3) text(r, 180, y, 48, C.ink, { font: MONO, alpha: ap });
+    else { text('D', 180, y, 48, C.ink, { font: MONO, alpha: ap * (1 - renamed) }); text('D2', 180, y, 48, C.proof, { font: MONO, alpha: renamed }); }
+    text(r, BX[i], BASE + 64, 44, i === 3 ? (renamed > 0.5 ? C.proof : C.ink) : C.ink, { font: SANS, align: 'center', alpha: eOut(seg(t, SC.s4 + 0.5, SC.s4 + 0.9)) });
+  });
+  reveal('Renamed in the file', 180, RY[3] + 62, 36, C.proof, seg(t, missT + 0.1, missT + 0.4), { font: SANS, alpha: 1 - seg(t, fixT - 0.25, fixT) });
+  reveal('Name fixed, rebuilt', 180, RY[3] + 62, 36, C.sage, seg(t, fixT, fixT + 0.3), { font: SANS, weight: 700 });
+  const path = i => bez([250, RY[i] - 16], [560, RY[i] - 16], [BX[i], BASE - BH[i] - 260], [BX[i], BASE - BH[i]]);
+  for (let i = 0; i < 3; i++) {
+    thread(path(i), eSine(seg(t, tA[i], tA[i] + 0.35)), { raw: true, width: 3 });
+    const h = BH[i] * eOut(seg(t, tA[i] + 0.3, tA[i] + 0.7));
+    if (h > 0) { ctx.fillStyle = C.sage; ctx.fillRect(BX[i] - BW / 2, BASE - h, BW, h); }
+  }
+  // D: its thread snags where the name changed, turns red, then snaps on "stops"
+  const dStart = 24.35, snag = 0.55;
+  const snap = seg(t, stopT, stopT + 0.3), fixed = seg(t, fixT + 0.05, fixT + 0.4);
+  if (fixed > 0) thread(path(3), eSine(fixed), { raw: true, width: 3 });
+  else {
+    const red = seg(t, missT - 0.05, missT + 0.25);
+    const col = red > 0.5 ? C.proof : C.gold, reach = snag * eSine(seg(t, dStart, dStart + 0.4));
+    if (snap <= 0) thread(path(3), reach, { raw: true, width: 3, color: col });
+    else { thread(path(3), reach * (1 - 0.6 * eOut(snap)), { raw: true, width: 3, color: C.proof, alpha: 1 - seg(t, fixT - 0.2, fixT) }); }
+  }
+  const slot = seg(t, missT + 0.05, missT + 0.3) * (1 - fixed);
+  if (slot > 0) rrect(BX[3] - BW / 2, BASE - BH[3], BW, BH[3], 2, null, C.proof, 4, slot, [14, 10]);
+  const hD = BH[3] * eOut(seg(t, fixT + 0.35, fixT + 0.75));
+  if (hD > 0) { ctx.fillStyle = C.sage; ctx.fillRect(BX[3] - BW / 2, BASE - hD, BW, hD); }
+  // the stamp
+  const sp = seg(t, stopT, stopT + 0.15), sa = 1 - seg(t, fixT, fixT + 0.2);
+  if (sp > 0 && sa > 0) {
+    ctx.save(); ctx.translate(1300, 290); ctx.rotate(-3 * Math.PI / 180); const k = lerp(1.25, 1, eOut(sp)); ctx.scale(k, k); ctx.globalAlpha *= Math.min(1, sp * 2) * sa;
+    rrect(-330, -88, 660, 176, 10, 'rgba(246,244,238,.95)', C.proof, 6);
+    text('D is missing.', 0, -20, 48, C.proof, { font: SANS, weight: 700, align: 'center' });
+    text('Build stopped.', 0, 54, 48, C.proof, { font: SANS, weight: 700, align: 'center' });
+    ctx.restore();
+  }
+  // then a person looks
+  reveal('Then look at it.', 160, 990, 80, C.ink, seg(t, 28.1, 28.45));
+  const lp = eSine(seg(t, 28.7, 30.0)), lx = lerp(860, 1580, lp), la = seg(t, 28.6, 28.85) * (1 - seg(t, 29.95, 30.15));
+  if (la > 0) { ctx.save(); ctx.globalAlpha *= la; ctx.strokeStyle = C.ink; ctx.lineWidth = 5; ctx.beginPath(); ctx.arc(lx, BASE + 50, 78, 0, 7); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(lx + 56, BASE + 106); ctx.lineTo(lx + 120, BASE + 170); ctx.lineWidth = 12; ctx.lineCap = 'round'; ctx.stroke(); ctx.restore(); }
+  text('ILLUSTRATION, NOT STUDY DATA', 1760, 186, 24, C.muted, { font: SANS, weight: 700, track: 3, align: 'right' });
+  ctx.restore();
+}
+
+// ---------- 5: the story in order ----------
+const HEADS = ['Problem', 'What we built', 'How we tested it', 'What happened', 'Limits'], HY = [232, 392, 552, 712, 872], SPX = 520;
+const headT = i => T.order + 0.12 + i * 0.4;
+function scene5(t) {
+  fill(C.paper);
+  const a = win(t, SC.s5, SC.s6 + 0.6, 0.3, 0.6);
+  ctx.save(); ctx.globalAlpha = a;
+  thread([[SPX, 150], [SPX, 960]], eSine(seg(t, SC.s5 + 0.1, SC.s5 + 0.8)), { raw: true, width: 4 });
+  rrect(PG.x, PG.y, PG.w, PG.h, 4, C.white, C.line, 2, seg(t, SC.s5 + 0.3, SC.s5 + 0.7));
+  HEADS.forEach((h, i) => {
+    const p = seg(t, headT(i), headT(i) + 0.3), y = HY[i];
+    dot(SPX, y - 22, 11, C.gold, eOut(p));
+    const hot = (i === 0 && t >= T.problem) || (i === 4 && t >= T.limits);
+    reveal(h, SPX + 60, y, 64, hot ? C.gold : C.ink, p);
+    // the heading lands in the page as a dark bar
+    const bp = eOut(seg(t, headT(i) + 0.2, headT(i) + 0.5));
+    if (bp > 0) { const L = PG.x + INCH; ctx.fillStyle = C.ink; ctx.fillRect(L, PG.y + 70 + i * 128, 200 * bp, 14); ctx.fillStyle = '#dcdcd1'; for (let k = 0; k < 3; k++) ctx.fillRect(L, PG.y + 100 + i * 128 + k * 24, (k === 2 ? 240 : PG.w - 2 * INCH) * bp, 8); }
+  });
+  ctx.restore();
+}
+
+// ---------- 6: set it, and sort the rules ----------
+const PG = { x: 1180, y: 190, w: 560, h: 725 }, INCH = 560 / 8.5;
+const SRC = ['\\documentclass{article}', '\\includegraphics[alt={...}]{chart}'];
+function page(t, p) {
+  // a typeset page, drawn as shapes; p wipes its content in from the top
+  rrect(PG.x, PG.y, PG.w, PG.h, 4, C.white, C.line, 2);
+  ctx.save(); ctx.beginPath(); ctx.rect(PG.x, PG.y, PG.w, PG.h * p); ctx.clip();
+  const L = PG.x + INCH, R = PG.x + PG.w - INCH, wdt = R - L;
+  ctx.fillStyle = C.ink; ctx.fillRect(L + 60, PG.y + 70, wdt - 120, 16);
+  ctx.fillStyle = '#b9b9ae'; ctx.fillRect(L + 120, PG.y + 104, wdt - 240, 9);
+  let y = PG.y + 150;
+  ctx.fillStyle = C.ink; ctx.fillRect(L, y, 130, 12); y += 30;
+  ctx.fillStyle = '#d4d4c9'; for (let k = 0; k < 5; k++) { ctx.fillRect(L, y, k === 4 ? wdt * 0.6 : wdt, 8); y += 22; }
+  // the figure
+  rrect(L + 40, y + 12, wdt - 80, 170, 4, C.wash, null); for (let k = 0; k < 4; k++) { ctx.fillStyle = C.sage; const bh = [60, 110, 85, 95][k]; ctx.fillRect(L + 80 + k * 80, y + 160 - bh, 44, bh); }
+  y += 205; ctx.fillStyle = '#d4d4c9'; for (let k = 0; k < 4; k++) { ctx.fillRect(L, y, k === 3 ? wdt * 0.4 : wdt, 8); y += 22; }
+  ctx.fillStyle = C.ink; ctx.fillRect(L, y + 12, 110, 12); y += 42;
+  ctx.fillStyle = '#d4d4c9'; for (let k = 0; k < 2; k++) { ctx.fillRect(L, y, wdt, 8); y += 22; }
+  ctx.restore();
+}
+const FIG = () => { const L = PG.x + INCH, wdt = PG.w - 2 * INCH; return { x: L + 40, y: PG.y + 150 + 30 + 110 + 12, w: wdt - 80, h: 170 }; };
+const ROWY = [240, 480, 720];
+function scene6(t) {
+  fill(C.paper);
+  const a = win(t, SC.s6 + 0.1, SC.s7, 0.4, 0.35);
+  ctx.save(); ctx.globalAlpha = a;
+  // the source types, then compiles into the page
+  const pa = eOut(seg(t, SC.s6 + 0.2, SC.s6 + 0.6)), comp = seg(t, 36.85, 37.35);
+  if (comp < 1) {
+    ctx.save(); ctx.globalAlpha *= pa * (1 - comp); ctx.translate(lerp(0, 380, eIn(comp)), 0);
+    rrect(160, 170, 900, 210, 14, C.ink, null);
+    SRC.forEach((s, i) => { const t0 = 35.45 + i * 0.6, n = Math.round(s.length * seg(t, t0, t0 + 0.55)); if (n > 0) text(s.slice(0, n), 200, 250 + i * 76, 40, C.paper, { font: MONO }); });
+    ctx.restore();
+  }
+  page(t, eSine(seg(t, 36.95, 37.7)));
+  // three kinds of rule, each with its example
+  const pol = seg(t, T.asks - 0.38, T.asks - 0.1), rec = seg(t, T.advises - 0.05, T.advises + 0.25), hs = seg(t, T.house - 0.05, T.house + 0.25);
+  chip('ARXIV POLICY', 160, ROWY[0], 'pol', pol);
+  reveal('Margins of at least 1 inch', 160, ROWY[0] + 128, 52, C.ink, seg(t, T.margins - 0.1, T.margins + 0.25), { font: SANS });
+  chip('ARXIV RECOMMENDS', 160, ROWY[1], 'rec', rec);
+  reveal('Describe each figure', 160, ROWY[1] + 128, 52, C.ink, seg(t, T.advises + 0.15, T.advises + 0.5), { font: SANS });
+  chip('HOUSE STYLE', 160, ROWY[2], 'hs', hs);
+  reveal('No page numbers', 160, ROWY[2] + 128, 52, C.ink, seg(t, T.house + 0.15, T.house + 0.5), { font: SANS });
+  // margin: the thread measures one inch
+  const mp = eSine(seg(t, T.margins, T.margins + 0.45)), my = PG.y + 420;
+  if (mp > 0) {
+    thread([[PG.x, my], [PG.x + INCH, my]], mp, { raw: true, width: 4 });
+    ctx.fillStyle = C.gold; ctx.fillRect(PG.x - 2, my - 16, 4, 32 * mp); ctx.fillRect(PG.x + INCH - 2, my - 16, 4, 32 * mp);
+    text('1 in', PG.x - 18, my + 13, 36, C.gold, { font: SANS, weight: 700, align: 'right', alpha: seg(t, T.margins + 0.3, T.margins + 0.55) });
+  }
+  // figure: gains its description
+  const fp = eOut(seg(t, T.figure - 0.2, T.figure + 0.15)), F = FIG();
+  if (fp > 0) { rrect(F.x - 8, F.y - 8, F.w + 16, F.h + 16, 6, null, C.sage, 5, fp); chip('ALT', F.x + F.w - 70, F.y - 30, 'rec', fp, { size: 26 }); }
+  // footer: a page number appears, then is left off
+  const pn = seg(t, T.house + 0.1, T.house + 0.35) * (1 - seg(t, T.numbers - 0.05, T.numbers + 0.3));
+  text('1', PG.x + PG.w / 2, PG.y + PG.h - 30, 30, C.muted, { font: TEX, align: 'center', alpha: pn });
+  const off = eOut(seg(t, T.numbers, T.numbers + 0.3));
+  if (off > 0) rrect(PG.x + PG.w / 2 - 44, PG.y + PG.h - 64, 88, 48, 8, null, C.gold, 4, off, [8, 7]);
+  ctx.restore();
+}
+
+// ---------- 7: rebuild from what you'll send ----------
+const FILES = [['main.tex', 1], ['figures/', 1], ['references.bib', 1], ['drafts/', 0], ['private-data/', 0]], FY = [300, 400, 500, 600, 700], FX = 230;
+const FOLD = { x: 1060, y: 250, w: 660, h: 420 };
+const DK = { fg: '#f6f4ee', mut: '#a7aa9f', sage: '#9cc0b2', line: '#5b5f55' };
+function scene7(t) {
+  fill(C.paper); fill(C.ink, seg(t, SC.s7, SC.s7 + 0.45) * (1 - seg(t, SC.s8 - 0.4, SC.s8)));
+  const a = win(t, SC.s7, SC.s8, 0.35, 0.4);
+  ctx.save(); ctx.globalAlpha = a;
+  const skip = seg(t, 49.55, 49.9);
+  FILES.forEach(([f, ok], i) => {
+    const p = seg(t, SC.s7 + 0.25 + i * 0.12, SC.s7 + 0.55 + i * 0.12);
+    const fl = i < 3 ? eSine(seg(t, T.files - 0.1 + i * 0.12, T.files + 0.4 + i * 0.12)) : 0;
+    if (fl > 0) text(f, lerp(FX, FOLD.x + 50, fl), lerp(FY[i], FOLD.y + 110 + i * 70, fl), lerp(48, 36, fl), DK.fg, { font: MONO });
+    else reveal(f, FX, FY[i], 48, ok ? DK.fg : skip > 0.5 ? DK.mut : DK.fg, p, { font: MONO });
+    if (ok) check(FX - 64, FY[i] - 20, 34, DK.sage, seg(t, 49.0 + i * 0.22, 49.25 + i * 0.22));
+    else if (skip > 0) { ctx.fillStyle = DK.mut; ctx.fillRect(FX - 6, FY[i] - 16, (measure(f, 48, { font: MONO }) + 12) * eOut(skip), 4); }
+  });
+  // the stitch: through each file that ships, past the ones that don't, on to the folder
+  const st = [[150, 250]];
+  FILES.forEach(([f, ok], i) => { if (ok) { st.push([150, FY[i] + 18]); st.push([FX + measure(f, 48, { font: MONO }) + 24, FY[i] + 18]); st.push([FX + measure(f, 48, { font: MONO }) + 24, FY[i] + 30]); st.push([150, FY[i] + 30]); } });
+  st.push([150, FY[4] + 40]); st.push(...bez([150, FY[4] + 40], [150, FY[4] + 140], [FOLD.x - 200, FOLD.y + FOLD.h + 60], [FOLD.x, FOLD.y + FOLD.h - 40]).slice(1));
+  thread(st, eSine(seg(t, 48.9, 50.3)), { raw: true, width: 3, color: C.gold2 });
+  // the empty folder
+  const fp = eSine(seg(t, T.empty - 0.1, T.empty + 0.45));
+  if (fp > 0) {
+    reveal('Empty folder', FOLD.x, FOLD.y - 30, 44, DK.mut, seg(t, T.empty, T.empty + 0.3), { font: SANS });
+    thread([[FOLD.x, FOLD.y + 40], [FOLD.x, FOLD.y + FOLD.h], [FOLD.x + FOLD.w, FOLD.y + FOLD.h], [FOLD.x + FOLD.w, FOLD.y + 40], [FOLD.x + 240, FOLD.y + 40], [FOLD.x + 210, FOLD.y], [FOLD.x, FOLD.y], [FOLD.x, FOLD.y + 40]], fp, { raw: true, width: 4, color: DK.mut });
+  }
+  // the paper rebuilds
+  [0, 1, 2].forEach(i => { const p = seg(t, 52.2 + i * 0.3, 52.3 + i * 0.3); if (p > 0) rrect(FOLD.x + 50 + i * 110, FOLD.y + FOLD.h - 60, 90, 14, 7, DK.sage, null, 2, p); });
+  const rb = eOut(seg(t, 52.95, 53.3));
+  if (rb > 0) { rrect(FOLD.x + 440, FOLD.y + 70, 170, 220, 4, C.white, C.line, 2, rb); ctx.save(); ctx.globalAlpha *= rb; ctx.fillStyle = C.ink; ctx.fillRect(FOLD.x + 470, FOLD.y + 100, 110, 10); ctx.fillStyle = '#d4d4c9'; for (let k = 0; k < 6; k++) ctx.fillRect(FOLD.x + 470, FOLD.y + 128 + k * 20, 110, 7); ctx.restore(); check(FOLD.x + 560, FOLD.y + 250, 50, DK.sage, seg(t, 53.1, 53.35)); }
+  // its limit, stated
+  chip('LOCAL CHECK', 160, 800, 'locd', seg(t, 50.45, 50.75));
+  reveal('A local check, not arXiv’s decision.', 160, 950, 52, DK.fg, seg(t, 50.6, 50.9), { font: SANS });
+  ctx.restore();
+}
+
+// ---------- 8: hand-over ----------
+const SH = { cx: 960, cy: 560, w: 1040, h: 960, rot: -1.2 };
+const ITEMS = [['Authors and affiliations', 'names'], ['How you disclose AI use', 'ai'], ['License', 'license'], ['Final claims', 'claims']];
+function scene8(t) {
+  fill(C.paper); fill(C.desk, seg(t, SC.s8, SC.s8 + 0.45) * (1 - seg(t, SC.s9 - 0.4, SC.s9)));
+  const a = win(t, SC.s8, SC.s9, 0.3, 0.35);
+  ctx.save(); ctx.globalAlpha = a;
+  const sp = eSine(seg(t, SC.s8, SC.s8 + 0.9)), k = lerp(0.93, 1, sp);
+  ctx.translate(SH.cx, SH.cy + (1 - sp) * 260); ctx.rotate(SH.rot * Math.PI / 180); ctx.scale(k, k);
+  ctx.save(); ctx.shadowColor = 'rgba(60,50,30,.18)'; ctx.shadowBlur = 40; ctx.shadowOffsetY = 14; rrect(-SH.w / 2, -SH.h / 2, SH.w, SH.h, 6, C.white, null); ctx.restore();
+  const X = -SH.w / 2 + 100;
+  text('BEFORE YOU SUBMIT', X, -SH.h / 2 + 100, 26, C.muted, { font: SANS, weight: 700, track: 3, alpha: seg(t, SC.s8 + 0.4, SC.s8 + 0.7) });
+  reveal('You decide', X, -SH.h / 2 + 200, 76, C.ink, seg(t, T.decide - 0.1, T.decide + 0.25));
+  ITEMS.forEach(([s, key], i) => {
+    const y = -150 + i * 120, p = seg(t, T[key] - 0.15, T[key] + 0.2);
+    rrect(X, y - 38, 42, 42, 6, null, C.ink, 3.5, eOut(p));
+    reveal(s, X + 72, y, 48, C.ink, p, { font: SANS });
+    if (key === 'ai') chip('ARXIV POLICY', X + 72 + measure(s, 48, { font: SANS }) + 24, y - 44, 'pol', seg(t, T.ai + 0.2, T.ai + 0.5), { size: 32 });
+  });
+  // the thread becomes the signature line
+  const sg = eSine(seg(t, 59.3, 59.85));
+  thread([[X, 262], [X + 600, 262]], sg, { raw: true, width: 4 });
+  text('SIGNATURE', X, 300, 26, C.muted, { font: SANS, weight: 700, track: 3, alpha: seg(t, 59.7, 59.95) });
+  reveal('No promise of acceptance.', X, 392, 56, C.ink, seg(t, 59.5, 59.8), { italic: true });
+  ctx.restore();
+}
+
+// ---------- 9: the hero line ----------
+const HERO1 = 'A stronger claim has', HERO2 = 'clearer limits.', HX = 160, HY1 = 470, HY2 = 630, HPX = 124;
+function scene9(t) {
+  fill(C.paper);
+  const out = seg(t, SC.s10 + 0.35, SC.s10 + 0.5);
+  reveal(HERO1, HX, HY1, HPX, C.ink, seg(t, SC.s9 + 0.05, SC.s9 + 0.4), { alpha: 1 - out });
+  reveal(HERO2, HX, HY2, HPX, C.ink, seg(t, SC.s9 + 0.2, SC.s9 + 0.55), { alpha: 1 - out });
+}
+function heroLine(t) {
+  // the underline: drawn under "clearer limits.", then it rises to become the wordmark rule
+  const w2 = measure(HERO2, HPX), d = eSine(seg(t, SC.s9 + 0.7, SC.s9 + 1.2)), m = eSine(seg(t, SC.s10 + 0.1, SC.s10 + 0.8));
+  if (d <= 0) return;
+  const x0 = lerp(HX, 960 - 280, m), x1 = lerp(HX + w2, 960 + 280, m), y = lerp(HY2 + 36, 482, m);
+  thread([[x0, y], [x1, y]], d, { raw: true, width: lerp(5, 4, m) });
+}
+
+// ---------- 10: end card and invitation ----------
+const PROMPT = '› Use ArxivChecker on this study folder.';
+function scene10(t) {
+  const ch = EDIT.music.final_chord_vis;
+  const wk = eOut(seg(t, ch + 0.1, ch + 0.5));
+  ctx.save(); ctx.translate(960, 430); const s = lerp(1.04, 1, wk); ctx.scale(s, s);
+  text('ArxivChecker', 0, 0, 150, C.ink, { align: 'center', alpha: wk }); ctx.restore();
+  reveal('Trace. Rebuild. Review.', 960, 580, 56, C.sage, seg(t, ch + 0.45, ch + 0.8), { align: 'center' });
+  const bp = eOut(seg(t, ch + 0.9, ch + 1.3));
+  if (bp > 0) {
+    rrect(470, 680, 980, 120, 14, C.ink, null, 2, bp);
+    const n = Math.round(PROMPT.length * seg(t, ch + 1.3, ch + 2.5));
+    if (n > 0) text(PROMPT.slice(0, n), 520, 755, 40, C.paper, { font: MONO });
+    const cx = 520 + measure(PROMPT.slice(0, Math.max(n, 0)), 40, { font: MONO }) + 6;
+    const blink = t < ch + 2.5 ? 1 : (Math.floor((t - ch - 2.5) / 0.53) % 2 === 0 ? 1 : 0);
+    if (blink) { ctx.save(); ctx.globalAlpha *= bp; ctx.fillStyle = C.gold2; ctx.fillRect(cx, 722, 20, 44); ctx.restore(); }
+  }
+}
+
+// ---------- persistent wordmark (acts 2 to 3) ----------
+function wordmark(t) {
+  const nm = seg(RT, T.name_real, T.name_real + 0.33), a = nm * (1 - seg(t, SC.s8 - 0.1, SC.s8 + 0.3));
+  if (a <= 0) return;
+  const dy = 1080 * eSine(seg(t, T.evidence + 0.12, T.evidence + 1.25));
+  const onDark = (t < SC.s3 && dy > 560) || (t >= SC.s7 + 0.25 && t < SC.s8 - 0.2);
+  reveal('ArxivChecker', 160, 98, 44, onDark ? C.paper : C.ink, nm, { alpha: a });
+}
+
+function drawFrame(tr) {
+  RT = tr; const t = VIS(tr);
+  ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = 1; ctx.filter = 'none';
+  if (t < SC.s2) scene1(t);
+  else if (t < SC.s3 - 0.85) scene2(t);
+  else if (t < SC.s4) scene3(t);
+  else if (t < SC.s5) scene4(t);
+  else if (t < SC.s6) scene5(t);
+  else if (t < SC.s7) { if (t < SC.s6 + 0.6) { scene5(t); ctx.save(); ctx.globalAlpha = seg(t, SC.s6, SC.s6 + 0.6); scene6(t); ctx.restore(); } else scene6(t); }
+  else if (t < SC.s8) scene7(t);
+  else if (t < SC.s9) scene8(t);
+  else { if (t < SC.s10 + 0.5) scene9(t); else fill(C.paper); heroLine(t); if (t >= SC.s10) scene10(t); }
+  wordmark(t);
+  ctx.globalAlpha = 1; ctx.filter = 'none'; ctx.drawImage(grain, 0, 0);
+}
+
+// sound cues from the same timeline, for the mixer
+function cues() { return EDIT.sfx; }
+window.getMarks = () => [[T.evidence - 0.05, T.evidence + 1.4], [T.stops - 0.05, T.stops + 0.4], [T.files - 0.2, T.files + 0.9], [SC.s10, SC.s10 + 0.9], [SC.s2 + 0, SC.s3 + 0.05], [36.8, 37.5], [FZ[0] - 0.05, FZ[0] + 0.1]].map(([a, b]) => [REAL(a), REAL(b)]).concat([[FZ[0] + FZ[1] - 0.05, FZ[0] + FZ[1] + 0.1]]);
+
+const fonts = [
+  new FontFace('Gelasio', 'url(fonts/gelasio-latin-400-normal.woff2)', { weight: '400' }),
+  new FontFace('Gelasio', 'url(fonts/gelasio-latin-700-normal.woff2)', { weight: '700' }),
+  new FontFace('Gelasio', 'url(fonts/gelasio-latin-400-italic.woff2)', { style: 'italic' }),
+  new FontFace('Liberation Sans', 'url(fonts/LiberationSans-Regular.ttf)', { weight: '400' }),
+  new FontFace('Liberation Sans', 'url(fonts/LiberationSans-Bold.ttf)', { weight: '700' }),
+  new FontFace('LM Mono', 'url(fonts/lmmono10-regular.otf)', { weight: '400' }),
+  new FontFace('LM Roman', 'url(fonts/lmroman10-regular.otf)', { weight: '400' }),
+];
+const ready = Promise.all(fonts.map(f => f.load().then(ff => document.fonts.add(ff)))).then(buildCards);
+window.renderAt = async t => { await ready; drawFrame(t); return canvas.toDataURL('image/png'); };
+window.getCues = async () => { await ready; return cues(); };
+window.auditAt = async t => { await ready; return auditFrame(drawFrame, t); };
+ready.then(() => drawFrame(Number(new URLSearchParams(location.search).get('t') || 0)));
+</script>
+</body>
+</html>

@@ -14,5 +14,5 @@
   "build": "python3 scripts/build.py",
   "check": "python3 scripts/check.py",
   "output": "_site",
-  "publication": "Local, unpublished capability. Publishing and submission require separate authorization."
+  "publication": "Public GitHub source and skill. Separate website deployment and arXiv submission are not performed automatically."
 }

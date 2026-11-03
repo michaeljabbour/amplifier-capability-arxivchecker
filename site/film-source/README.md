@@ -1,6 +1,8 @@
-# ArxivChecker narrated film
+# Original ArxivChecker narrated film (v1)
 
-The original six-scene story now has local synthetic US English narration.
+This page documents the retained v1 assets. The main page now uses the [v2 launch film](v2/README.md).
+
+The original six-scene story has local synthetic US English narration.
 WebVTT captions match the spoken lines, with separate full and 15-second
 transcripts that also describe the on-screen text. The chart in scene three is
 an illustration with no empirical values.
