@@ -51,7 +51,6 @@ h3 { font-size:27px; line-height:1.2; }
 .claim-checks details p { font-size:14px; margin:13px 0 0; max-width:48ch; }
 .claim-checks>.quiet { margin-top:20px; }
 .film-section video { display:block; width:100%; height:auto; background:var(--ink); border:1px solid var(--line); }
-.film-links { display:flex; gap:15px 27px; flex-wrap:wrap; font-size:12px; margin-top:18px; }
 .readiness-section { background:var(--wash); border-block:1px solid var(--line); }
 .review-layout { display:grid; grid-template-columns:1fr 1fr; gap:80px; }
 .review-layout h2+p { margin-top:25px; }
@@ -157,7 +156,6 @@ h3 { font-size:27px; line-height:1.2; }
   .claim-layout h2+p,.review-layout h2+p { margin-top:20px; }
   .claim-before,.claim-after { font-size:22px; }
   .claim-checks summary { font-size:23px; }
-  .film-links { gap:12px 23px; font-size:12px; }
   .install-grid { grid-template-columns:1fr; gap:36px; }
   .install-grid .actions { gap:18px; font-size:13px; }
   .install-grid pre { font-size:11px; }

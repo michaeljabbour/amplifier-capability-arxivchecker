@@ -1,5 +1,7 @@
 # ArxivChecker launch film, v2
 
+This preserved film uses an earlier page-number preference. MJ now defaults to visible page numbers; the film’s 46–49 second example awaits a coordinated media correction. See [the exact edit targets and Claude prompt](../../../docs/VIDEO-PAGE-NUMBERS.md). This archive describes v2, not current instructions for a new paper.
+
 A 71-second narrated launch film and a 14.5-second cut, made with the Sizzle skill on 2026-11-03. It replaces the 48-second six-card explainer as the site's main film. The v1 film and every v1 asset are unchanged in `site/assets/`.
 
 ## What the film says

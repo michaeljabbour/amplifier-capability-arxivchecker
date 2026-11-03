@@ -87,3 +87,21 @@ playback worked and was confirmed by the owner, who then requested no more
 interaction. The source and skill have since been published to GitHub; historical
 local/unpublished statements above describe the earlier snapshots. A separate
 website remains undeployed. See the video record for exact limitations.
+
+## Visible-page-number default and landing-page cleanup
+
+MJ's current house default is visible first and subsequent page numbers, with
+author/venue exceptions. The canonical skill, policy/writing guides, examples
+and starter now agree. The actual two-page starter was rebuilt, and both
+renders were inspected: footers 1 and 2 are visible and their ink remains
+73.233 PDF points from the bottom edge. See the [new numbered-template
+evidence](evidence/2026-11-03/numbered-pages/README.md). All 50 local regressions
+passed again, plus the generated-site and JavaScript checks. The six auxiliary
+film links are absent from visible page markup; captions and all asset files
+remain. No further browser interaction was performed at the owner's request.
+
+The video was not edited. Its obsolete page-number line and animation are
+identified in [the Claude correction prompt](VIDEO-PAGE-NUMBERS.md). Historical
+film/transcript/source and unnumbered-layout records remain evidence of their
+original versions, not current instructions. The new ZIP contains the current
+canonical numbered starter and guidance.

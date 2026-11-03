@@ -34,6 +34,9 @@ class Page(HTMLParser):
         self.in_skill = False
         self.stages = []
         self.video = []
+        self.video_depth = 0
+        self.anchors = []
+        self.tracks = []
         self.images_without_alt = []
         self.inputs = []
     def handle_starttag(self, tag, attrs):
@@ -58,11 +61,18 @@ class Page(HTMLParser):
             self.stages.append(attrs["data-stage"])
         if tag == "video":
             self.video.append(attrs)
+            self.video_depth += 1
+        if tag == "a" and attrs.get("href"):
+            self.anchors.append((attrs["href"], self.video_depth > 0))
+        if tag == "track":
+            self.tracks.append(attrs)
         if tag == "img" and "alt" not in attrs:
             self.images_without_alt.append(attrs.get("src"))
         if tag == "input":
             self.inputs.append(attrs)
     def handle_endtag(self, tag):
+        if tag == "video":
+            self.video_depth -= 1
         if tag == "textarea":
             self.in_skill = False
     def handle_data(self, data):
@@ -145,6 +155,15 @@ def check(output: Path) -> None:
     js = (output / "assets/site.js").read_text()
     assert not re.search(r"\b(?:fetch|XMLHttpRequest|WebSocket|localStorage|sessionStorage)\b", js), "Unexpected network or persistence code"
     raw = (output / "index.html").read_text()
+    landing = pages[output / "index.html"]
+    removed_film_links = {
+        "assets/arxivchecker-film-v2-15s.mp4", "assets/arxivchecker-film-v2-transcript.txt",
+        "assets/arxivchecker-film-v2-15s-transcript.txt", "assets/arxivchecker-film-v2.mp4",
+        "assets/arxivchecker-film.mp4", "docs/VIDEO-UPDATE.md",
+    }
+    assert not any(ref in removed_film_links for ref, in_video in landing.anchors if not in_video), "Removed film links must not return as visible landing-page links"
+    assert 'class="film-links"' not in raw, "Remove the auxiliary film-link row"
+    assert any(t.get("kind") == "captions" and t.get("srclang") == "en" and "default" in t for t in landing.tracks), "Retain the default English caption track"
     assert "narrated explainer" in raw and "Sound on" in raw, "Player must describe the requested voiceover"
     assert not re.search(r"silent|audio-free|no narration", raw, re.I), "Stale silent-film description"
     assert "guide.html#writing-style" in pages[output / "index.html"].links, "Missing visible publishing-style guide"

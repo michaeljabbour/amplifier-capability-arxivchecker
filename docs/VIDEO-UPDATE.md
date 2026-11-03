@@ -1,5 +1,7 @@
 # Supplied v2 reel integration — 2026-11-03
 
+**House-style correction:** MJ now prefers visible page numbers, including the title page, with author/venue exceptions. The unchanged video’s contrary 46–49 second example is historical and awaits correction; see the [Claude prompt and exact edit targets](VIDEO-PAGE-NUMBERS.md).
+
 The main player now uses the owner's supplied 71.14-second MP4, with the matching
 WebM, timed English speech captions, descriptive transcript and poster. The
 14.5-second cut and its captions/transcript remain available. All v1 assets are
@@ -39,8 +41,9 @@ See [independent evidence](evidence/2026-11-03/video-update/README.md) and the
 ## Guidance boundaries
 
 The film's one-inch-margin wording follows arXiv's format guidance, which uses
-“should”; figure descriptions/alt text follow its recommendations. Omission of
-page numbers is house style. Reporting significant AI assistance is required
+“should”; figure descriptions/alt text follow its recommendations. The film’s omission of
+page numbers reflects the former house preference, superseded by visible page
+numbers; neither choice is an arXiv mandate. Reporting significant AI assistance is required
 consistent with the subject's methodology standards; the on-screen wording does
 not remove that condition or the authors' responsibility. Official pages were
 rechecked on 2026-11-03: [format policy](https://info.arxiv.org/help/policies/format_requirements.html),

@@ -1,4 +1,6 @@
-# Revised starter layout check — 2026-11-03
+# Historical starter layout check — 2026-11-03
+
+This snapshot predates MJ’s visible-page-number default and is retained as historical evidence, not as the current starter. Use the canonical template and the newer numbered-page check.
 
 This is a fictional typesetting fixture generated from the actual neutral starter,
 with one real 10 pt footnote and one vector workflow illustration. No study

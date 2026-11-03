@@ -75,12 +75,21 @@ def main():
                    'right': width - max(float(w.attrib['xMax']) for w in words),
                    'top': min(float(w.attrib['yMin']) for w in words),
                    'bottom': height - max(float(w.attrib['yMax']) for w in words)}
+        footer_numbers = [w for w in words
+                          if ''.join(w.itertext()).strip() == str(index)
+                          and float(w.attrib['yMin']) > height * 0.85
+                          and abs((float(w.attrib['xMin']) + float(w.attrib['xMax'])) / 2 - width / 2) < 20]
+        if not footer_numbers:
+            raise SystemExit(f'Starter fixture page {index} has no matching visible centred footer number')
         pages.append({'page': index, 'size_pt': [width, height],
+                      'visible_footer_number': str(index),
+                      'footer_number_bbox_pt': [{k: float(w.attrib[k]) for k in ('xMin', 'yMin', 'xMax', 'yMax')} for w in footer_numbers],
                       'word_bounds_margins_pt': {k: round(v, 3) for k, v in margins.items()},
                       'within_local_72pt_text_envelope_with_1pt_tolerance': min(margins.values()) >= 71})
     subprocess.run(['pdftoppm', '-scale-to', '1100', '-png', str(pdf), str(output / 'page')], check=True, capture_output=True)
     record = {'schema_version': 1, 'status': 'local-template-build-and-bounds-measured',
               'arxiv_eligibility': 'not-assessed', 'pages': pages,
+              'page_number_profile': 'Visible first and subsequent page numbers are MJ house defaults, with author/venue exceptions; not an arXiv mandate.',
               'footnote_profile': 'Starter selects 10pt/12pt leading for footnotes as a house readability choice.',
               'limits': 'Word bounds only, with a local rounding/ink-overhang tolerance; not every PDF object, policy compliance, accessibility, science or final arXiv output. Inspect every rendered page.'}
     (output / 'layout-review.json').write_text(json.dumps(record, indent=2) + '\n')

@@ -59,6 +59,13 @@ Georgia headings and Arial body use system fonts; no remote font requests.
 
 The full and short films include voiceover, English captions and separate
 transcripts. The player announces sound and waits for a click.
+The landing page presents the main player and its caption control without an
+always-visible row of film links. Supporting cuts, transcripts, notes and prior
+media remain in the project; a transcript link remains inside the player's
+browser fallback.
+
+Visible page numbers are the house default, with author or venue exceptions.
+This is a local editorial choice, not an arXiv requirement.
 
 No automatic playback or animation, tracking, study upload, browser persistence
 or backend. The review checklist resets on reload and makes no readiness claim.

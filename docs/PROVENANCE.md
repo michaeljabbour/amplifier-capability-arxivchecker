@@ -25,7 +25,7 @@ The study-to-paper sequence; the requirement to explain the design and harness; 
 - Generic data extraction, chart and crop interfaces replace model names, original schemas, sample sizes, result values and fixed page coordinates.
 - Denominator guidance explicitly prevents post-hoc cherry-picking and requires full-population context, subgroup disclosure and exploratory labels.
 - The submission archive is a deliberate file allowlist; the full study kit is a separate deliverable.
-- Style preferences are distinguished from official policy. In particular, no page numbers is a project preference. A three-pass `pdflatex` build with a prepared `.bbl` is a conservative portability check; current arXiv also supports BibTeX/Biber input processing.
+- Style preferences are distinguished from official policy. MJ now prefers visible page numbers on the title and subsequent pages, with explicit author/venue exceptions; this supersedes the source playbook’s earlier omission preference and is not an arXiv requirement. A three-pass `pdflatex` build with a prepared `.bbl` is a conservative portability check; current arXiv also supports BibTeX/Biber input processing.
 - Source integrity, review completion and external acceptance are separate claims. Local checks do not prove the science, author approval or arXiv acceptance.
 
 ## Capability and web reference

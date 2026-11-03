@@ -43,6 +43,15 @@ Even a clean local build leaves author approval, rights, AI-use wording,
 category, license and endorsement to people. It does not establish arXiv
 acceptance.
 
+## A paper needs page references for review
+
+A fictional two-page manuscript uses MJ's house default: visible page numbers
+1 and 2, including the title page. Inspect the actual PDF footer, not only the
+LaTeX declaration, and leave enough room for footer ink within the page margins.
+Record an explicit author instruction or applicable venue rule when a different
+page style is needed. This is editorial guidance, not a universal arXiv rule or
+an automatic eligibility test.
+
 ## A short note to a colleague
 
 An illustrative summary might read:

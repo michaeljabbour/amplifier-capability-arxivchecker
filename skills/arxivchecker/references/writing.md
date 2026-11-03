@@ -28,6 +28,10 @@ Lead with the answer to the research question, then the evidence needed to asses
 
 For an illustrative structure, not a research finding: “We built [system] to address [problem]. We tested it using [design and comparison]. We observed [measured answer], with [important limit].” Fill those slots from this study's evidence, not a template's invented example.
 
+## Keep page references useful
+
+Show visible page numbers on the first and subsequent pages by default so readers can refer to a passage during review. This is MJ’s preference, not an arXiv rule. Follow a different treatment when an author or venue requests it, and record that choice. Keep the page number and all other footer ink inside the applicable margins; inspect the rendered pages.
+
 ## Review the explanation
 
 Before handoff, check that a reader can explain what was built, why it was tested, what the result means and what remains unknown. Check every unnecessary acronym, undefined term, decorative visual and paragraph that lists statistics without developing the argument. Keep the prose pedagogical without talking down to the reader.

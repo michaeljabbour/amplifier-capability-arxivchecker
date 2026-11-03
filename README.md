@@ -57,6 +57,8 @@ The [verification record](docs/ATTACHMENT-VERIFICATION.md) checks the supplied s
 
 ## The reporting standard
 
+MJ’s house default is visible page numbers, including the title page. Follow explicit author instructions or applicable venue requirements when they differ. This preference is separate from arXiv’s rules.
+
 Tell the full story: problem, design, related work, question and decision rules, apparatus, methods, results and limits. A results-only summary misses what was built and why. Keep predeclared analyses distinct from exploratory ones.
 
 Use [MJ's writing guide](skills/arxivchecker/references/writing.md) for pedagogical prose, explained jargon and visuals that help the reader understand. It is house style, separate from arXiv policy.

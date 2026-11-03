@@ -1,11 +1,14 @@
 % Neutral structural template. Replace every REPLACE_ME before release.
 % Checked policy map: ../references/requirements.md (2026-11-03; recheck before submission).
-% Exact 11pt, Letter, 1.05in geometry, newtx and no page numbers are local preferences.
-% The small extra margin leaves room for glyph protrusion and footnote descenders; inspect actual output.
+% Exact 11pt, Letter, 1.05in geometry and newtx are local preferences.
+% Visible page numbers, including the first page, are MJ's default preference, not an arXiv rule.
+% Adapt page numbering when an author or venue requests another treatment.
+% Include the footer in the geometry and reserve a 24pt baseline gap from the text.
+% The small extra margin buffers footer ink, glyph protrusion and footnote descenders; inspect actual output.
 % Official format guidance includes single spacing, 10-14pt and margins >= 1 inch:
 % https://info.arxiv.org/help/policies/format_requirements.html
 \documentclass[11pt]{article}
-\usepackage[letterpaper,margin=1.05in]{geometry}
+\usepackage[letterpaper,margin=1.05in,includefoot,footskip=24pt]{geometry}
 \usepackage[T1]{fontenc}
 \usepackage{newtxtext,newtxmath}
 \usepackage[final]{microtype}
@@ -18,10 +21,7 @@
 \definecolor{linkblue}{HTML}{1F4E9A}
 \hypersetup{colorlinks=true,linkcolor=linkblue,citecolor=linkblue,urlcolor=linkblue,
   pdftitle={REPLACE_ME study title},pdfauthor={REPLACE_ME exact author names}}
-\pagestyle{empty}
-\makeatletter
-\let\ps@plain\ps@empty
-\makeatother
+\pagestyle{plain}
 
 \title{REPLACE_ME study title}
 % Exact names and affiliations must be supplied by the authors.
@@ -31,7 +31,6 @@
 
 \begin{document}
 \maketitle
-\thispagestyle{empty}
 
 \begin{abstract}
 REPLACE_ME problem, system built, study question, design and evidence-supported answer.

@@ -14,6 +14,7 @@ Status: TODO — template, no review completed.
 ## Visual and reference review
 
 - MJ's style: pedagogical argument, jargon removed or explained, useful explanatory visuals: TODO
+- Visible first and subsequent page numbers by default, or recorded author/venue exception; footer ink within applicable margins (MJ's preference, not an arXiv rule): TODO
 
 - Figure scripts, data inputs and expected series checked: TODO
 - Every chart preview and crop inspected at intended size: TODO

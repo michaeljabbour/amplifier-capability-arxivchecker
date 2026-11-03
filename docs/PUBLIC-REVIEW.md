@@ -40,3 +40,13 @@ exact supplied MP4 has the same encoded/decoded picture and sound as the
 prepared local v2. All v1 asset bytes remain unchanged. See [video integration
 and independent review](VIDEO-UPDATE.md) for verification scope, rights and
 listening limitations. The final independent recheck covered 42 candidates, 152 generated files and all 19 ZIP members, with no privacy blockers. Subsequent test/browser records contain only generic local-check observations; the staged snapshot is scanned again before commit.
+
+## Numbered-page guidance update — 2026-11-03
+
+The update changes house-style guidance, a neutral template, examples, page
+markup and local checks. The new PDF/source/render evidence uses fictional
+author details and no study results. A video correction prompt records the
+existing public media's timestamps and obsolete wording. Video, caption and
+transcript bytes are preserved; historical records are labelled. No credentials,
+private datasets, raw production media or personal contact details are added.
+The final independent review covered 34 update candidates (31 text files and three fictional PDF/PNG assets), found no privacy blockers and confirmed current guidance consistency. The staged snapshot is scanned before its authorized GitHub push.

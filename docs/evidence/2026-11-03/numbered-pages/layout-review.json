@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "status": "local-template-build-and-bounds-measured",
+  "arxiv_eligibility": "not-assessed",
+  "pages": [
+    {
+      "page": 1,
+      "size_pt": [
+        612.0,
+        792.0
+      ],
+      "visible_footer_number": "1",
+      "footer_number_bbox_pt": [
+        {
+          "xMin": 303.273,
+          "yMin": 709.025448,
+          "xMax": 308.72755,
+          "yMax": 718.767275
+        }
+      ],
+      "word_bounds_margins_pt": {
+        "left": 75.262,
+        "right": 74.238,
+        "top": 118.657,
+        "bottom": 73.233
+      },
+      "within_local_72pt_text_envelope_with_1pt_tolerance": true
+    },
+    {
+      "page": 2,
+      "size_pt": [
+        612.0,
+        792.0
+      ],
+      "visible_footer_number": "2",
+      "footer_number_bbox_pt": [
+        {
+          "xMin": 303.273,
+          "yMin": 709.025448,
+          "xMax": 308.72755,
+          "yMax": 718.767275
+        }
+      ],
+      "word_bounds_margins_pt": {
+        "left": 75.6,
+        "right": 75.596,
+        "top": 76.674,
+        "bottom": 73.233
+      },
+      "within_local_72pt_text_envelope_with_1pt_tolerance": true
+    }
+  ],
+  "page_number_profile": "Visible first and subsequent page numbers are MJ house defaults, with author/venue exceptions; not an arXiv mandate.",
+  "footnote_profile": "Starter selects 10pt/12pt leading for footnotes as a house readability choice.",
+  "limits": "Word bounds only, with a local rounding/ink-overhang tolerance; not every PDF object, policy compliance, accessibility, science or final arXiv output. Inspect every rendered page."
+}
